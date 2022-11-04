@@ -1,4 +1,4 @@
-# Presentee: The smart presentation tool
+# **Presentee**: The smart presentation tool
 *A business tool for enterprise businesses to analyze marketing
 strategies and data analytics.*
 
@@ -16,9 +16,10 @@ strategies and data analytics.*
 
 At this time the testing of the connection to the mongo server is successful and got the MongoDB MERN demo stack working.
 
-# Important updates to React version 18
-[Please read here](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html).
 
+
+##  Guide to collaboration
+[Here](https://medium.com/@jonathanmines/the-ultimate-github-collaboration-guide-df816e98fb67) is a guide and best practices for collaboration for everyone to work together.
 
 ## Unit Testing
 There is a tests folder in the client src folder that has tests that would be nice to be expended.
@@ -31,6 +32,7 @@ There are plans to move the database to AWS, probably still using mongodb. This 
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Important updates to React version 18 [Please read here](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
+#### To learn React, check out the [React documentation](https://reactjs.org/).
