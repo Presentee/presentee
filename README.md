@@ -3,7 +3,14 @@
 1. cd into server folder
 2. npm install
 3. node server.js
-At this time the testing of the connection to the mongo server is successful
+
+### How to run client
+1. open up a new terminal if needed
+2. cd into client folder
+3. npm install
+4. npm start
+
+At this time the testing of the connection to the mongo server is successful and got the MongoDB MERN demo stack working.
 
 # Getting Started with Create React App
 
