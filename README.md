@@ -1,4 +1,8 @@
-# Presentee
+# Presentee: The smart presentation tool
+*A business tool for enterprise businesses to analyze marketing
+strategies and data analytics.*
+
+
 ### How to run the server
 1. cd into server folder
 2. npm install
