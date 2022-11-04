@@ -16,6 +16,9 @@ const Record = (props) => (
        Delete
      </button>
    </td>
+   <td>
+     <Link className="btn btn-link" to={`/qrcode/${props.record._id}`}>QRCode</Link>
+   </td>
  </tr>
 );
  
@@ -51,6 +54,8 @@ export default function RecordList() {
    const newRecords = records.filter((el) => el._id !== id);
    setRecords(newRecords);
  }
+
+
  
  // This method will map out the records on the table
  function recordList() {
@@ -76,6 +81,7 @@ export default function RecordList() {
            <th>Presenter</th>
            <th>Event Key</th>
            <th>Action</th>
+           <th>QR Code</th>
          </tr>
        </thead>
        <tbody>{recordList()}</tbody>

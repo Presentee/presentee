@@ -43,6 +43,7 @@ recordRoutes.route("/record/add").post(function (req, response) {
    presentationName: req.body.presentationName,
    presenter: req.body.presenter,
    eventKey: req.body.eventKey,
+   qrcode: req.body.qrcode,
  };
  db_connect.collection("records").insertOne(myobj, function (err, res) {
    if (err) throw err;
@@ -59,6 +60,7 @@ recordRoutes.route("/update/:id").post(function (req, response) {
      presentationName: req.body.presentationName,
      presenter: req.body.presenter,
      eventKey: req.body.eventKey,
+     qrcode: req.body.qrcode,
    },
  };
  db_connect
@@ -80,5 +82,28 @@ recordRoutes.route("/:id").delete((req, response) => {
    response.json(obj);
  });
 });
+
+// This section will help you get a list of all the records.
+recordRoutes.route("/qrcode").get(function (req, res) {
+  let db_connect = dbo.getDb("presentations");
+  db_connect
+    .collection("records")
+    .find({})
+    .toArray(function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
+ });
+
+recordRoutes.route("/qrcode/:id").get(function (req, res) {
+  let db_connect = dbo.getDb();
+  let myquery = { _id: ObjectId(req.params.id) };
+  db_connect
+    .collection("records")
+    .findOne(myquery, function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
+ });
  
 module.exports = recordRoutes;
