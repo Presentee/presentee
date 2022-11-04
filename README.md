@@ -1,3 +1,10 @@
+# Presentee
+### How to run the server
+1. cd into server folder
+2. npm install
+3. node server.js
+At this time the testing of the connection to the mongo server is successful
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
