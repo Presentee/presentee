@@ -1,1 +1,3 @@
+# ignore ALL dependencies in the client and server folders
 client/node_modules
+server/node_modules
