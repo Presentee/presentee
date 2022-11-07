@@ -2,33 +2,21 @@
 *A business tool for enterprise businesses to analyze marketing
 strategies and data analytics.*
 
-
-### How to run the server
-1. cd into server folder
-2. npm install
-3. node server.js
-
-### How to run client
-1. open up a new terminal if needed
-2. cd into client folder
-3. npm install
-4. npm start
-
-At this time the testing of the connection to the mongo server is successful and got the MongoDB MERN demo stack working.
-
-
+## How to run
+1. npm i
+2. npm start
 
 ##  Guide to collaboration
 [Here](https://medium.com/@jonathanmines/the-ultimate-github-collaboration-guide-df816e98fb67) is a guide and best practices for collaboration for everyone to work together.
 
 ## Unit Testing
-There is a tests folder in the client src folder that has tests that would be nice to be expended.
+There is a tests folder in the src folder that has tests that would be nice to be expended.
 
 ## Comments
 There should probably be a standard to how comments should be written. From the experience of commenting on complex web applications as this project grows we all should be able to understand them. Meaningful comments with explainations and examples would probably be nice for this application since it has a backend.
 
 ## Cloud Server
-There are plans to move the database to AWS, probably still using mongodb. This has not been fully implemented so some changes to the database configuration might be necessary until we can get the database server fully implemented.
+This application is fully run on AWS Amplify. The authenication is being done by cognito. The backend API is being done in GraphQL, more learning about this might be needed.
 
 ## Learn More
 
