@@ -9,19 +9,29 @@ import RecordList from "./components/recordList";
 import Edit from "./components/edit";
 import Create from "./components/create";
 import QRCode from "./components/qrcode";
+
+import { withAuthenticator, Authenticator } from '@aws-amplify/ui-react';
+import Amplify, { API, graphqlOperation } from 'aws-amplify';
+import awsExports from './aws-exports';
+import '@aws-amplify/ui-react/styles.css';
+
+Amplify.configure(awsExports);
  
 const App = () => {
- return (
-   <div>
-     <Navbar />
-     <Routes>
-       <Route exact path="/" element={<RecordList />} />
-       <Route path="/edit/:id" element={<Edit />} />
-       <Route path="/create" element={<Create />} />
-       <Route path="/qrcode/:id" element={<QRCode />} />
-     </Routes>
-   </div>
- );
+  
+
+
+  return (
+    <div>
+      <Navbar />
+      <Routes>
+        <Route exact path="/" element={<RecordList />} />
+        <Route path="/edit/:id" element={<Edit />} />
+        <Route path="/create" element={<Create />} />
+        <Route path="/qrcode/:id" element={<QRCode />} />
+      </Routes>
+    </div>
+  );
 };
  
-export default App;
+export default withAuthenticator(App);

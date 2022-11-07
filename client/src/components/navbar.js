@@ -5,6 +5,9 @@ import "bootstrap/dist/css/bootstrap.css";
  
 // We import NavLink to utilize the react router.
 import { NavLink } from "react-router-dom";
+
+import { Authenticator } from "@aws-amplify/ui-react";
+import '@aws-amplify/ui-react/styles.css';
  
 // Here, we display our Navbar
 export default function Navbar() {
@@ -32,6 +35,13 @@ export default function Navbar() {
              <NavLink className="nav-link" to="/create">
                Create Presentation
              </NavLink>
+             <Authenticator>
+               {({ signOut, user }) => (
+                 <div>
+                   <button onClick={signOut}>Sign out</button>
+                 </div>
+               )}
+             </Authenticator>
            </li>
          </ul>
        </div>
