@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
  
-export default function Edit() {
+const Edit = () => {
  const [form, setForm] = useState({
    presentationName: "",
    presenter: "",
@@ -110,3 +110,5 @@ export default function Edit() {
    </div>
  );
 }
+
+export default Edit;

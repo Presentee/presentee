@@ -10,7 +10,7 @@ import { Authenticator } from "@aws-amplify/ui-react";
 import '@aws-amplify/ui-react/styles.css';
  
 // Here, we display our Navbar
-export default function Navbar() {
+const Navbar = () => {
  return (
    <div>
      <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -49,3 +49,5 @@ export default function Navbar() {
    </div>
  );
 }
+
+export default Navbar;
