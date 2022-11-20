@@ -9,7 +9,6 @@ import RecordList from "./components/recordList";
 import Edit from "./components/edit";
 import Create from "./components/create";
 import QRCode from "./components/qrcode";
-
 import { withAuthenticator, Authenticator } from '@aws-amplify/ui-react';
 import Amplify, { API, graphqlOperation } from 'aws-amplify';
 import awsExports from './aws-exports';
@@ -29,7 +28,7 @@ const App = () => {
         <Route path="/edit/:id" element={<Edit />} />
         <Route path="/create" element={<Create />} />
         <Route path="/qrcode/:id" element={<QRCode />} />
-      </Routes>
+        </Routes>
     </div>
   );
 };
