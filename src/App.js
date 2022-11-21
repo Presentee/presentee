@@ -1,20 +1,53 @@
-import React from "react";
- 
-import { NavBar } from "./ui-components"
+// App.js
+import { Authenticator } from '@aws-amplify/ui-react';
 
-import { withAuthenticator, Authenticator } from '@aws-amplify/ui-react';
-import Amplify, { API, graphqlOperation } from 'aws-amplify';
-import awsExports from './aws-exports';
-import '@aws-amplify/ui-react/styles.css';
+import { Protected } from './components/Protected';
+import { RequireAuth } from './RequireAuth';
+import { Login } from './components/Login';
+import { ProtectedSecond } from './components/ProtectedSecond';
+import { Home } from './components/Home';
+import { Layout } from './components/Layout';
 
-Amplify.configure(awsExports);
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import "./App.css"
+
+const PresenteeRoutes = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+      <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route
+            path="/protected"
+            element={
+              <RequireAuth>
+                <Protected />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/protected2"
+            element={
+              <RequireAuth>
+                <ProtectedSecond />
+              </RequireAuth>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+        </Route>
+
+      </Routes>
+    </BrowserRouter>
+  )
+}
  
 const App = () => {
   return (
-    <div>
-      <NavBar />
-    </div>
+      <Authenticator.Provider>
+        <PresenteeRoutes />
+      </Authenticator.Provider>
   );
 };
  
-export default withAuthenticator(App);
+export default App;
