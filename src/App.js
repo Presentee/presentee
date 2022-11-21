@@ -1,14 +1,6 @@
 import React from "react";
  
-// We use Route in order to define the different routes of our application
-import { Route, Routes } from "react-router-dom";
- 
-// We import all the components we need in our app
-import Navbar from "./components/Navbar";
-import RecordList from "./components/recordList";
-import Edit from "./components/Edit";
-import Create from "./components/Create";
-import QRCode from "./components/qrcode";
+import { NavBar } from "./ui-components"
 
 import { withAuthenticator, Authenticator } from '@aws-amplify/ui-react';
 import Amplify, { API, graphqlOperation } from 'aws-amplify';
@@ -20,13 +12,7 @@ Amplify.configure(awsExports);
 const App = () => {
   return (
     <div>
-      <Navbar />
-      <Routes>
-        <Route exact path="/" element={<RecordList />} />
-        <Route path="/edit/:id" element={<Edit />} />
-        <Route path="/create" element={<Create />} />
-        <Route path="/qrcode/:id" element={<QRCode />} />
-      </Routes>
+      <NavBar />
     </div>
   );
 };
