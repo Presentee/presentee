@@ -32,9 +32,12 @@
     "categories": {
       "auth": {
         "presentee0206e54d": {}
+<<<<<<< Updated upstream
       },
       "api": {
         "presentee": {}
+=======
+>>>>>>> Stashed changes
       }
     }
   }
