@@ -145,16 +145,8 @@ export default function ProfileCard(props) {
         ></Text>
       </Flex>
       <Button
-        display="flex"
-        gap="0"
-        direction="row"
-        width="unset"
-        height="unset"
-        justifyContent="center"
-        alignItems="center"
         shrink="0"
         alignSelf="stretch"
-        position="relative"
         size="large"
         isDisabled={false}
         variation="primary"

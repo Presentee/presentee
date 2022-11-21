@@ -99,16 +99,8 @@ export default function MarketingPricing(props) {
             {...getOverrideProps(overrides, "$0/mo")}
           ></Text>
           <Button
-            display="flex"
-            gap="0"
-            direction="row"
-            width="unset"
-            height="unset"
-            justifyContent="center"
-            alignItems="center"
             shrink="0"
             alignSelf="stretch"
-            position="relative"
             size="large"
             isDisabled={false}
             variation="primary"
@@ -117,14 +109,8 @@ export default function MarketingPricing(props) {
           ></Button>
           <Divider
             width="unset"
-            display="block"
-            gap="unset"
-            alignItems="unset"
-            justifyContent="unset"
             shrink="0"
             alignSelf="stretch"
-            position="relative"
-            padding="0px 0px 0px 0px"
             size="default"
             orientation="horizontal"
             {...getOverrideProps(overrides, "Divider29766687")}
@@ -436,16 +422,8 @@ export default function MarketingPricing(props) {
             {...getOverrideProps(overrides, "$100/mo")}
           ></Text>
           <Button
-            display="flex"
-            gap="0"
-            direction="row"
-            width="unset"
-            height="unset"
-            justifyContent="center"
-            alignItems="center"
             shrink="0"
             alignSelf="stretch"
-            position="relative"
             size="large"
             isDisabled={false}
             variation="primary"
@@ -454,14 +432,8 @@ export default function MarketingPricing(props) {
           ></Button>
           <Divider
             width="unset"
-            display="block"
-            gap="unset"
-            alignItems="unset"
-            justifyContent="unset"
             shrink="0"
             alignSelf="stretch"
-            position="relative"
-            padding="0px 0px 0px 0px"
             size="default"
             orientation="horizontal"
             {...getOverrideProps(overrides, "Divider29766721")}
@@ -773,16 +745,8 @@ export default function MarketingPricing(props) {
             {...getOverrideProps(overrides, "Contact us")}
           ></Text>
           <Button
-            display="flex"
-            gap="0"
-            direction="row"
-            width="unset"
-            height="unset"
-            justifyContent="center"
-            alignItems="center"
             shrink="0"
             alignSelf="stretch"
-            position="relative"
             size="large"
             isDisabled={false}
             variation="primary"
@@ -791,14 +755,8 @@ export default function MarketingPricing(props) {
           ></Button>
           <Divider
             width="unset"
-            display="block"
-            gap="unset"
-            alignItems="unset"
-            justifyContent="unset"
             shrink="0"
             alignSelf="stretch"
-            position="relative"
-            padding="0px 0px 0px 0px"
             size="default"
             orientation="horizontal"
             {...getOverrideProps(overrides, "Divider29766738")}

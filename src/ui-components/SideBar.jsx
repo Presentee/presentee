@@ -874,14 +874,7 @@ export default function SideBar(props) {
         >
           <Divider
             width="385px"
-            height="1px"
-            display="block"
-            gap="unset"
-            alignItems="unset"
-            justifyContent="unset"
             shrink="0"
-            position="relative"
-            padding="0px 0px 0px 0px"
             size="small"
             orientation="horizontal"
             {...getOverrideProps(overrides, "Divider")}

@@ -123,15 +123,7 @@ export default function HeroLayout4(props) {
           {...getOverrideProps(overrides, "Form")}
         >
           <TextField
-            display="flex"
-            gap="8px"
-            direction="column"
-            width="300px"
-            height="unset"
-            alignItems="flex-start"
             shrink="0"
-            position="relative"
-            padding="0px 0px 0px 0px"
             placeholder="Placeholder"
             size="default"
             isDisabled={false}
@@ -140,15 +132,7 @@ export default function HeroLayout4(props) {
             {...getOverrideProps(overrides, "TextField")}
           ></TextField>
           <Button
-            display="flex"
-            gap="0"
-            direction="row"
-            width="unset"
-            height="unset"
-            justifyContent="center"
-            alignItems="center"
             shrink="0"
-            position="relative"
             size="default"
             isDisabled={false}
             variation="primary"

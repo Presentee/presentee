@@ -24,23 +24,6 @@ export default function ActionCard(props) {
       {...rest}
       {...getOverrideProps(overrides, "ActionCard")}
     >
-      <Button
-        display="flex"
-        gap="0"
-        direction="row"
-        width="unset"
-        height="unset"
-        justifyContent="center"
-        alignItems="center"
-        shrink="0"
-        alignSelf="stretch"
-        position="relative"
-        size="large"
-        isDisabled={false}
-        variation="primary"
-        children="BIG BUTTON"
-        {...getOverrideProps(overrides, "Button")}
-      ></Button>
       <Image
         width="unset"
         height="408px"
@@ -128,16 +111,8 @@ export default function ActionCard(props) {
           ></Text>
         </Flex>
         <Rating
-          display="flex"
-          gap="8px"
-          direction="row"
           width="174px"
-          height="unset"
-          justifyContent="flex-start"
-          alignItems="center"
           shrink="0"
-          position="relative"
-          padding="0px 0px 0px 0px"
           size="default"
           {...getOverrideProps(overrides, "Rating")}
         ></Rating>
@@ -164,6 +139,15 @@ export default function ActionCard(props) {
           {...getOverrideProps(overrides, "$9,999,999,999,999 USD")}
         ></Text>
       </Flex>
+      <Button
+        shrink="0"
+        alignSelf="stretch"
+        size="large"
+        isDisabled={false}
+        variation="primary"
+        children="BIG BUTTON"
+        {...getOverrideProps(overrides, "Button")}
+      ></Button>
     </Flex>
   );
 }

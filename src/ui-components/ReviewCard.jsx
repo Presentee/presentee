@@ -177,14 +177,7 @@ export default function ReviewCard(props) {
         </Flex>
         <Divider
           width="40px"
-          height="1px"
-          display="block"
-          gap="unset"
-          alignItems="unset"
-          justifyContent="unset"
           shrink="0"
-          position="relative"
-          padding="0px 0px 0px 0px"
           size="small"
           orientation="horizontal"
           {...getOverrideProps(overrides, "Divider")}
@@ -256,23 +249,7 @@ export default function ReviewCard(props) {
           ></Text>
         </Flex>
         <Badge
-          display="block"
-          gap="10px"
-          direction="column"
-          width="unset"
-          height="unset"
-          justifyContent="unset"
-          alignItems="center"
           shrink="0"
-          position="relative"
-          borderRadius="32px"
-          backgroundColor="rgba(239,240,240,1)"
-          fontSize="12px"
-          lineHeight="12px"
-          fontFamily="Inter"
-          fontWeight="600"
-          color="rgba(13,26,38,1)"
-          textAlign="left"
           size="small"
           variation="default"
           children="New!"
@@ -304,16 +281,7 @@ export default function ReviewCard(props) {
             {...getOverrideProps(overrides, "Rating29766840")}
           >
             <Rating
-              display="flex"
-              gap="8px"
-              direction="row"
-              width="unset"
-              height="unset"
-              justifyContent="flex-start"
-              alignItems="center"
               shrink="0"
-              position="relative"
-              padding="0px 0px 0px 0px"
               size="large"
               {...getOverrideProps(overrides, "Rating29766841")}
             ></Rating>

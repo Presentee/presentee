@@ -25,6 +25,11 @@ export default function NavBar(props) {
     type: "url",
     url: "create",
   });
+  const editPresentationOnClick = useNavigateAction({
+    type: "url",
+    url: "edit",
+  });
+  const profileOnClick = useNavigateAction({ type: "url", url: "profile" });
   const imageOnClick = useAuthSignOutAction({ global: false });
   return (
     <Flex
@@ -106,7 +111,9 @@ export default function NavBar(props) {
         shrink="1"
         basis="0"
         position="relative"
+        border="1px SOLID rgba(0,0,0,1)"
         padding="0px 0px 0px 0px"
+        backgroundColor="rgba(255,255,255,1)"
         {...getOverrideProps(overrides, "Frame 32129767076")}
       >
         <Text
@@ -154,6 +161,9 @@ export default function NavBar(props) {
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
           children="Edit Presentation"
+          onClick={() => {
+            editPresentationOnClick();
+          }}
           {...getOverrideProps(overrides, "Edit Presentation")}
         ></Text>
         <Text
@@ -175,8 +185,11 @@ export default function NavBar(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="Profile?"
-          {...getOverrideProps(overrides, "Profile?")}
+          children="Profile"
+          onClick={() => {
+            profileOnClick();
+          }}
+          {...getOverrideProps(overrides, "Profile")}
         ></Text>
         <Text
           fontFamily="Inter"
@@ -197,8 +210,8 @@ export default function NavBar(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="OtherStuff"
-          {...getOverrideProps(overrides, "OtherStuff")}
+          children="Contact Us"
+          {...getOverrideProps(overrides, "Contact Us")}
         ></Text>
       </Flex>
       <Flex
@@ -216,17 +229,8 @@ export default function NavBar(props) {
         {...getOverrideProps(overrides, "Frame 32129767081")}
       >
         <SearchField
-          display="flex"
-          gap="8px"
-          direction="column"
-          width="300px"
-          height="unset"
-          justifyContent="flex-start"
-          alignItems="flex-start"
+          placeholder="Search"
           shrink="0"
-          position="relative"
-          padding="0px 0px 0px 0px"
-          placeholder="Placeholder"
           size="default"
           isDisabled={false}
           labelHidden={true}

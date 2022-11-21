@@ -170,16 +170,9 @@ export default function ContactUs(props) {
         ></Text>
       </Flex>
       <SelectField
-        display="flex"
-        direction="column"
         width="unset"
-        height="unset"
-        justifyContent="center"
-        alignItems="flex-start"
         shrink="0"
         alignSelf="stretch"
-        position="relative"
-        padding="0px 0px 0px 0px"
         label="Label"
         placeholder="Placeholder"
         size="large"
@@ -189,16 +182,9 @@ export default function ContactUs(props) {
         {...getOverrideProps(overrides, "SelectField29766935")}
       ></SelectField>
       <TextField
-        display="flex"
-        direction="column"
         width="unset"
-        height="unset"
-        justifyContent="center"
-        alignItems="flex-start"
         shrink="0"
         alignSelf="stretch"
-        position="relative"
-        padding="0px 0px 0px 0px"
         label="Label"
         placeholder="Placeholder"
         size="large"
@@ -208,16 +194,9 @@ export default function ContactUs(props) {
         {...getOverrideProps(overrides, "TextField29766936")}
       ></TextField>
       <SelectField
-        display="flex"
-        direction="column"
         width="unset"
-        height="unset"
-        justifyContent="center"
-        alignItems="flex-start"
         shrink="0"
         alignSelf="stretch"
-        position="relative"
-        padding="0px 0px 0px 0px"
         label="Label"
         placeholder="Placeholder"
         size="large"
@@ -227,16 +206,9 @@ export default function ContactUs(props) {
         {...getOverrideProps(overrides, "SelectField29766937")}
       ></SelectField>
       <TextField
-        display="flex"
-        direction="column"
         width="unset"
-        height="unset"
-        justifyContent="center"
-        alignItems="flex-start"
         shrink="0"
         alignSelf="stretch"
-        position="relative"
-        padding="0px 0px 0px 0px"
         label="Label"
         placeholder="Placeholder"
         size="large"
@@ -246,16 +218,9 @@ export default function ContactUs(props) {
         {...getOverrideProps(overrides, "TextField29766938")}
       ></TextField>
       <TextField
-        display="flex"
-        direction="column"
         width="unset"
-        height="unset"
-        justifyContent="center"
-        alignItems="flex-start"
         shrink="0"
         alignSelf="stretch"
-        position="relative"
-        padding="0px 0px 0px 0px"
         label="Label"
         placeholder="Placeholder"
         size="large"
@@ -265,16 +230,8 @@ export default function ContactUs(props) {
         {...getOverrideProps(overrides, "TextField29766939")}
       ></TextField>
       <Button
-        display="flex"
-        gap="0"
-        direction="row"
-        width="unset"
-        height="unset"
-        justifyContent="center"
-        alignItems="center"
         shrink="0"
         alignSelf="stretch"
-        position="relative"
         size="large"
         isDisabled={false}
         variation="primary"

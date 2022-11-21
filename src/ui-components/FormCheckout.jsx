@@ -95,17 +95,10 @@ export default function FormCheckout(props) {
               {...getOverrideProps(overrides, "Info")}
             ></Text>
             <TextField
-              display="flex"
-              direction="column"
+              label="Name"
               width="unset"
-              height="unset"
-              justifyContent="center"
-              alignItems="flex-start"
               shrink="0"
               alignSelf="stretch"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              label="Name"
               placeholder="Placeholder"
               size="large"
               isDisabled={false}
@@ -114,17 +107,10 @@ export default function FormCheckout(props) {
               {...getOverrideProps(overrides, "TextField29767009")}
             ></TextField>
             <TextField
-              display="flex"
-              direction="column"
+              label="Title"
               width="unset"
-              height="unset"
-              justifyContent="center"
-              alignItems="flex-start"
               shrink="0"
               alignSelf="stretch"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              label="Title"
               placeholder="Placeholder"
               size="large"
               isDisabled={false}
@@ -135,15 +121,8 @@ export default function FormCheckout(props) {
           </Flex>
           <Divider
             width="unset"
-            height="1px"
-            display="block"
-            gap="unset"
-            alignItems="unset"
-            justifyContent="unset"
             shrink="0"
             alignSelf="stretch"
-            position="relative"
-            padding="0px 0px 0px 0px"
             size="small"
             orientation="horizontal"
             {...getOverrideProps(overrides, "Divider29767011")}
@@ -183,17 +162,10 @@ export default function FormCheckout(props) {
               {...getOverrideProps(overrides, "Shipping29767013")}
             ></Text>
             <TextField
-              display="flex"
-              direction="column"
+              label="Street address"
               width="unset"
-              height="unset"
-              justifyContent="center"
-              alignItems="flex-start"
               shrink="0"
               alignSelf="stretch"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              label="Street address"
               placeholder="Placeholder"
               size="large"
               isDisabled={false}
@@ -202,17 +174,10 @@ export default function FormCheckout(props) {
               {...getOverrideProps(overrides, "TextField29767014")}
             ></TextField>
             <TextField
-              display="flex"
-              direction="column"
+              label="Zip code"
               width="unset"
-              height="unset"
-              justifyContent="center"
-              alignItems="flex-start"
               shrink="0"
               alignSelf="stretch"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              label="Zip code"
               placeholder="Placeholder"
               size="large"
               isDisabled={false}
@@ -221,17 +186,10 @@ export default function FormCheckout(props) {
               {...getOverrideProps(overrides, "TextField29767015")}
             ></TextField>
             <TextField
-              display="flex"
-              direction="column"
+              label="Country"
               width="unset"
-              height="unset"
-              justifyContent="center"
-              alignItems="flex-start"
               shrink="0"
               alignSelf="stretch"
-              position="relative"
-              padding="0px 0px 0px 0px"
-              label="Country"
               placeholder="Placeholder"
               size="large"
               isDisabled={false}
@@ -256,24 +214,8 @@ export default function FormCheckout(props) {
         {...getOverrideProps(overrides, "Frame 412")}
       >
         <Badge
-          display="block"
-          gap="10px"
-          direction="column"
-          width="unset"
-          height="unset"
-          justifyContent="unset"
-          alignItems="center"
           shrink="0"
           alignSelf="stretch"
-          position="relative"
-          borderRadius="32px"
-          padding="8px 12px 8px 12px"
-          color="rgba(54,94,61,1)"
-          fontFamily="Inter"
-          fontWeight="600"
-          fontSize="14px"
-          textAlign="left"
-          lineHeight="14px"
           size="default"
           variation="success"
           children="Discount - 10% off"
@@ -351,15 +293,8 @@ export default function FormCheckout(props) {
         </Flex>
         <Divider
           width="unset"
-          height="1px"
-          display="block"
-          gap="unset"
-          alignItems="unset"
-          justifyContent="unset"
           shrink="0"
           alignSelf="stretch"
-          position="relative"
-          padding="0px 0px 0px 0px"
           size="small"
           orientation="horizontal"
           {...getOverrideProps(overrides, "Divider29767040")}
@@ -540,15 +475,8 @@ export default function FormCheckout(props) {
         </Flex>
         <Divider
           width="unset"
-          height="1px"
-          display="block"
-          gap="unset"
-          alignItems="unset"
-          justifyContent="unset"
           shrink="0"
           alignSelf="stretch"
-          position="relative"
-          padding="0px 0px 0px 0px"
           size="small"
           orientation="horizontal"
           {...getOverrideProps(overrides, "Divider29767061")}
@@ -611,30 +539,15 @@ export default function FormCheckout(props) {
         </Flex>
         <Divider
           width="unset"
-          height="1px"
-          display="block"
-          gap="unset"
-          alignItems="unset"
-          justifyContent="unset"
           shrink="0"
           alignSelf="stretch"
-          position="relative"
-          padding="0px 0px 0px 0px"
           size="small"
           orientation="horizontal"
           {...getOverrideProps(overrides, "Divider29767065")}
         ></Divider>
         <Button
-          display="flex"
-          gap="0"
-          direction="row"
-          width="unset"
-          height="unset"
-          justifyContent="center"
-          alignItems="center"
           shrink="0"
           alignSelf="stretch"
-          position="relative"
           size="large"
           isDisabled={false}
           variation="primary"

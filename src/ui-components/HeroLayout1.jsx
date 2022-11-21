@@ -189,15 +189,7 @@ export default function HeroLayout1(props) {
             ></Text>
           </Flex>
           <Button
-            display="flex"
-            gap="0"
-            direction="row"
-            width="unset"
-            height="unset"
-            justifyContent="center"
-            alignItems="center"
             shrink="0"
-            position="relative"
             size="large"
             isDisabled={false}
             variation="primary"

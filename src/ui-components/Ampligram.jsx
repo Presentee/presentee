@@ -288,15 +288,8 @@ export default function Ampligram(props) {
       >
         <Divider
           width="unset"
-          height="1px"
-          display="block"
-          gap="unset"
-          alignItems="unset"
-          justifyContent="unset"
           shrink="0"
           alignSelf="stretch"
-          position="relative"
-          padding="0px 0px 0px 0px"
           size="small"
           orientation="horizontal"
           {...getOverrideProps(overrides, "Divider")}

@@ -135,15 +135,8 @@ export default function ProductDetail(props) {
           </Flex>
           <Divider
             width="unset"
-            height="1px"
-            display="block"
-            gap="unset"
-            alignItems="unset"
-            justifyContent="unset"
             shrink="0"
             alignSelf="stretch"
-            position="relative"
-            padding="0px 0px 0px 0px"
             size="small"
             orientation="horizontal"
             {...getOverrideProps(overrides, "Divider29766957")}
@@ -212,15 +205,8 @@ export default function ProductDetail(props) {
           </Flex>
           <Divider
             width="unset"
-            height="1px"
-            display="block"
-            gap="unset"
-            alignItems="unset"
-            justifyContent="unset"
             shrink="0"
             alignSelf="stretch"
-            position="relative"
-            padding="0px 0px 0px 0px"
             size="small"
             orientation="horizontal"
             {...getOverrideProps(overrides, "Divider29766961")}
@@ -291,13 +277,7 @@ export default function ProductDetail(props) {
       </Flex>
       <Divider
         height="1098px"
-        display="block"
-        gap="unset"
-        alignItems="unset"
-        justifyContent="unset"
         shrink="0"
-        position="relative"
-        padding="0px 0px 0px 0px"
         size="small"
         orientation="vertical"
         {...getOverrideProps(overrides, "Divider29766965")}
@@ -348,16 +328,7 @@ export default function ProductDetail(props) {
           {...getOverrideProps(overrides, "Frame 27")}
         >
           <Rating
-            display="flex"
-            gap="8px"
-            direction="row"
-            width="unset"
-            height="unset"
-            justifyContent="flex-start"
-            alignItems="center"
             shrink="0"
-            position="relative"
-            padding="0px 0px 0px 0px"
             size="default"
             {...getOverrideProps(overrides, "Rating")}
           ></Rating>
@@ -397,13 +368,7 @@ export default function ProductDetail(props) {
           {...getOverrideProps(overrides, "Group 27")}
         >
           <Button
-            display="flex"
-            gap="0"
-            direction="row"
             width="371px"
-            height="unset"
-            justifyContent="center"
-            alignItems="center"
             position="absolute"
             top="189px"
             left="0px"
@@ -427,16 +392,8 @@ export default function ProductDetail(props) {
             {...getOverrideProps(overrides, "Frame 2829766973")}
           >
             <Button
-              display="flex"
-              gap="0"
-              direction="row"
               width="75px"
-              height="unset"
-              justifyContent="center"
-              alignItems="center"
               shrink="0"
-              position="relative"
-              padding="8px 16px 8px 16px"
               size="large"
               isDisabled={true}
               variation="primary"
@@ -444,15 +401,8 @@ export default function ProductDetail(props) {
               {...getOverrideProps(overrides, "Button29766974")}
             ></Button>
             <Button
-              display="flex"
-              gap="0"
-              direction="row"
               width="75px"
-              height="unset"
-              justifyContent="center"
-              alignItems="center"
               shrink="0"
-              position="relative"
               size="large"
               isDisabled={false}
               variation="primary"
@@ -460,15 +410,8 @@ export default function ProductDetail(props) {
               {...getOverrideProps(overrides, "Button29766975")}
             ></Button>
             <Button
-              display="flex"
-              gap="0"
-              direction="row"
               width="74px"
-              height="unset"
-              justifyContent="center"
-              alignItems="center"
               shrink="0"
-              position="relative"
               size="large"
               isDisabled={false}
               variation="primary"
@@ -476,15 +419,8 @@ export default function ProductDetail(props) {
               {...getOverrideProps(overrides, "Button29766976")}
             ></Button>
             <Button
-              display="flex"
-              gap="0"
-              direction="row"
               width="75px"
-              height="unset"
-              justifyContent="center"
-              alignItems="center"
               shrink="0"
-              position="relative"
               size="large"
               isDisabled={false}
               variation="primary"
@@ -506,15 +442,9 @@ export default function ProductDetail(props) {
             {...getOverrideProps(overrides, "Frame 2829766978")}
           >
             <Button
-              display="flex"
               gap="24px"
-              direction="row"
               width="75px"
-              height="unset"
-              justifyContent="center"
-              alignItems="center"
               shrink="0"
-              position="relative"
               size="large"
               isDisabled={false}
               variation="primary"
@@ -522,15 +452,9 @@ export default function ProductDetail(props) {
               {...getOverrideProps(overrides, "Button29766979")}
             ></Button>
             <Button
-              display="flex"
               gap="24px"
-              direction="row"
               width="75px"
-              height="unset"
-              justifyContent="center"
-              alignItems="center"
               shrink="0"
-              position="relative"
               size="large"
               isDisabled={false}
               variation="primary"
@@ -538,15 +462,9 @@ export default function ProductDetail(props) {
               {...getOverrideProps(overrides, "Button29766980")}
             ></Button>
             <Button
-              display="flex"
               gap="24px"
-              direction="row"
               width="74px"
-              height="unset"
-              justifyContent="center"
-              alignItems="center"
               shrink="0"
-              position="relative"
               size="large"
               isDisabled={false}
               variation="primary"
@@ -554,15 +472,9 @@ export default function ProductDetail(props) {
               {...getOverrideProps(overrides, "Button29766981")}
             ></Button>
             <Button
-              display="flex"
               gap="24px"
-              direction="row"
               width="75px"
-              height="unset"
-              justifyContent="center"
-              alignItems="center"
               shrink="0"
-              position="relative"
               size="large"
               isDisabled={false}
               variation="primary"
