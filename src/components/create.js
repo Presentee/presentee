@@ -6,12 +6,12 @@ import { useNavigate } from "react-router";
  * pass the data forward. This is done by setForm that changes the value of 
  * what the previous data was, and replaces it with the value of setForm.
  */
-export default function Create() {
- const [form, setForm] = useState({
-   presentationName: "",
-   presenter: "",
-   eventKey: "",
- });
+const Create = () => {
+  const [form, setForm] = useState({
+    presentationName: "",
+    presenter: "",
+    eventKey: "",
+  });
 
  // navigate will be used to bring back to the root page after the button has
  // been submitted.
@@ -107,3 +107,6 @@ export default function Create() {
    </div>
  );
 }
+
+
+export default Create;
