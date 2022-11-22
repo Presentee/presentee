@@ -6,7 +6,7 @@ import '@aws-amplify/ui-react/styles.css';
 
 import { useNavigate, useLocation } from 'react-router';
 
-export function Login() {
+const Login = () => {
   const { route } = useAuthenticator((context) => [context.route]);
   const location = useLocation();
   const navigate = useNavigate();
@@ -22,3 +22,5 @@ export function Login() {
     </View>
   );
 }
+
+export default Login;
