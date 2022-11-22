@@ -8,9 +8,6 @@ export const getPresentation = /* GraphQL */ `
       presentationName
       presenter
       eventKey
-      qrcode
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -26,9 +23,6 @@ export const listPresentations = /* GraphQL */ `
         presentationName
         presenter
         eventKey
-        qrcode
-        createdAt
-        updatedAt
       }
       nextToken
     }

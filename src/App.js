@@ -10,7 +10,7 @@ import Login from './components/Login';
 import ProtectedSecond from './components/ProtectedSecond';
 import Home from './components/Home';
 import Layout from './components/Layout';
-import Create from './components/create';
+import Create from './components/Create';
 
 /* The PresenteeRoutes function will provide all the routes 
 that are needed to navigate between urls when such buttons 
