@@ -6,7 +6,6 @@ import { Outlet } from 'react-router-dom';
 
 import { useAuthenticator, Heading, View } from '@aws-amplify/ui-react';
 
-
 const Layout = () => {
   const { route } = useAuthenticator((context) => [
     context.route,

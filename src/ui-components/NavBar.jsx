@@ -20,7 +20,7 @@ import {
   View,
 } from "@aws-amplify/ui-react";
 export default function NavBar(props) {
-  const { overrides, ...rest } = props;
+  const { contactUs, onClick, overrides, ...rest } = props;
   const createPresentationOnClick = useNavigateAction({
     type: "url",
     url: "create",
@@ -30,13 +30,14 @@ export default function NavBar(props) {
     url: "edit",
   });
   const profileOnClick = useNavigateAction({ type: "url", url: "profile" });
+  const contactUsOnClick = useNavigateAction({ type: "url", url: "" });
   const imageOnClick = useAuthSignOutAction({ global: false });
   return (
     <Flex
       gap="20px"
       direction="row"
       width="1440px"
-      height="unset"
+      height="91px"
       justifyContent="center"
       alignItems="center"
       position="relative"
@@ -211,6 +212,9 @@ export default function NavBar(props) {
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
           children="Contact Us"
+          onClick={() => {
+            contactUsOnClick();
+          }}
           {...getOverrideProps(overrides, "Contact Us")}
         ></Text>
       </Flex>

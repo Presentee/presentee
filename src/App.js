@@ -10,6 +10,7 @@ import Login from './components/Login';
 import ProtectedSecond from './components/ProtectedSecond';
 import Home from './components/Home';
 import Layout from './components/Layout';
+import Create from './components/create';
 
 /* The PresenteeRoutes function will provide all the routes 
 that are needed to navigate between urls when such buttons 
@@ -49,6 +50,8 @@ const PresenteeRoutes = () => {
           <Route path="/login" element={<Login />} />
         {/* End of parent component Layout */}
         </Route>
+
+        <Route path="/create" element={<Create />} />
       </Routes>
     </BrowserRouter>
   )

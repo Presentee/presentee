@@ -18,7 +18,7 @@ export default function ContactUs(props) {
   const { overrides, ...rest } = props;
   return (
     <Flex
-      gap="38px"
+      gap="16px"
       direction="column"
       width="773px"
       height="unset"
@@ -169,19 +169,72 @@ export default function ContactUs(props) {
         ></Text>
       </Flex>
       <TextField
-        label="First Name"
-        width="333px"
+        label="First and Last Name "
+        width="761px"
         shrink="0"
-        placeholder=""
+        backgroundColor="rgba(255,255,255,1)"
         size="large"
         isDisabled={false}
         labelHidden={false}
         variation="default"
         {...getOverrideProps(overrides, "TextField242696")}
       ></TextField>
+      <Flex
+        gap="0"
+        direction="column"
+        width="unset"
+        height="unset"
+        justifyContent="flex-start"
+        alignItems="flex-start"
+        shrink="0"
+        alignSelf="stretch"
+        position="relative"
+        padding="0px 0px 0px 0px"
+        {...getOverrideProps(overrides, "InputGroup322737")}
+      >
+        <Flex
+          gap="10px"
+          direction="column"
+          width="unset"
+          height="unset"
+          justifyContent="center"
+          alignItems="center"
+          shrink="0"
+          alignSelf="stretch"
+          position="relative"
+          border="1px SOLID rgba(174,179,183,1)"
+          borderRadius="5px"
+          padding="8px 16px 8px 16px"
+          {...getOverrideProps(overrides, "Input322738")}
+        >
+          <Text
+            fontFamily="Inter"
+            fontSize="20px"
+            fontWeight="400"
+            color="rgba(128,128,128,1)"
+            lineHeight="30px"
+            textAlign="left"
+            display="block"
+            direction="column"
+            justifyContent="unset"
+            width="unset"
+            height="unset"
+            gap="unset"
+            alignItems="unset"
+            shrink="0"
+            alignSelf="stretch"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            whiteSpace="pre-wrap"
+            children=""
+            {...getOverrideProps(overrides, "placeholder")}
+          ></Text>
+        </Flex>
+      </Flex>
       <TextField
         label="Email "
         width="773px"
+        height="86px"
         shrink="0"
         placeholder=""
         size="large"
@@ -205,7 +258,7 @@ export default function ContactUs(props) {
       <TextField
         label="Message"
         width="unset"
-        height="6px"
+        height="38px"
         shrink="0"
         alignSelf="stretch"
         placeholder=""
@@ -241,31 +294,8 @@ export default function ContactUs(props) {
           border="1px SOLID rgba(174,179,183,1)"
           borderRadius="5px"
           padding="8px 16px 8px 16px"
-          {...getOverrideProps(overrides, "Input")}
-        >
-          <Text
-            fontFamily="Inter"
-            fontSize="20px"
-            fontWeight="400"
-            color="rgba(128,128,128,1)"
-            lineHeight="30px"
-            textAlign="left"
-            display="block"
-            direction="column"
-            justifyContent="unset"
-            width="unset"
-            height="unset"
-            gap="unset"
-            alignItems="unset"
-            shrink="0"
-            alignSelf="stretch"
-            position="relative"
-            padding="0px 0px 0px 0px"
-            whiteSpace="pre-wrap"
-            children=""
-            {...getOverrideProps(overrides, "placeholder")}
-          ></Text>
-        </Flex>
+          {...getOverrideProps(overrides, "Input242732")}
+        ></Flex>
       </Flex>
       <Button
         shrink="0"
@@ -276,19 +306,6 @@ export default function ContactUs(props) {
         children="Submit Request"
         {...getOverrideProps(overrides, "Button")}
       ></Button>
-      <Flex
-        gap="0"
-        direction="column"
-        width="unset"
-        height="unset"
-        justifyContent="flex-start"
-        alignItems="flex-start"
-        shrink="0"
-        alignSelf="stretch"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "InputGroup242735")}
-      ></Flex>
     </Flex>
   );
 }

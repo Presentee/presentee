@@ -5,13 +5,16 @@
  **************************************************************************/
 
 import * as React from "react";
+import { NavBarProps } from "./NavBar";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
-import { FlexProps } from "@aws-amplify/ui-react";
-import { SyntheticEvent } from "react";
-export declare type NavBarProps = React.PropsWithChildren<Partial<FlexProps> & {
-    contactUs?: String;
-    onClick?: (event: SyntheticEvent) => void;
+import { CollectionProps } from "@aws-amplify/ui-react";
+export declare type NavBarCollectionProps = React.PropsWithChildren<Partial<CollectionProps<any>> & {
+    items?: any[];
+    overrideItems?: (collectionItem: {
+        item: any;
+        index: number;
+    }) => NavBarProps;
 } & {
     overrides?: EscapeHatchProps | undefined | null;
 }>;
-export default function NavBar(props: NavBarProps): React.ReactElement;
+export default function NavBarCollection(props: NavBarCollectionProps): React.ReactElement;
