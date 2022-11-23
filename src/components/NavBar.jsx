@@ -22,12 +22,18 @@ const NavBar = () => {
     return (
         <nav>
             <Button onClick={() => navigate('/')}>Home</Button>
+            {/*}
             <Button onClick={() => navigate('/protected')}>
               First Protected Route
             </Button>
+          
             <Button onClick={() => navigate('/protected2')}>
               View
             </Button>
+            */}
+            {route === 'authenticated' ? (
+              <Button onClick={() => navigate('/protected2')}>View</Button>
+            ) : ""}
 
             {/* If user is authenticated this button will appear that 
             is labeled create this is where we will create presentations, and 
