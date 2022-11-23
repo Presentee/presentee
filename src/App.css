@@ -1,0 +1,26 @@
+/* App.css */
+* {
+  background-size: cover;
+  background-position: center;
+}
+#root {
+    text-align: center;
+    margin: 1.2rem;
+    position:absolute; 
+    height:100%; 
+    width:100%;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .auth-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  } 

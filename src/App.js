@@ -24,12 +24,62 @@ const App = () => {
     <div>
       <Navbar />
       <Routes>
+<<<<<<< Updated upstream
         <Route exact path="/" element={<RecordList />} />
         <Route path="/edit/:id" element={<Edit />} />
         <Route path="/create" element={<Create />} />
         <Route path="/qrcode/:id" element={<QRCode />} />
         </Routes>
     </div>
+=======
+        {/* Parent compontent Layout
+        This holds the routes of all children routes. 
+        This means that inside of Layout there are components
+        that need to be routed to different urls and these
+        are provided here. */}
+        <Route path="/" element={<Layout />}>
+          {/* Child component Home*/}
+          <Route index element={<Home />} />
+          {/* Child component Protected*/}
+          <Route
+            path="/protected"
+            element={
+              <RequireAuth>
+                <Protected />
+              </RequireAuth>
+            }
+          />
+          {/* Child component ProtectedSecond */}
+          <Route
+            path="/protected2"
+            element={
+              <RequireAuth>
+                <ProtectedSecond />
+              </RequireAuth>
+            }
+          />
+          <Route path="/create" element={
+          <RequireAuth>
+            <Create />
+          </RequireAuth>
+          } />
+          {/* Child component Login */}
+          <Route path="/login" element={<Login />} />
+        {/* End of parent component Layout */}
+        </Route>
+
+        
+      </Routes>
+    </BrowserRouter>
+)
+} /* End of Presentee Routes function */
+ 
+const App = () => {
+  return (
+      <Authenticator.Provider>
+        <PresenteeRoutes />
+      </Authenticator.Provider>
+>>>>>>> Stashed changes
   );
 };
  
