@@ -11,6 +11,10 @@ export const createPresentation = /* GraphQL */ `
       presentationName
       presenter
       eventKey
+      qrcode
+      owner
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -24,6 +28,10 @@ export const updatePresentation = /* GraphQL */ `
       presentationName
       presenter
       eventKey
+      qrcode
+      owner
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -37,6 +45,10 @@ export const deletePresentation = /* GraphQL */ `
       presentationName
       presenter
       eventKey
+      qrcode
+      owner
+      createdAt
+      updatedAt
     }
   }
 `;

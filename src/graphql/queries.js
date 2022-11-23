@@ -8,6 +8,10 @@ export const getPresentation = /* GraphQL */ `
       presentationName
       presenter
       eventKey
+      qrcode
+      owner
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -23,6 +27,10 @@ export const listPresentations = /* GraphQL */ `
         presentationName
         presenter
         eventKey
+        qrcode
+        owner
+        createdAt
+        updatedAt
       }
       nextToken
     }

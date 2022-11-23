@@ -13,10 +13,21 @@
     },
     "categories": {
       "auth": {
-        "presentee0206e54d": {}
+        "presentee0206e54d": {},
+        "userPoolGroups": {}
       },
       "api": {
         "presentee": {}
+      },
+      "function": {
+        "graphQlLambdaAuthorizere671f493": {
+          "deploymentBucketName": "amplify-presentee-presentee-220302-deployment",
+          "s3Key": "amplify-builds/graphQlLambdaAuthorizere671f493-2f4f3244474569747067-build.zip"
+        },
+        "graphQlLambdaAuthorizerd89cfd32": {
+          "deploymentBucketName": "amplify-presentee-presentee-220302-deployment",
+          "s3Key": "amplify-builds/graphQlLambdaAuthorizerd89cfd32-59434c57695062304933-build.zip"
+        }
       }
     }
   },

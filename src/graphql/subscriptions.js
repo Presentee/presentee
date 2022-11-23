@@ -4,13 +4,15 @@
 export const onCreatePresentation = /* GraphQL */ `
   subscription OnCreatePresentation(
     $filter: ModelSubscriptionPresentationFilterInput
+    $owner: String
   ) {
-    onCreatePresentation(filter: $filter) {
+    onCreatePresentation(filter: $filter, owner: $owner) {
       id
       presentationName
       presenter
       eventKey
       qrcode
+      owner
       createdAt
       updatedAt
     }
@@ -19,13 +21,15 @@ export const onCreatePresentation = /* GraphQL */ `
 export const onUpdatePresentation = /* GraphQL */ `
   subscription OnUpdatePresentation(
     $filter: ModelSubscriptionPresentationFilterInput
+    $owner: String
   ) {
-    onUpdatePresentation(filter: $filter) {
+    onUpdatePresentation(filter: $filter, owner: $owner) {
       id
       presentationName
       presenter
       eventKey
       qrcode
+      owner
       createdAt
       updatedAt
     }
@@ -34,13 +38,15 @@ export const onUpdatePresentation = /* GraphQL */ `
 export const onDeletePresentation = /* GraphQL */ `
   subscription OnDeletePresentation(
     $filter: ModelSubscriptionPresentationFilterInput
+    $owner: String
   ) {
-    onDeletePresentation(filter: $filter) {
+    onDeletePresentation(filter: $filter, owner: $owner) {
       id
       presentationName
       presenter
       eventKey
       qrcode
+      owner
       createdAt
       updatedAt
     }

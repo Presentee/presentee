@@ -16,6 +16,7 @@ import Create from './components/Create';
 that are needed to navigate between urls when such buttons 
 are clicked. */
 const PresenteeRoutes = () => {
+  
   return (
     <BrowserRouter>
       {/* Routes of App */}
@@ -46,12 +47,17 @@ const PresenteeRoutes = () => {
               </RequireAuth>
             }
           />
+          <Route path="/create" element={
+          <RequireAuth>
+            <Create />
+          </RequireAuth>
+          } />
           {/* Child component Login */}
           <Route path="/login" element={<Login />} />
         {/* End of parent component Layout */}
         </Route>
 
-        <Route path="/create" element={<Create />} />
+        
       </Routes>
     </BrowserRouter>
   )
