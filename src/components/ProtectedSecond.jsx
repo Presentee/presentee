@@ -2,7 +2,7 @@
 
 import Pdf from './Pdf'
 
-const ProtectedSecond = () => {
+const ProtectedSecond = (params) => {
 
   /*
   const message =
@@ -11,7 +11,7 @@ const ProtectedSecond = () => {
   */
   return (
     <div>
-      <Pdf />
+      <Pdf pdfFile={params.pdfFile}/>
     </div>
   );
 }

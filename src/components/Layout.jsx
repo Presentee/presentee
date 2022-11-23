@@ -15,10 +15,10 @@ const Layout = () => {
   return (
     <>
       <NavBar />
-      <Heading level={1}>Presentee</Heading>
+      {/* <Heading level={1}>Presentee</Heading>
       <View>
         {route === 'authenticated' ? 'You are logged in!' : 'Please Login!'}
-      </View>
+      </View> */}
 
       <Outlet />
     </>

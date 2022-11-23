@@ -5,6 +5,7 @@ import { listPresentations } from '../graphql/queries';
 import { createPresentation, deletePresentation, updatePresentation } from '../graphql/mutations';
 import PresentationList from './PresentationList';
 import CreatePresentation from './CreatePresentation';
+import FileUpload from "./FileUpload";
 
 //import { useNavigate } from "react-router";
 
@@ -16,118 +17,119 @@ import CreatePresentation from './CreatePresentation';
 
 const initialState = { presentationName: '', presenter: '', eventKey: '' };
 
-const Create = () => {
-  const [formState, setFormState] = useState(initialState);  
-  const [presentations, setPresentations] = useState([]);  
-  const [apiError, setApiError] = useState();  
+const Create = (params) => {
+  const [formState, setFormState] = useState(initialState);
+  const [presentations, setPresentations] = useState([]);
+  const [apiError, setApiError] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
   // navigate will be used to bring back to the root page after the button has
   // been submitted.
   //const navigate = useNavigate();
 
-  useEffect(() => {    
-    fetchPresentations();  
+  useEffect(() => {
+    fetchPresentations();
   }, []);
 
   function setInput(key, value) {
     setFormState({ ...formState, [key]: value });
   }
 
-  async function fetchPresentations() {    
-    setIsLoading(true);    
-    try {      
-      const presentationData = await API.graphql(graphqlOperation(listPresentations));      
-      const presentations = presentationData.data.listPresentations.items;      
-      setPresentations(presentations);      
-      setApiError(null);    
-    } catch (error) {      
-      console.error('Failed fetching presentations:', error);      
-      setApiError(error);    
-    } finally {      
-      setIsLoading(false);    
-    }  
+  async function fetchPresentations() {
+    setIsLoading(true);
+    try {
+      const presentationData = await API.graphql(graphqlOperation(listPresentations));
+      const presentations = presentationData.data.listPresentations.items;
+      setPresentations(presentations);
+      setApiError(null);
+    } catch (error) {
+      console.error('Failed fetching presentations:', error);
+      setApiError(error);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
-  async function addPresentation() {    
-    try {      
-      if (!formState.presentationName || !formState.presenter || !formState.eventKey) {        
-        return;      
-      }      
-      const presentation = { ...formState };      
-      setPresentations([...presentations, presentation]);      
-      setFormState(initialState);      
-      await API.graphql(graphqlOperation(createPresentation, { input: presentation }));      
-      setApiError(null);    
-    } catch (error) {      
-      console.error('Failed creating presentation:', error);      
-      setApiError(error);    
-    }  
+  async function addPresentation() {
+    try {
+      if (!formState.presentationName || !formState.presenter || !formState.eventKey) {
+        return;
+      }
+      const presentation = { ...formState };
+      setPresentations([...presentations, presentation]);
+      setFormState(initialState);
+      await API.graphql(graphqlOperation(createPresentation, { input: presentation }));
+      setApiError(null);
+    } catch (error) {
+      console.error('Failed creating presentation:', error);
+      setApiError(error);
+    }
   }
 
-  async function removePresentation(id) {    
-    try {      
-      await API.graphql(graphqlOperation(deletePresentation, { input: { id } }));      
-      setPresentations(presentations.filter(presentation => presentation.id !== id));      
-      setApiError(null);    
-    } catch (error) {      
-      console.error('Failed deleting presentation:', error);      
-      setApiError(error);    
-    }  
+  async function removePresentation(id) {
+    try {
+      await API.graphql(graphqlOperation(deletePresentation, { input: { id } }));
+      setPresentations(presentations.filter(presentation => presentation.id !== id));
+      setApiError(null);
+    } catch (error) {
+      console.error('Failed deleting presentation:', error);
+      setApiError(error);
+    }
   }
 
-  async function onItemUpdate(presentation) {    
-    try {      
-      await API.graphql(        
-        graphqlOperation(updatePresentation, {          
-          input: {   
-            id: presentation.id,          
-            presentationName: presentation.presentationName,            
+  async function onItemUpdate(presentation) {
+    try {
+      await API.graphql(
+        graphqlOperation(updatePresentation, {
+          input: {
+            id: presentation.id,
+            presentationName: presentation.presentationName,
             presenter: presentation.presenter,
-            eventKey: presentation.eventKey,   
-          },        
-        })      
-      );      
-      setApiError(null);    
-    } catch (error) {      
-      console.error('Failed updating presentation:', error);      
-      setApiError(error);    
-    }  
+            eventKey: presentation.eventKey,
+          },
+        })
+      );
+      setApiError(null);
+    } catch (error) {
+      console.error('Failed updating presentation:', error);
+      setApiError(error);
+    }
   }
 
-  const errorMessage = apiError && (    
-    <p style={styles.errorText}>      
-      {apiError.errors.map(error => (        
-        <p>{error.message}</p>      
-      ))}    
-    </p>  
+  const errorMessage = apiError && (
+    <p style={styles.errorText}>
+      {apiError.errors.map(error => (
+        <p>{error.message}</p>
+      ))}
+    </p>
   );
 
-  if (isLoading) {    
-    return 'Loading...';  
+  if (isLoading) {
+    return 'Loading...';
   }
- 
+
   return (
-  <div style={styles.container}>      
-    <h1 style={styles.heading}>Presentee Presentations</h1>      
-    {errorMessage}      
-    <div style={styles.grid}>        
-      <PresentationList          
-        presentations={presentations}          
-        onRemovePresentation={removePresentation}          
-        onItemUpdate={onItemUpdate}        
-      />        
-      <CreatePresentation             
-        presentationName={formState.presentationName} 
-        presenter={formState.presenter} 
-        eventKey={formState.eventKey}         
-        onCreate={addPresentation}          
-        onPresenterChange={setInput}          
-        onPresentationNameChange={setInput} 
-        onPresentationEventKeyChange={setInput}       
-      />      
-      </div>    
-    </div>  
+    <div>
+      <div style={styles.container}>
+        <h1 style={styles.heading}>Presentee Presentations</h1>
+        {errorMessage}
+
+        <CreatePresentation
+          presentationName={formState.presentationName}
+          presenter={formState.presenter}
+          eventKey={formState.eventKey}
+          onCreate={addPresentation}
+          onPresenterChange={setInput}
+          onPresentationNameChange={setInput}
+          onPresentationEventKeyChange={setInput}
+        />
+      </div>
+      <div style={{marginTop: "5rem"}}>
+          <FileUpload setPDFFile={params.setPDFFile} />
+        </div>
+    </div>
+
+
   );
 }
 
@@ -135,11 +137,13 @@ const Create = () => {
 const styles = {
   heading: {
     textAlign: 'center',
+    marginBottom: '6rem',
   },
   container: {
     margin: '0 auto',
     padding: 20,
     backgroundColor: '#FFFFFF',
+    maxWidth: 600,
   },
   errorText: {
     color: 'red',

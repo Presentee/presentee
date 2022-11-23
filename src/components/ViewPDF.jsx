@@ -24,7 +24,7 @@ export default function ViewPDF(params) {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} class="button">
                 <button type='submit' className='btn btn-success'> View Presentee </button>
             </form>
 

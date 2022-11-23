@@ -1,6 +1,7 @@
 // App.js
 import { Authenticator } from '@aws-amplify/ui-react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from 'react';
 
 import "./App.css"
 
@@ -16,6 +17,8 @@ import Create from './components/Create';
 that are needed to navigate between urls when such buttons 
 are clicked. */
 const PresenteeRoutes = () => {
+
+  const [pdfFile, setPDFFile] = useState(null)
   
   return (
     <BrowserRouter>
@@ -43,13 +46,13 @@ const PresenteeRoutes = () => {
             path="/protected2"
             element={
               <RequireAuth>
-                <ProtectedSecond />
+                <ProtectedSecond pdfFile={pdfFile}/>
               </RequireAuth>
             }
           />
           <Route path="/create" element={
           <RequireAuth>
-            <Create />
+            <Create setPDFFile={setPDFFile} pdfFile={pdfFile}/>
           </RequireAuth>
           } />
           {/* Child component Login */}
