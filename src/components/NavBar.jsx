@@ -26,7 +26,7 @@ const NavBar = () => {
               First Protected Route
             </Button>
             <Button onClick={() => navigate('/protected2')}>
-              Second Protected Route
+              View
             </Button>
 
             {/* If user is authenticated this button will appear that 

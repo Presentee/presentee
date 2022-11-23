@@ -1,8 +1,8 @@
-import { useState } from "react"
+//import { useState } from "react"
 
 export default function FileUpload(params) {
 
-    const [pdfFile, setPDFFile] = useState(null)
+    //const [pdfFile, setPDFFile] = useState(null)
 
     const allowedType = ['application/pdf']
 
