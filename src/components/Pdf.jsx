@@ -5,7 +5,7 @@ import '@react-pdf-viewer/default-layout/lib/styles/index.css'
 import FileUpload from './components/FileUpload'
 import ViewPDF from './components/ViewPDF'
 
-function App(){
+function Pdf(){
 
   const [pdfFile,setPDFFile] = useState(null)
 
@@ -24,4 +24,4 @@ function App(){
   )
 }
 
-export default App
+export default Pdf;
