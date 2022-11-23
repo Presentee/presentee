@@ -122,6 +122,7 @@ const Create = (params) => {
           onPresenterChange={setInput}
           onPresentationNameChange={setInput}
           onPresentationEventKeyChange={setInput}
+          setPDFFile={params.setPDFFile}
         />
       </div>
       <div style={{marginTop: "5rem"}}>

@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from './Button';
+import FileUpload from './FileUpload';
 
 const CreatePresentation = ({
   presentationName,
@@ -9,7 +10,7 @@ const CreatePresentation = ({
   onPresenterChange,
   onPresentationEventKeyChange,
   onCreate,
-}) => (
+},params) => (
   <div style={styles.container}>
     <input
       onChange={(event) => onPresentationNameChange('presentationName', event.target.value)}
@@ -33,6 +34,9 @@ const CreatePresentation = ({
       value={eventKey}
       placeholder="Event Key"
     />
+
+    {/* <FileUpload setPDFFile={params.setPDFFile} /> */}
+
     <Button onClick={onCreate}>Create Presentation</Button>
   </div>
 );
@@ -45,7 +49,7 @@ const styles = {
     backgroundColor: '#023047',
     marginTop: 10,
     padding: 10,
-    height: 150,
+    height: 220,
   },
   input: {
     border: 'none',
