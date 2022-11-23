@@ -2,8 +2,8 @@ import React, {useState} from 'react'
 import './PDF_viewer.css'
 import '@react-pdf-viewer/core/lib/styles/index.css'
 import '@react-pdf-viewer/default-layout/lib/styles/index.css'
-import FileUpload from './components/FileUpload'
-import ViewPDF from './components/ViewPDF'
+import FileUpload from './FileUpload'
+import ViewPDF from './ViewPDF'
 
 function Pdf(){
 

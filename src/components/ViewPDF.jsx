@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import '../PDF_viewer.css'
+import './PDF_viewer.css'
 import {Viewer, Worker} from '@react-pdf-viewer/core'
 import {defaultLayoutPlugin} from '@react-pdf-viewer/default-layout'
 import '@react-pdf-viewer/core/lib/styles/index.css'
