@@ -1,7 +1,7 @@
 /* App.css */
 #root {
     text-align: center;
-    margin: 1.2rem;
+    margin: -0.5rem;
   }
   
   nav {
@@ -16,3 +16,5 @@
     justify-content: center;
     margin-top: 2rem;
   }
+
+  

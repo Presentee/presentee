@@ -20,48 +20,29 @@ const PresenteeRoutes = () => {
     <BrowserRouter>
       {/* Routes of App */}
       <Routes>
-        {/* Parent compontent Layout
-        This holds the routes of all children routes. 
-        This means that inside of Layout there are components
-        that need to be routed to different urls and these
-        are provided here. */}
         <Route path="/" element={<Layout />}>
-          {/* Child component Home*/}
-          <Route index element={<Home />} />
-          {/* Child component Protected*/}
-          <Route
-            path="/protected"
-            element={
-              <RequireAuth>
-                <Protected />
-              </RequireAuth>
-            }
-          />
-          {/* Child component ProtectedSecond */}
-          <Route
-            path="/protected2"
-            element={
-              <RequireAuth>
-                <ProtectedSecond />
-              </RequireAuth>
-            }
-          />
-          {/* Child component Login */}
-          <Route path="/login" element={<Login />} />
-        {/* End of parent component Layout */}
-        </Route>
+        <Route index element={<Home />} />
+
+        {/* Protected route 1*/}
+        <Route path="/protected" element={<RequireAuth> <Protected /> </RequireAuth>} />
+
+        {/* Protected route 2*/}
+        <Route path="/protected2" element={<RequireAuth> <ProtectedSecond /> </RequireAuth>} />
+
+        <Route path="/login" element={<Login />} />
 
         <Route path="/create" element={<Create />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   )
-} /* End of Presentee Routes function */
- 
+}
+
 const App = () => {
   return (
-      <Authenticator.Provider>
-        <PresenteeRoutes />
-      </Authenticator.Provider>
+    <Authenticator.Provider>
+      <PresenteeRoutes />
+    </Authenticator.Provider>
   );
 };
 
