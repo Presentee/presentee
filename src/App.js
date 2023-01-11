@@ -12,6 +12,8 @@ import ProtectedSecond from './components/ProtectedSecond';
 import Home from './components/Home';
 import Layout from './components/Layout';
 import Create from './components/Create';
+import ThemeContext from './components/ThemeContext';
+import About from './components/AboutPage';
 
 /* The PresenteeRoutes function will provide all the routes 
 that are needed to navigate between urls when such buttons 
@@ -19,58 +21,74 @@ are clicked. */
 const PresenteeRoutes = () => {
 
   const [pdfFile, setPDFFile] = useState(null)
-  
-  return (
-    <BrowserRouter>
-      {/* Routes of App */}
-      <Routes>
-        {/* Parent compontent Layout
-        This holds the routes of all children routes. 
-        This means that inside of Layout there are components
-        that need to be routed to different urls and these
-        are provided here. */}
-        <Route path="/" element={<Layout />}>
-          {/* Child component Home*/}
-          <Route index element={<Home />} />
-          {/* Child component Protected*/}
-          <Route
-            path="/protected"
-            element={
-              <RequireAuth>
-                <Protected />
-              </RequireAuth>
-            }
-          />
-          {/* Child component ProtectedSecond */}
-          <Route
-            path="/protected2"
-            element={
-              <RequireAuth>
-                <ProtectedSecond pdfFile={pdfFile}/>
-              </RequireAuth>
-            }
-          />
-          <Route path="/create" element={
-          <RequireAuth>
-            <Create setPDFFile={setPDFFile} pdfFile={pdfFile}/>
-          </RequireAuth>
-          } />
-          {/* Child component Login */}
-          <Route path="/login" element={<Login />} />
-        {/* End of parent component Layout */}
-        </Route>
+  const [darkMode, setDarkMode] = useState(false);
+  const toggleDarkMode = () => { setDarkMode(!darkMode); };
 
-        
-      </Routes>
-    </BrowserRouter>
+  return (
+    <>
+      <div className={`App ${darkMode ? 'dark-theme' : 'light-theme'}`}>
+        <ThemeContext.Provider value={{ mode: darkMode, toggle: toggleDarkMode }}>
+
+          <BrowserRouter>
+            {/* Routes of App */}
+            <Routes>
+              {/* Parent compontent Layout
+              This holds the routes of all children routes. 
+              This means that inside of Layout there are components
+              that need to be routed to different urls and these
+              are provided here. */}
+
+              <Route path="/" element={<Layout />}>
+
+                {/* Child component Home*/}
+                <Route index element={<Home />} />
+
+                {/* Child component Protected*/}
+                <Route
+                  path="/protected"
+                  element={
+                    <RequireAuth>
+                      <Protected />
+                    </RequireAuth>
+                  }
+                />
+
+                {/* Child component ProtectedSecond */}
+                <Route
+                  path="/protected2"
+                  element={
+                    <RequireAuth>
+                      <ProtectedSecond pdfFile={pdfFile} />
+                    </RequireAuth>
+                  }
+                />
+
+                <Route path="/create" element={
+                  <RequireAuth>
+                    <Create setPDFFile={setPDFFile} pdfFile={pdfFile} />
+                  </RequireAuth>
+                } />
+                {/* Child component Login */}
+
+                <Route path="/about" element={<About />} />
+
+              </Route>
+
+              {/* TODO: Figure out what authentification error is caused when trying to hide unauthenticated elements */}
+              <Route path="/login" element={<Login />} />
+            </Routes>
+          </BrowserRouter>
+        </ThemeContext.Provider>
+      </div>
+    </>
   )
 } /* End of Presentee Routes function */
- 
+
 const App = () => {
   return (
-      <Authenticator.Provider>
-        <PresenteeRoutes />
-      </Authenticator.Provider>
+    <Authenticator.Provider>
+      <PresenteeRoutes />
+    </Authenticator.Provider>
   );
 };
 

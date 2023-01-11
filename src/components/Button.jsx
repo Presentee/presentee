@@ -1,19 +1,14 @@
-import React from 'react';
+import React, {useContext} from "react";
+import "./styles.css";
+import ThemeContext from './ThemeContext';
 
-const Button = ({ children, onClick }) => (
-  <button style={styles.button} onClick={onClick}>
-    {children}
-  </button>
-);
 
-const styles = {
-  button: {
-    backgroundColor: '#fb8500',
-    color: 'black',
-    outline: 'none',
-    fontSize: 18,
-    padding: '12px 10px',
-  },
-};
 
-export default Button;
+export default function Button(props) {
+
+  const darkMode = useContext(ThemeContext);
+
+  return (
+    <button className={`custom-button ${darkMode.mode ? 'dark-theme' : 'light-theme'}`} onClick={props.onClick} style={props.style}>{props.children}</button>
+  );
+}

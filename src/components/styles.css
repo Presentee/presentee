@@ -1,0 +1,236 @@
+/* General styles for custom-button */
+.custom-button {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  /* white-space: nowrap; */
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  margin: 1px;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  background-color: inherit;
+  color: inherit;
+}
+
+.custom-button:hover {
+  color: #0056b3;
+  text-decoration: none;
+  /* background-color: #e6e6e6; */
+  cursor: pointer;
+}
+
+.custom-button:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.custom-button:active {
+  color: #0062cc;
+  /* background-color: #d6d6d6; */
+  /* border-color: #bdbdbd; */
+}
+
+.custom-button:disabled {
+  color: #6c757d;
+  pointer-events: none;
+  /* background-color: #e9ecef; */
+  /* border-color: #dee2e6; */
+}
+
+/* General styles for containers */
+.hcontainer {
+  display: flex;
+  flex-direction: row;
+  vertical-align: middle;
+  user-select: none;
+  padding: 1rem;
+  margin: 1px;
+  border-radius: 0.25rem;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  cursor: default;
+  background-color: transparent;
+  /* color: #000000; */
+  /* border: 1px solid #ddd; */
+}
+
+.vcontainer {
+  display: flex;
+  flex-direction: column;
+  vertical-align: middle;
+  user-select: none;
+  padding: 1rem;
+  margin: 1px;
+  border-radius: 0.25rem;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  cursor: default;
+  background-color: transparent;
+  /* color: #000000; */
+  /* border: 1px solid #ddd; */
+}
+
+/* General styles for Navbar */
+.custom-navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 3px;
+}
+
+/* HomeContainer style */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+}
+
+/* Toggle switch styling */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 50px;
+  height: 25px;
+}
+.toggle-switch input[type="checkbox"] {
+  display: none;
+}
+.toggle-switch .switch {
+  position: absolute;
+  cursor: pointer;
+  background-color: rgb(45, 45, 45);
+  border-radius: 25px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: background-color 0.2s ease;
+}
+.toggle-switch .switch::before {
+  position: absolute;
+  content: "";
+  left: 2px;
+  top: 2px;
+  width: 21px;
+  height: 21px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+.toggle-switch input[type="checkbox"]:checked + .switch::before {
+  transform: translateX(25px);
+  background-color: #3f3f3f;
+}
+.toggle-switch input[type="checkbox"]:checked + .switch {
+  background-color: #ffffff;
+}
+
+/* Dark theme styles */
+.custom-navbar.dark-theme {
+  /* background-color: rgb(32, 33, 35); */
+  /* color: rgb(178, 178, 178); */
+  box-shadow: 1px 1px 5px rgb(0, 0, 0);
+}
+
+.custom-navbar.dark-theme .custom-button {
+  /* color: rgb(255, 255, 255); */
+  /* background-color: rgb(32, 33, 35); */
+  /* border-color: rgb(178, 178, 178); */
+  box-shadow: 1px 1px 5px rgb(0, 0, 0);
+}
+
+/* Light theme styles */
+.custom-navbar.light-theme {
+  /* background-color: white; */
+  /* color: rgb(32, 33, 35); */
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.custom-navbar.light-theme .custom-button {
+  /* color: rgb(32, 33, 35); */
+  /* background-color: white; */
+  /* border-color: white; */
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.custom-button.dark-theme {
+  /* color: rgb(255, 255, 255); */
+  /* background-color: rgb(32, 33, 35); */
+  /* border-color: rgb(178, 178, 178); */
+  box-shadow: 1px 1px 5px rgb(0, 0, 0);
+}
+
+.custom-button.light-theme {
+  /* color: rgb(32, 33, 35); */
+  /* background-color: white; */
+  /* border-color: white; */
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+
+.custom-button:hover.light-theme {
+  /* color: rgb(0, 0, 0); */
+  text-decoration: none;
+  /* background-color: #e6e6e6; */
+  /* border-color: #ddd; */
+  cursor: pointer;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.645);
+}
+
+.custom-button:hover.dark-theme {
+  /* color: rgb(255, 255, 255); */
+  text-decoration: none;
+  /* background-color: rgb(40, 41, 44); */
+  /* border-color: #ddd; */
+  cursor: pointer;
+  box-shadow: 0px 0px 5px rgba(255, 255, 255, 0.61);
+}
+
+
+.hcontainer.dark-theme {
+  /* background-color: rgb(32, 33, 35); */
+  /* color: rgb(255, 255, 255); */
+  box-shadow: 1px 1px 5px rgb(0, 0, 0);
+}
+
+.hcontainer.light-theme {
+  /* background-color: white; */
+  /* color: rgb(32, 33, 35); */
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.vcontainer.dark-theme {
+  /* background-color: rgb(32, 33, 35); */
+  /* color: rgb(255, 255, 255); */
+  box-shadow: 1px 1px 5px rgb(0, 0, 0);
+}
+
+.vcontainer.light-theme {
+  /* background-color: white; */
+  /* color: rgb(32, 33, 35); */
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.home-container.dark-theme {
+  /* background-color: rgb(32, 33, 35); */
+  /* color: rgb(255, 255, 255); */
+  /* box-shadow: 1px 1px 5px rgb(0, 0, 0); */
+}
+
+.home-container.light-theme {
+  /* background-color: white; */
+  /* color: rgb(32, 33, 35); */
+  /* box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3); */
+}
+

@@ -1,58 +1,53 @@
-// NavBar.jsx
-import React from 'react';
+import { React, useContext} from "react";
 import { useNavigate } from 'react-router-dom';
-import { useAuthenticator, Button } from '@aws-amplify/ui-react';
+import { useAuthenticator} from '@aws-amplify/ui-react';
+
+import Button from "./Button";
+import "./styles.css";
+import DarkModeSlider from "./DarkModeSlider";
+import themeContext from "./ThemeContext";
 
 
-const NavBar = () => {
+// Define a Navbar component
+const Navbar = () => {
+
     const { route, signOut } = useAuthenticator((context) => [
-      context.route,
-      context.signOut,
-    ]);
+        context.route,
+        context.signOut,
+      ]);
+      const navigate = useNavigate();
+      const darkMode = useContext(themeContext);
+  
+      const logOut = () => {
+        signOut();
+        navigate('/login');
+      }
+  
+      return (
+        <nav className={`custom-navbar ${darkMode.mode ? 'dark-theme' : 'light-theme'}`}>
+              <Button style={{ fontSize: "18px" }} onClick={() => navigate('/')}>HOME</Button>
+              <div>
 
-    const navigate = useNavigate();
+                  <Button style={{ marginRight: "5px" }} onClick={() => navigate('/protected')}>JOIN</Button>
+                  
+                  {route === 'authenticated' ? (
+                  <Button style={{ marginRight: "5px" }} onClick={() => navigate('/protected2')} >PRESENT</Button>
+                  ): ""}
+                  
+                  {route === 'authenticated' ? (
+                  <Button style={{ marginRight: "5px" }} onClick={() => navigate('/create')}>CREATE</Button>
+                  ): ""}
 
-    /* function that will sign the user out of authenticated state
-    and then navigation back to the login page */
-    const logOut = () => {
-      signOut();
-      navigate('/login');
-    }
-
-    return (
-        <nav>
-            <Button onClick={() => navigate('/')}>Home</Button>
-            {/*}
-            <Button onClick={() => navigate('/protected')}>
-              First Protected Route
-            </Button>
-          
-            <Button onClick={() => navigate('/protected2')}>
-              View
-            </Button>
-            */}
-            {route === 'authenticated' ? (
-              <Button onClick={() => navigate('/protected2')}>View</Button>
-            ) : ""}
-
-            {/* If user is authenticated this button will appear that 
-            is labeled create this is where we will create presentations, and 
-            when the user is not authenicated it will be empty and nothing
-            will appear. */}
-            {route === 'authenticated' ? (
-              <Button onClick={() => navigate('/create')}>Create</Button>
-            ) : ""}
-
-            {/* If user is logged in and authenticated then the button on the
-            far left will appear as "Logout", otherwise it will appear as 
-            "Login" */}
-            {route !== 'authenticated' ? (
-              <Button onClick={() => navigate('/login')}>Login</Button>
-            ) : (
-              <Button onClick={() => logOut()}>Logout</Button>
-            )}
-        </nav>
-    );
+                  <Button style={{ marginRight: "5px" }} onClick={() => navigate('/about')}>ABOUT</Button>
+              </div>
+  
+              <container>
+                  {/* Switch element */}
+                  <DarkModeSlider style={{marginRight: "20px", marginLeft: "-40px"}}/>
+                  <Button style={{ width: "40px", height: "40px", borderRadius: "50%" }} onClick={route !== 'authenticated' ? navigate('/login') :() => logOut()} />
+              </container>
+          </nav>
+      );
 }
 
-export default NavBar;
+export default Navbar;
