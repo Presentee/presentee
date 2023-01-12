@@ -25,7 +25,7 @@ const Create = (params) => {
 
   // navigate will be used to bring back to the root page after the button has
   // been submitted.
-  //const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     fetchPresentations();

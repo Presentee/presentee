@@ -18,48 +18,49 @@ const PresenteeRoutes = () => {
     const [pdfFile, setPDFFile] = useState()
     
     return (
-      <BrowserRouter>
-        {/* Routes of App */}
-        <Routes>
-          {/* Parent compontent Layout
-          This holds the routes of all children routes. 
-          This means that inside of Layout there are components
-          that need to be routed to different urls and these
-          are provided here. */}
-          <Route path="/" element={<Layout />}>
-            {/* Child component Home*/}
-            <Route index element={<Home />} />
-            {/* Child component Protected*/}
-            <Route
-              path="/protected"
-              element={
-                <RequireAuth>
-                  <Protected />
-                </RequireAuth>
-              }
-            />
-            {/* Child component ProtectedSecond */}
-            <Route
-              path="/protected2"
-              element={
-                <RequireAuth>
-                  <ProtectedSecond pdfFile={pdfFile}/>
-                </RequireAuth>
-              }
-            />
-            <Route path="/create" element={
-            <RequireAuth>
-              <Create setPDFFile={setPDFFile} pdfFile={pdfFile}/>
-            </RequireAuth>
-            } />
-            {/* Child component Login */}
-            <Route path="/login" element={<Login />} />
-          {/* End of parent component Layout */}
-          </Route>
-  
-          
-        </Routes>
-      </BrowserRouter>
+        <BrowserRouter>
+            {/* Routes of App */}
+            <Routes>
+                {/* Parent compontent Layout
+                This holds the routes of all children routes. 
+                This means that inside of Layout there are components
+                that need to be routed to different urls and these
+                are provided here. */}
+                <Route path="/" element={<Layout />}> {/* open route */}
+                    {/* Child component Home*/}
+                    <Route index element={<Home />} />
+                    {/* Child component Protected*/}
+                    <Route
+                        path="/protected"
+                        element={
+                            <RequireAuth>
+                                <Protected />
+                            </RequireAuth>
+                        }
+                    />
+                    {/* Child component ProtectedSecond */}
+                    <Route
+                        path="/protected2"
+                        element={
+                            <RequireAuth>
+                                <ProtectedSecond pdfFile={pdfFile}/>
+                            </RequireAuth>
+                        }
+                    />
+                    <Route path="/create" 
+                        element = {
+                            <RequireAuth>
+                                <Create setPDFFile={setPDFFile} pdfFile={pdfFile}/>
+                            </RequireAuth>
+                        }    
+                    />
+                    {/* Child component Login */}
+                    <Route path="/login" element={<Login />} />
+
+                {/* End of parent component Layout */}
+                </Route>
+            </Routes>
+        </BrowserRouter>
     )
   } /* End of Presentee Routes function */
 

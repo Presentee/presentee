@@ -7,7 +7,8 @@ import '@react-pdf-viewer/default-layout/lib/styles/index.css'
 
 export default function ViewPDF(params) {
 
-    const [viewPdf, setViewPdf] = useState(null)
+    const [viewPdf, setViewPdf] = useState();
+    const newplugin= defaultLayoutPlugin();
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -18,9 +19,7 @@ export default function ViewPDF(params) {
         else {
           setViewPdf(null)
         }
-      }
-
-      const newplugin= defaultLayoutPlugin()
+    }
 
     return (
         <div>
@@ -30,13 +29,13 @@ export default function ViewPDF(params) {
 
             <div className='pdf-container'>
                 <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.15.349/build/pdf.worker.min.js">
-                    {viewPdf && <>
+                    {viewPdf && 
+                    <>
                         <Viewer fileUrl={viewPdf} plugins={[newplugin]} />
                     </>}
                     {!viewPdf && <>No PDF</>}
                 </Worker>
             </div>
         </div>
-
     )
 };
