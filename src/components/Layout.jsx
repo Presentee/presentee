@@ -2,7 +2,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { useAuthenticator, Heading, View } from '@aws-amplify/ui-react';
-import NavBar from './Navbar';
+import NavBar from './NavBar';
 import HomeContainer from './HomeContainer';
 
 const Layout = () => {
