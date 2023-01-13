@@ -5,15 +5,16 @@ import { useState } from 'react';
 
 import "./App.css"
 
-import Protected from './components/Protected';
+import Join from './components/Join';
 import RequireAuth from './RequireAuth';
 import Login from './components/Login';
-import ProtectedSecond from './components/ProtectedSecond';
+import Present from './components/Present';
 import Home from './components/Home';
 import Layout from './components/Layout';
 import Create from './components/Create';
 import ThemeContext from './components/ThemeContext';
 import About from './components/AboutPage';
+import Presenting from './components/Presenting';
 
 /* The PresenteeRoutes function will provide all the routes 
 that are needed to navigate between urls when such buttons 
@@ -45,20 +46,20 @@ const PresenteeRoutes = () => {
 
                 {/* Child component Protected*/}
                 <Route
-                  path="/protected"
+                  path="/join"
                   element={
                     <RequireAuth>
-                      <Protected />
+                      <Join />
                     </RequireAuth>
                   }
                 />
 
                 {/* Child component ProtectedSecond */}
                 <Route
-                  path="/protected2"
+                  path="/present"
                   element={
                     <RequireAuth>
-                      <ProtectedSecond pdfFile={pdfFile} />
+                      <Present pdfFile={pdfFile} />
                     </RequireAuth>
                   }
                 />
@@ -68,6 +69,13 @@ const PresenteeRoutes = () => {
                     <Create setPDFFile={setPDFFile} pdfFile={pdfFile} />
                   </RequireAuth>
                 } />
+
+                <Route path="/presenting" element={
+                  <RequireAuth>
+                    <Presenting pdfFile={pdfFile} />
+                  </RequireAuth>
+                } />
+
                 {/* Child component Login */}
 
                 <Route path="/about" element={<About />} />

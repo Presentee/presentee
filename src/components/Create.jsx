@@ -3,9 +3,9 @@ import { API, graphqlOperation } from '@aws-amplify/api';
 
 import { listPresentations } from '../graphql/queries';
 import { createPresentation, deletePresentation, updatePresentation } from '../graphql/mutations';
-import PresentationList from './PresentationList';
 import CreatePresentation from './CreatePresentation';
 import FileUpload from "./FileUpload";
+import VContainer from "./VContainer";
 
 //import { useNavigate } from "react-router";
 
@@ -109,8 +109,8 @@ const Create = (params) => {
   }
 
   return (
-    <div>
-      <div style={styles.container}>
+    <>
+      <VContainer>
         <h1 style={styles.heading}>Presentee Presentations</h1>
         {errorMessage}
 
@@ -124,13 +124,11 @@ const Create = (params) => {
           onPresentationEventKeyChange={setInput}
           setPDFFile={params.setPDFFile}
         />
+      </VContainer>
+      <div style={{ marginTop: "5rem" }}>
+        <FileUpload setPDFFile={params.setPDFFile} />
       </div>
-      <div style={{marginTop: "5rem"}}>
-          <FileUpload setPDFFile={params.setPDFFile} />
-        </div>
-    </div>
-
-
+    </>
   );
 }
 

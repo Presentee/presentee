@@ -28,10 +28,10 @@ const Navbar = () => {
               <Button style={{ fontSize: "18px" }} onClick={() => navigate('/')}>HOME</Button>
               <div>
 
-                  <Button style={{ marginRight: "5px" }} onClick={() => navigate('/protected')}>JOIN</Button>
+                  <Button style={{ marginRight: "5px" }} onClick={() => navigate('/join')}>JOIN</Button>
                   
                   {route === 'authenticated' ? (
-                  <Button style={{ marginRight: "5px" }} onClick={() => navigate('/protected2')} >PRESENT</Button>
+                  <Button style={{ marginRight: "5px" }} onClick={() => navigate('/present')} >PRESENT</Button>
                   ): ""}
                   
                   {route === 'authenticated' ? (

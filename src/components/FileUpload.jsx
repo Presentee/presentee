@@ -1,14 +1,26 @@
-//import { useState } from "react"
+import React from "react"
+import { useState } from "react"
+import Button from "./Button"
 
 export default function FileUpload(params) {
 
-  //const [pdfFile, setPDFFile] = useState(null)
+  const [fileName, setFileName] = useState(null)
 
   const allowedType = ['application/pdf']
+
+  // Create a reference to the hidden file input element
+  const hiddenFileInput = React.useRef(null);
+
+  // Programatically click the hidden file input element
+  // when the Button component is clicked
+  const handleClick = (e) => {
+    hiddenFileInput.current.click();
+  };
 
   const handleChange = (e) => {
     // this is the local upload section, change if running on aws with s3
     let selectedFile = e.target.files[0]
+    setFileName(selectedFile.name)
     if (selectedFile) {
       if (selectedFile && allowedType.includes(selectedFile.type)) {
         var reader = new FileReader()
@@ -29,20 +41,19 @@ export default function FileUpload(params) {
 
 
   return (
-    <form class="button">
-      <input type="file" className='form-control' onChange={handleChange} />
-    </form>
+    <>
+      <Button onClick={handleClick} style={{width: 300}}>
+        {fileName ? <>Uploaded: {fileName}</> : "Upload File"}
+      </Button>
+      <input
+        type="file"
+        ref={hiddenFileInput}
+        onChange={handleChange}
+        style={{display: 'none'}}
+      />
 
+      {/* When file is uploaded successfully display "Uploaded <Filename>" */}
+    </>
   )
 
 };
-
-// const styles = {
-//   verticallyCentered: {
-//     margin: '0',
-//     textAlign: 'center',
-//     position: 'relative',
-//     top: '70%',
-//     transform: 'translateY(-50%)',
-//   },
-// };

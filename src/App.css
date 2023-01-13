@@ -5,8 +5,8 @@
 }
 
 .App.dark-theme {
-  background-color: rgb(32, 33, 35);
-  color: rgb(178, 178, 178);
+  background-color: rgb(30, 30, 30);
+  color: rgb(255, 255, 243);
 }
 
 .App.light-theme {

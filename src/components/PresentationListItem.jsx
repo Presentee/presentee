@@ -18,40 +18,42 @@ const PresentationListItem = ({ presentation, onRemovePresentation, onItemUpdate
   };
 
   return (
-    <div style={styles.container}>
-      <div style={styles.textContainer}>
-        {isEditing ? (
-          <input
-            value={presentationName}
-            onChange={(event) => setPresentationName(event.target.value)}
-          />
-        ) : (
-          <span style={styles.presentationPresentationName}>{presentationName}</span>
-        )}
-        {isEditing ? (
-          <input
-            value={presenter}
-            onChange={(event) => setPresenter(event.target.value)}
-          />
-        ) : (
-          <span style={styles.presentationPresenter}>{presenter}</span>
-        )}
-        {isEditing ? (
-          <input
-            value={eventKey}
-            onChange={(event) => setEventKey(event.target.value)}
-          />
-        ) : (
-          <span style={styles.presentationEventKey}>{eventKey}</span>
-        )}
+    <>
+      <div style={styles.container}>
+        <div style={styles.textContainer}>
+          {isEditing ? (
+            <input
+              value={presentationName}
+              onChange={(event) => setPresentationName(event.target.value)}
+            />
+          ) : (
+            <span style={styles.presentationPresentationName}>{presentationName}</span>
+          )}
+          {isEditing ? (
+            <input
+              value={presenter}
+              onChange={(event) => setPresenter(event.target.value)}
+            />
+          ) : (
+            <span style={styles.presentationPresenter}>{presenter}</span>
+          )}
+          {isEditing ? (
+            <input
+              value={eventKey}
+              onChange={(event) => setEventKey(event.target.value)}
+            />
+          ) : (
+            <span style={styles.presentationEventKey}>{eventKey}</span>
+          )}
+        </div>
+        <div style={styles.buttonContainer}>
+          <Button onClick={onEditButtonClick}>
+            {isEditing ? 'Save' : 'Edit'}
+          </Button>
+          {!isEditing && <Button onClick={() => onRemovePresentation(id)}>Delete</Button>}
+        </div>
       </div>
-      <div style={styles.buttonContainer}>
-        <Button onClick={onEditButtonClick}>
-          {isEditing ? 'Save' : 'Edit'}
-        </Button>
-        {!isEditing && <Button onClick={() => onRemovePresentation(id)}>Delete</Button>}
-      </div>
-    </div>
+    </>
   );
 };
 

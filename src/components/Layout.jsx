@@ -3,6 +3,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { useAuthenticator, Heading, View } from '@aws-amplify/ui-react';
 import NavBar from './Navbar';
+import HomeContainer from './HomeContainer';
 
 const Layout = () => {
   const { route } = useAuthenticator((context) => [
@@ -18,8 +19,10 @@ const Layout = () => {
       <View>
         {route === 'authenticated' ? 'You are logged in!' : 'Please Login!'}
       </View> */}
+      <HomeContainer>
+        <Outlet />
+      </HomeContainer>
 
-      <Outlet />
     </>
   );
 }
