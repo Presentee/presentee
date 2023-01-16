@@ -1,25 +1,20 @@
 // App.js
 import { Authenticator } from '@aws-amplify/ui-react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 
-import "./App.css"
+import 'App.css';
 
-import Join from './components/Join';
-import RequireAuth from './RequireAuth';
-import Login from './components/Login';
-import Present from './components/Present';
-import Home from './components/Home';
-import Layout from './components/Layout';
-import Create from './components/Create';
-import ThemeContext from './components/ThemeContext';
-import About from './components/AboutPage';
-import Presenting from './components/Presenting';
+import RequireAuth from 'RequireAuth';
+import Login from 'components/Authentification/Login';
+import Layout from 'components/Layout';
+import ThemeContext from 'components/Context/ThemeContext';
+import {Home, Join, About, Present, Create, Presenting,} from 'components/Pages';
 
 /* The PresenteeRoutes function will provide all the routes 
 that are needed to navigate between urls when such buttons 
 are clicked. */
-const PresenteeRoutes = () => {
+export default function App() {
 
   const [pdfFile, setPDFFile] = useState(null)
   const [darkMode, setDarkMode] = useState(false);
@@ -27,6 +22,7 @@ const PresenteeRoutes = () => {
 
   return (
     <>
+    <Authenticator.Provider>
       <div className={`App ${darkMode ? 'dark-theme' : 'light-theme'}`}>
         <ThemeContext.Provider value={{ mode: darkMode, toggle: toggleDarkMode }}>
 
@@ -88,16 +84,8 @@ const PresenteeRoutes = () => {
           </BrowserRouter>
         </ThemeContext.Provider>
       </div>
+      </Authenticator.Provider>
     </>
   )
-} /* End of Presentee Routes function */
+}
 
-const App = () => {
-  return (
-    <Authenticator.Provider>
-      <PresenteeRoutes />
-    </Authenticator.Provider>
-  );
-};
-
-export default App;

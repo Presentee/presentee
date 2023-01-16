@@ -1,0 +1,54 @@
+/* General styles for containers */
+.hcontainer {
+  display: flex;
+  flex-direction: row;
+  vertical-align: middle;
+  user-select: none;
+  padding: 1rem;
+  margin: 1px;
+  border-radius: 0.25rem;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  cursor: default;
+  background-color: transparent;
+}
+
+.vcontainer {
+  display: flex;
+  flex-direction: column;
+  vertical-align: middle;
+  user-select: none;
+  padding: 1rem;
+  margin: 1px;
+  border-radius: 0.25rem;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  cursor: default;
+  background-color: transparent;
+}
+
+/* HomeContainer style */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+}
+
+.hcontainer.dark-theme {
+  box-shadow: 1px 1px 5px rgb(0, 0, 0);
+}
+
+.hcontainer.light-theme {
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.vcontainer.dark-theme {
+  box-shadow: 1px 1px 5px rgb(0, 0, 0);
+}
+
+.vcontainer.light-theme {
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}

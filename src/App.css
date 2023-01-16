@@ -1,6 +1,7 @@
+
 .App {
   text-align: center;
-  height: 100vh;
+  min-height: 100vh;
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
