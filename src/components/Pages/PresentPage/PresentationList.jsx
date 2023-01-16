@@ -1,7 +1,7 @@
 import React from 'react';
 import PresentationListItem from './PresentationListItem';
 
-const PresentationList = ({ presentations, onRemovePresentation, onItemUpdate }) => {
+export default function PresentationList ({ presentations, onRemovePresentation, onItemUpdate }) {
   return (
     <div style={styles.container}>
       <h2>Your Presentations</h2>
@@ -32,5 +32,3 @@ const styles = {
     padding: 10,
   },
 };
-
-export default PresentationList;

@@ -1,17 +1,23 @@
-import React, { useState, useEffect} from 'react'
-import initialState from 'react'
-import './PDF_viewer.css'
-import '@react-pdf-viewer/core/lib/styles/index.css'
-import '@react-pdf-viewer/default-layout/lib/styles/index.css'
-import FileUpload from './FileUpload'
-import ViewPDF from './ViewPDF'
-import PresentationList from './PresentationList'
+import React, { useEffect, useState } from "react";
 import { API, graphqlOperation } from '@aws-amplify/api';
-import { listPresentations } from '../graphql/queries';
-import { createPresentation, deletePresentation, updatePresentation } from '../graphql/mutations';
 
-function Pdf(params) {
+import { listPresentations } from 'graphql/queries';
+import { createPresentation, deletePresentation, updatePresentation } from 'graphql/mutations';
+import CreatePresentation from './CreatePresentation';
+import FileUpload from 'components/CustomComponents/FileUpload';
+import VContainer from 'components/CustomComponents/Containers';
 
+//import { useNavigate } from "react-router";
+
+/* This is the page that is for creating a presentation
+ * const [form, setForm] = useState() is to keep track of the state that will
+ * pass the data forward. This is done by setForm that changes the value of 
+ * what the previous data was, and replaces it with the value of setForm.
+ */
+
+const initialState = { presentationName: '', presenter: '', eventKey: '' };
+
+export default function Create(params) {
   const [formState, setFormState] = useState(initialState);
   const [presentations, setPresentations] = useState([]);
   const [apiError, setApiError] = useState();
@@ -103,32 +109,40 @@ function Pdf(params) {
   }
 
   return (
-    <div className='container'>
+    <>
+      <VContainer>
+        <h1 style={styles.heading}>Presentee Presentations</h1>
+        {errorMessage}
 
-      <h1>Pleas Select a presentation to view</h1>
-
-
-      <div style={styles.container}>
-      <PresentationList
-            presentations={presentations}
-            onRemovePresentation={removePresentation}
-            onItemUpdate={onItemUpdate}
-          />        
+        <CreatePresentation
+          presentationName={formState.presentationName}
+          presenter={formState.presenter}
+          eventKey={formState.eventKey}
+          onCreate={addPresentation}
+          onPresenterChange={setInput}
+          onPresentationNameChange={setInput}
+          onPresentationEventKeyChange={setInput}
+          setPDFFile={params.setPDFFile}
+        />
+      </VContainer>
+      <div style={{ marginTop: "5rem" }}>
+        <FileUpload setPDFFile={params.setPDFFile} />
       </div>
-      <ViewPDF pdfFile={params.pdfFile} />
-    </div>
-  )
+    </>
+  );
 }
+
 
 const styles = {
   heading: {
     textAlign: 'center',
+    marginBottom: '6rem',
   },
   container: {
     margin: '0 auto',
     padding: 20,
     backgroundColor: '#FFFFFF',
-    maxWidth: 1200,
+    maxWidth: 600,
   },
   errorText: {
     color: 'red',
@@ -138,9 +152,8 @@ const styles = {
   },
   grid: {
     display: 'grid',
-    gridTemplateColumns: '10fr 10fr',
-    gridGap: '0px',
+    gridTemplateColumns: '3fr 1fr',
+    gridGap: '20px',
   },
 };
 
-export default Pdf;
