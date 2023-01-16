@@ -1,4 +1,5 @@
-import React, { useState, useEffect, initialState } from 'react';
+import React, { useState, useEffect } from 'react';
+import initialState from 'react';
 import { API, graphqlOperation } from '@aws-amplify/api';
 
 import { listPresentations } from 'graphql/queries';
