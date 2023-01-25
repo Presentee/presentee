@@ -2,7 +2,6 @@
 import { Authenticator } from '@aws-amplify/ui-react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
-
 import 'App.css';
 
 import RequireAuth from 'RequireAuth';
