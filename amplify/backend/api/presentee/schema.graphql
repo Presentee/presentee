@@ -1,8 +1,9 @@
-type Presentation @model @auth(rules: [{allow: owner}]) {
+
+type Presentation @model {
   id: ID!
-  presentationName: String! @auth(rules: [{allow: owner}])
-  presenter: String @auth(rules: [{allow: owner}])
-  eventKey: String @auth(rules: [{allow: owner}])
-  qrcode: String @auth(rules: [{allow: owner}])
-  owner: String @auth(rules: [{allow: owner, operations: [read, delete]}])
+  presentationName: String!
+  presenter: String
+  eventKey: String 
+  qrcode: String 
+  owner: String 
 }
