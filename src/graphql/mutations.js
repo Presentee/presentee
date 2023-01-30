@@ -12,7 +12,6 @@ export const createPresentation = /* GraphQL */ `
       presenter
       eventKey
       qrcode
-      owner
       createdAt
       updatedAt
     }
@@ -29,7 +28,6 @@ export const updatePresentation = /* GraphQL */ `
       presenter
       eventKey
       qrcode
-      owner
       createdAt
       updatedAt
     }
@@ -46,7 +44,6 @@ export const deletePresentation = /* GraphQL */ `
       presenter
       eventKey
       qrcode
-      owner
       createdAt
       updatedAt
     }

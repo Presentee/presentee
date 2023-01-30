@@ -9,7 +9,6 @@ export const getPresentation = /* GraphQL */ `
       presenter
       eventKey
       qrcode
-      owner
       createdAt
       updatedAt
     }
@@ -28,7 +27,6 @@ export const listPresentations = /* GraphQL */ `
         presenter
         eventKey
         qrcode
-        owner
         createdAt
         updatedAt
       }

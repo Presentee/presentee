@@ -9,7 +9,7 @@ import * as React from "react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Button, Flex, Image, Rating, Text } from "@aws-amplify/ui-react";
 export default function ActionCard(props) {
-  const { presentation, overrides, ...rest } = props;
+  const { overrides, ...rest } = props;
   return (
     <Flex
       gap="0"
@@ -21,8 +21,8 @@ export default function ActionCard(props) {
       position="relative"
       padding="0px 0px 0px 0px"
       backgroundColor="rgba(255,255,255,1)"
-      {...rest}
       {...getOverrideProps(overrides, "ActionCard")}
+      {...rest}
     >
       <Image
         width="unset"
@@ -83,8 +83,8 @@ export default function ActionCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={presentation?.id}
-            {...getOverrideProps(overrides, "Clasic Test Pannel")}
+            children="Classic Long Sleeve T-Shirt"
+            {...getOverrideProps(overrides, "Classic Long Sleeve T-Shirt")}
           ></Text>
           <Text
             fontFamily="Inter"
@@ -135,19 +135,19 @@ export default function ActionCard(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="$9,999,999,999,999 USD"
-          {...getOverrideProps(overrides, "$9,999,999,999,999 USD")}
+          children="$99 USD"
+          {...getOverrideProps(overrides, "$99 USD")}
         ></Text>
+        <Button
+          shrink="0"
+          alignSelf="stretch"
+          size="large"
+          isDisabled={false}
+          variation="primary"
+          children="Primary Button"
+          {...getOverrideProps(overrides, "Button")}
+        ></Button>
       </Flex>
-      <Button
-        shrink="0"
-        alignSelf="stretch"
-        size="large"
-        isDisabled={false}
-        variation="primary"
-        children="BIG BUTTON"
-        {...getOverrideProps(overrides, "Button")}
-      ></Button>
     </Flex>
   );
 }

@@ -6,45 +6,30 @@
 
 /* eslint-disable */
 import * as React from "react";
+import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import {
-  getOverrideProps,
-  useAuthSignOutAction,
-  useNavigateAction,
-} from "@aws-amplify/ui-react/internal";
-import {
+  Button,
   Flex,
   Icon,
-  Image,
   SearchField,
   Text,
   View,
 } from "@aws-amplify/ui-react";
 export default function NavBar(props) {
-  const { contactUs, onClick, overrides, ...rest } = props;
-  const createPresentationOnClick = useNavigateAction({
-    type: "url",
-    url: "create",
-  });
-  const editPresentationOnClick = useNavigateAction({
-    type: "url",
-    url: "edit",
-  });
-  const profileOnClick = useNavigateAction({ type: "url", url: "profile" });
-  const contactUsOnClick = useNavigateAction({ type: "url", url: "" });
-  const imageOnClick = useAuthSignOutAction({ global: false });
+  const { overrides, ...rest } = props;
   return (
     <Flex
       gap="20px"
       direction="row"
       width="1440px"
-      height="91px"
+      height="unset"
       justifyContent="center"
       alignItems="center"
       position="relative"
       padding="24px 32px 24px 32px"
       backgroundColor="rgba(255,255,255,1)"
-      {...rest}
       {...getOverrideProps(overrides, "NavBar")}
+      {...rest}
     >
       <Flex
         gap="2px"
@@ -57,7 +42,7 @@ export default function NavBar(props) {
         alignSelf="stretch"
         position="relative"
         padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "Logo")}
+        {...getOverrideProps(overrides, "Logo29767073")}
       >
         <Icon
           width="18px"
@@ -97,8 +82,8 @@ export default function NavBar(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="PRESENTEE!!!!"
-          {...getOverrideProps(overrides, "PRESENTEE!!!!")}
+          children="Logo"
+          {...getOverrideProps(overrides, "Logo29767075")}
         ></Text>
       </Flex>
       <Flex
@@ -112,9 +97,7 @@ export default function NavBar(props) {
         shrink="1"
         basis="0"
         position="relative"
-        border="1px SOLID rgba(0,0,0,1)"
         padding="0px 0px 0px 0px"
-        backgroundColor="rgba(255,255,255,1)"
         {...getOverrideProps(overrides, "Frame 32129767076")}
       >
         <Text
@@ -136,11 +119,8 @@ export default function NavBar(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="Create Presentation"
-          onClick={() => {
-            createPresentationOnClick();
-          }}
-          {...getOverrideProps(overrides, "Create Presentation")}
+          children="Dashboard"
+          {...getOverrideProps(overrides, "Dashboard")}
         ></Text>
         <Text
           fontFamily="Inter"
@@ -161,11 +141,8 @@ export default function NavBar(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="Edit Presentation"
-          onClick={() => {
-            editPresentationOnClick();
-          }}
-          {...getOverrideProps(overrides, "Edit Presentation")}
+          children="Jobs"
+          {...getOverrideProps(overrides, "Jobs")}
         ></Text>
         <Text
           fontFamily="Inter"
@@ -186,11 +163,8 @@ export default function NavBar(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="Profile"
-          onClick={() => {
-            profileOnClick();
-          }}
-          {...getOverrideProps(overrides, "Profile")}
+          children="Applicants"
+          {...getOverrideProps(overrides, "Applicants")}
         ></Text>
         <Text
           fontFamily="Inter"
@@ -211,11 +185,8 @@ export default function NavBar(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="Contact Us"
-          onClick={() => {
-            contactUsOnClick();
-          }}
-          {...getOverrideProps(overrides, "Contact Us")}
+          children="Company"
+          {...getOverrideProps(overrides, "Company")}
         ></Text>
       </Flex>
       <Flex
@@ -229,12 +200,13 @@ export default function NavBar(props) {
         shrink="1"
         basis="0"
         position="relative"
+        boxShadow="0px 4px 4px rgba(0, 0, 0, 0.25)"
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "Frame 32129767081")}
       >
         <SearchField
-          placeholder="Search"
           shrink="0"
+          placeholder="Placeholder"
           size="default"
           isDisabled={false}
           labelHidden={true}
@@ -277,23 +249,14 @@ export default function NavBar(props) {
             {...getOverrideProps(overrides, "Vector")}
           ></Icon>
         </View>
-        <Image
-          width="45px"
-          height="45px"
-          display="block"
-          gap="unset"
-          alignItems="unset"
-          justifyContent="unset"
+        <Button
           shrink="0"
-          position="relative"
-          borderRadius="160px"
-          padding="0px 0px 0px 0px"
-          objectFit="cover"
-          onClick={() => {
-            imageOnClick();
-          }}
-          {...getOverrideProps(overrides, "image")}
-        ></Image>
+          size="default"
+          isDisabled={false}
+          variation="default"
+          children="Sign In / Register"
+          {...getOverrideProps(overrides, "Button")}
+        ></Button>
       </Flex>
     </Flex>
   );

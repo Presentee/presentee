@@ -1,24 +1,14 @@
-// components/Layout.js
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-import { useAuthenticator } from '@aws-amplify/ui-react';
-import NavBar from 'components/Navigation/NavBar';
-import HomeContainer from 'components/CustomComponents/Containers/HomeContainer';
+import { ScrollView, Grid } from "@aws-amplify/ui-react";
 
-export default function Layout() {
-  const { route } = useAuthenticator((context) => [
-    context.route,
-    context.signOut,
-  ]);
+import Header from './Header';
 
-  return (
-    <>
-      <NavBar />
-      
-      <HomeContainer>
-        <Outlet />
-      </HomeContainer>
-
-    </>
-  );
+const Layout = ({children}) => {
+    return (
+        <Grid height="100%" templateRows="auto 1fr">
+            <Header />
+            <ScrollView>{children}</ScrollView>
+        </Grid>
+    );
 }
+
+export default Layout;
