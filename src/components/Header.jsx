@@ -31,7 +31,7 @@ const Header = () => {
                         {route === 'authenticated' ? (
                             <Button onClick={logOut}>Sign Out</Button>
                         ) : (
-                        <Button onClick={() => navigate('./login')} marginInlineStart="auto" size="small">
+                        <Button onClick={() => navigate('/login', {replace: false})} marginInlineStart="auto" size="small">
                             Sign In
                         </Button>
                         )}
