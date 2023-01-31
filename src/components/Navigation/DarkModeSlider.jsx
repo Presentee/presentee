@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import './NavStyling.css';
-import ThemeContext from 'components/Context/ThemeContext';
+import ThemeContext from 'context/ThemeContext';
 
 export default function DarkModeSlider(props) {
 

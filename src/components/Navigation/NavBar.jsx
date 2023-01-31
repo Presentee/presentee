@@ -5,7 +5,7 @@ import { useAuthenticator} from '@aws-amplify/ui-react';
 import Button from "components/CustomComponents/Button";
 import "./NavStyling.css";
 import DarkModeSlider from "./DarkModeSlider";
-import ThemeContext from 'components/Context';
+import ThemeContext from 'context';
 
 
 // Define a Navbar component

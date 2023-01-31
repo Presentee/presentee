@@ -2,7 +2,7 @@
 
 import React, {useContext} from "react";
 import './ContainerStyling.css';
-import ThemeContext from '../../Context/ThemeContext';
+import ThemeContext from '../../../context/ThemeContext';
 
 export default function VContainer(props) {
 

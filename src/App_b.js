@@ -8,7 +8,7 @@ import 'App.css';
 import RequireAuth from 'RequireAuth';
 import Login from 'components/Authentification/Login';
 import Layout from 'components/Layout';
-import ThemeContext from 'components/Context/ThemeContext';
+import ThemeContext from 'context/ThemeContext';
 import {Home, Join, About, Present, Create, Presenting,} from 'components/Pages';
 
 /* The PresenteeRoutes function will provide all the routes 

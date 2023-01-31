@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Login from './routes/Login';
 import Join from './routes/Join';
 
-import ThemeContext from 'components/Context';
+import ThemeContext from 'context';
 import 'styles.css';
 
 import Admin from 'routes/Admin';
