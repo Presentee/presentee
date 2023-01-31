@@ -1,5 +1,3 @@
-import React from "react";
-import ThemeContext from '../../Context/ThemeContext';
 import './ContainerStyling.css';
 
 export { default } from "./HContainer";

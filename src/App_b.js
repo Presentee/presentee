@@ -78,7 +78,6 @@ export default function App() {
 
               </Route>
 
-              {/* TODO: Figure out what authentification error is caused when trying to hide unauthenticated elements */}
               <Route path="/login" element={<Login />} />
             </Routes>
           </BrowserRouter>

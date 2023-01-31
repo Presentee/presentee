@@ -12,7 +12,7 @@ Amplify.configure(aws_exports);
 
 ReactDOM.render(
     <Authenticator.Provider>
-        <App />
+      <App />
     </Authenticator.Provider>,
   document.getElementById("root")
 );
