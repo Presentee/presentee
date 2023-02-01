@@ -1,5 +1,16 @@
+// File: UploadFile.js
 import React, { useState } from 'react';
-import { Storage, API } from 'aws-amplify';
+import { S3 } from 'aws-sdk';
+
+const config = {
+  bucketName: 'amplify-amplifydemoapp-ampdemo-114114-deployment',
+  //to be modified by the user
+  albumName: 'my-album',
+  region: 'us-west-2',
+  // using the localley stored accesskey
+  accessKeyId: aws.accessKeyId,
+  secretAccessKey: aws.secretAccessKey,
+};
 
 const UploadFile = () => {
   const [file, setFile] = useState(null);
@@ -14,9 +25,17 @@ const UploadFile = () => {
     setLoading(true);
 
     try {
-      const result = await Storage.put(file.name, file, {
-        contentType: file.type
+      const s3 = new S3({
+        region: config.region,
+        accessKeyId: config.accessKeyId,
+        secretAccessKey: config.secretAccessKey,
       });
+      const result = await s3.upload({
+        Bucket: config.bucketName,
+        Key: `${config.albumName}/${file.name}`,
+        Body: file,
+        ContentType: file.type,
+      }).promise();
       console.log('Uploaded file: ', result);
       setLoading(false);
     } catch (error) {
