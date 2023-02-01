@@ -1,6 +1,60 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createRestaurant = /* GraphQL */ `
+  mutation CreateRestaurant(
+    $input: CreateRestaurantInput!
+    $condition: ModelRestaurantConditionInput
+  ) {
+    createRestaurant(input: $input, condition: $condition) {
+      id
+      name
+      description
+      city
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateRestaurant = /* GraphQL */ `
+  mutation UpdateRestaurant(
+    $input: UpdateRestaurantInput!
+    $condition: ModelRestaurantConditionInput
+  ) {
+    updateRestaurant(input: $input, condition: $condition) {
+      id
+      name
+      description
+      city
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteRestaurant = /* GraphQL */ `
+  mutation DeleteRestaurant(
+    $input: DeleteRestaurantInput!
+    $condition: ModelRestaurantConditionInput
+  ) {
+    deleteRestaurant(input: $input, condition: $condition) {
+      id
+      name
+      description
+      city
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const createPresentation = /* GraphQL */ `
   mutation CreatePresentation(
     $input: CreatePresentationInput!
@@ -14,6 +68,9 @@ export const createPresentation = /* GraphQL */ `
       qrcode
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -30,6 +87,9 @@ export const updatePresentation = /* GraphQL */ `
       qrcode
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -46,6 +106,9 @@ export const deletePresentation = /* GraphQL */ `
       qrcode
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;

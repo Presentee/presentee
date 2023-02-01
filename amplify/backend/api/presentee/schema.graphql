@@ -1,3 +1,10 @@
+type Restaurant @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  description: String
+  city: String
+}
+
 type Presentation @model @auth(rules: [{allow: private}]) {
   id: ID!
   presentationName: String!

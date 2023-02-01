@@ -17,6 +17,9 @@
       },
       "storage": {
         "s3presenteestorageedfa6fc8": {}
+      },
+      "api": {
+        "presentee": {}
       }
     }
   },
