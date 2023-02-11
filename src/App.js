@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
-import Login from './routes/Login';
 
 import ThemeContext from 'context';
 import 'styles.css';
@@ -14,6 +13,7 @@ import PresentPage from 'components/Pages/PresentPage';
 import HomePage from 'components/Pages/HomePage';
 import AdminPage from 'components/Pages/AdminPage';
 import JoinPage from 'components/Pages/JoinPage';
+import LoginPage from 'components/Pages/LoginPage';
 
 const App = () => {
 
@@ -28,7 +28,7 @@ const App = () => {
                     <Routes>
                         
                         <Route path="/" element={<HomePage />} />
-                        <Route path="/login" element={<Login />} />
+                        <Route path="/login" element={<LoginPage />} />
 
                         {/* Protected route to Join component in routes folder,
                             will only appear in header if authenticated. */}
