@@ -11,7 +11,14 @@ import { ThemeContext } from '@react-pdf-viewer/core';
 import DarkModeSlider from './Navigation/DarkModeSlider';
 // ---------- END OF IMPORTS -----------------------------
 
+
+
+
 // --------------- NAVBAR ---------------------------------
+/* Right now this is considered a header... but I am thinking that this is really more of 
+   a navigation bar. So we might want to change the name of this to NavigationBar. If we 
+   do something like that maybe we do place it in the pages folder. */
+   
 const Header = () => {
     // used for navigations 
     const navigate = useNavigate();
@@ -23,7 +30,7 @@ const Header = () => {
 
     const logOut = () => {
         signOut();
-        navigate('/login');
+        navigate('/');
     }
 
     return (
@@ -49,7 +56,7 @@ const Header = () => {
                 ) : null }
 
                 {/* The about page will be located in here regaurdless if user is authenticated or not */}
-                <Button onClick={() => navigate('/create')}>Create</Button>
+                <Button onClick={() => navigate('/about')}>About</Button>
 
 
             </div>
