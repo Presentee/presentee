@@ -15,6 +15,7 @@ import PresentPage from 'components/Pages/PresentPage';
 
 const App = () => {
 
+    const [pdfFile, setPDFFile] = useState(null);
     const [darkMode, setDarkMode] = useState(false);
     const toggleDarkMode = () => { setDarkMode(!darkMode); };
 
@@ -38,13 +39,13 @@ const App = () => {
 
                         <Route path="/create" element={
                             <RequireAuth>
-                                <CreatePage />
+                                <CreatePage setPDFFile={setPDFFile} pdfFile={pdfFile} />
                             </RequireAuth>
                         } />
 
                         <Route path="/present" element={
                             <RequireAuth>
-                                <PresentPage />
+                                <PresentPage pdfFile={pdfFile} />
                             </RequireAuth>
                         } />
 

@@ -8,7 +8,6 @@ import {
     Button,
 } from '@aws-amplify/ui-react';
 
-import Layout from '../components/Layout';
 
 
 const Login = () => {
@@ -22,15 +21,13 @@ const Login = () => {
     });
 
     return (
-        <Layout>
-            <Flex direction="column" height="100%">
-                <View margin="auto">
-                    <Authenticator>
-                        {({signOut}) => <Button onClick={signOut}>Sign Out</Button>}
-                    </Authenticator>
-                </View>
-            </Flex>
-        </Layout>
+        <Flex direction="column" height="100%">
+            <View margin="auto">
+                <Authenticator>
+                    {({signOut}) => <Button onClick={signOut}>Sign Out</Button>}
+                </Authenticator>
+            </View>
+        </Flex>
     );
 }
 
