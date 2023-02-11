@@ -7,7 +7,6 @@ import './Present.css';
 import Presentations from './Presentations';
 
 import VContainer from 'components/CustomComponents/Containers';
-import HContainer from 'components/CustomComponents/Containers';
 import Button from 'components/CustomComponents/Button';
 import ViewPDF from 'components/CustomComponents/PDFViewer';
 import NavigationBar from 'components/Navigation';

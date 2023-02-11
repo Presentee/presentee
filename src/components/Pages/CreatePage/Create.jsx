@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { API, graphqlOperation } from '@aws-amplify/api';
 
 import { listPresentations } from 'graphql/queries';
-import { createPresentation, deletePresentation, updatePresentation } from 'graphql/mutations';
+import { createPresentation } from 'graphql/mutations';
 import CreatePresentation from './CreatePresentation';
 import FileUpload from 'components/CustomComponents/FileUpload';
 import VContainer from 'components/CustomComponents/Containers';
 import NavigationBar from "components/Navigation";
+
 
 //import { useNavigate } from "react-router";
 
@@ -67,36 +68,6 @@ export default function Create(params) {
     }
   }
 
-  async function removePresentation(id) {
-    try {
-      await API.graphql(graphqlOperation(deletePresentation, { input: { id } }));
-      setPresentations(presentations.filter(presentation => presentation.id !== id));
-      setApiError(null);
-    } catch (error) {
-      console.error('Failed deleting presentation:', error);
-      setApiError(error);
-    }
-  }
-
-  async function onItemUpdate(presentation) {
-    try {
-      await API.graphql(
-        graphqlOperation(updatePresentation, {
-          input: {
-            id: presentation.id,
-            presentationName: presentation.presentationName,
-            presenter: presentation.presenter,
-            eventKey: presentation.eventKey,
-          },
-        })
-      );
-      setApiError(null);
-    } catch (error) {
-      console.error('Failed updating presentation:', error);
-      setApiError(error);
-    }
-  }
-
   const errorMessage = apiError && (
     <p style={styles.errorText}>
       {apiError.errors.map(error => (
@@ -130,6 +101,8 @@ export default function Create(params) {
       <div style={{ marginTop: "5rem" }}>
         <FileUpload setPDFFile={params.setPDFFile} />
       </div>
+
+      
     </>
   );
 }
