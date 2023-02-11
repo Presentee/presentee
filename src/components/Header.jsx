@@ -41,8 +41,16 @@ const Header = () => {
                 ) : null }
 
                 {route === 'authenticated' ? (
-                    <Button onClick={() => navigate('/presention')}>Presentation</Button>
+                    <Button onClick={() => navigate('/present')}>Present</Button>
                 ) : null }
+
+                {route === 'authenticated' ? (
+                    <Button onClick={() => navigate('/create')}>Create</Button>
+                ) : null }
+
+                {/* The about page will be located in here regaurdless if user is authenticated or not */}
+                <Button onClick={() => navigate('/create')}>Create</Button>
+
 
             </div>
 
