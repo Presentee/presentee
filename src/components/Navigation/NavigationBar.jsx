@@ -1,14 +1,15 @@
 // ------------- IMPORT STATEMENTS ------------------------
 import React, { useContext} from 'react'
-import "./Navigation/NavStyling.css";
+import { useNavigate } from 'react-router-dom';
+import { ThemeContext } from '@react-pdf-viewer/core';
+
 import { useAuthenticator } from '@aws-amplify/ui-react';
 
 import Button from 'components/CustomComponents/Button'
 
-import { useNavigate } from 'react-router-dom';
-import { ThemeContext } from '@react-pdf-viewer/core';
+import DarkModeSlider from './DarkModeSlider';
 
-import DarkModeSlider from './Navigation/DarkModeSlider';
+import "./NavStyling.css";
 // ---------- END OF IMPORTS -----------------------------
 
 
@@ -18,8 +19,8 @@ import DarkModeSlider from './Navigation/DarkModeSlider';
 /* Right now this is considered a header... but I am thinking that this is really more of 
    a navigation bar. So we might want to change the name of this to NavigationBar. If we 
    do something like that maybe we do place it in the pages folder. */
-   
-const Header = () => {
+
+const NavigationBar = () => {
     // used for navigations 
     const navigate = useNavigate();
     const { route, signOut } = useAuthenticator((context) => [context.route, context.signOut]);
@@ -80,4 +81,7 @@ const Header = () => {
 }
 // ---------------- END OF NAVBAR ---------------------
 
-export default Header
+
+// Could add some styles here, so just add a css page, whever is easier
+
+export default NavigationBar

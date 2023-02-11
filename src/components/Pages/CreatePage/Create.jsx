@@ -6,7 +6,7 @@ import { createPresentation, deletePresentation, updatePresentation } from 'grap
 import CreatePresentation from './CreatePresentation';
 import FileUpload from 'components/CustomComponents/FileUpload';
 import VContainer from 'components/CustomComponents/Containers';
-import Header from "components/Header";
+import NavigationBar from "components/Navigation";
 
 //import { useNavigate } from "react-router";
 
@@ -111,7 +111,7 @@ export default function Create(params) {
 
   return (
     <>
-      <Header />
+      <NavigationBar />
       <VContainer>
         <h1 style={styles.heading}>Presentee Presentations</h1>
         {errorMessage}

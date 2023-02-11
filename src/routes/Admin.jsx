@@ -1,7 +1,7 @@
 import { API, graphqlOperation } from 'aws-amplify';
 
 import React, { useEffect, useReducer } from 'react';
-import Header from '../components/Header';
+import NavigationBar from 'components/Navigation';
 
 
 
@@ -79,7 +79,7 @@ const Admin = () => {
 
   return (
     <div>
-      <Header />
+      <NavigationBar />
       <Container>
         <Row className="mt-3">
           <Col md={4}>

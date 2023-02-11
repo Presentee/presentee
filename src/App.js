@@ -8,10 +8,11 @@ import 'styles.css';
 
 import Admin from 'routes/Admin';
 import RequireAuth from 'RequireAuth';
-import Home from './components/Home'
+
 import AboutPage from 'components/Pages/AboutPage';
 import CreatePage from 'components/Pages/CreatePage';
 import PresentPage from 'components/Pages/PresentPage';
+import HomePage from 'components/Pages/HomePage';
 
 const App = () => {
 
@@ -25,7 +26,7 @@ const App = () => {
                 <BrowserRouter>
                     <Routes>
                         
-                        <Route path="/" element={<Home />} />
+                        <Route path="/" element={<HomePage />} />
                         <Route path="/login" element={<Login />} />
 
                         {/* Protected route to Join component in routes folder,

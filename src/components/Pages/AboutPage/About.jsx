@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from 'components/Header';
+import NavigationBar from 'components/Navigation';
 
 const AboutPage = () => {
     return (
         <div>
-            <Header />
+            <NavigationBar />
             <h1>About Page</h1>
             <p>This is the about page</p>
         </div>
