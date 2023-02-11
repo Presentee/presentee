@@ -1,18 +1,19 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import Login from './routes/Login';
-import Join from './routes/Join';
 
 import ThemeContext from 'context';
 import 'styles.css';
 
-import Admin from 'routes/Admin';
+
 import RequireAuth from 'RequireAuth';
 
 import AboutPage from 'components/Pages/AboutPage';
 import CreatePage from 'components/Pages/CreatePage';
 import PresentPage from 'components/Pages/PresentPage';
 import HomePage from 'components/Pages/HomePage';
+import AdminPage from 'components/Pages/AdminPage';
+import JoinPage from 'components/Pages/JoinPage';
 
 const App = () => {
 
@@ -33,7 +34,7 @@ const App = () => {
                             will only appear in header if authenticated. */}
                         <Route path="/join" element={
                             <RequireAuth>
-                                <Join />
+                                <JoinPage />
                             </RequireAuth>
                         } />
 
@@ -61,7 +62,7 @@ const App = () => {
                             will only allow to be routed if authenticated. */}
                         <Route path="/admin" element={
                             <RequireAuth>
-                                 <Admin />
+                                 <AdminPage />
                             </RequireAuth>
                         } />
 

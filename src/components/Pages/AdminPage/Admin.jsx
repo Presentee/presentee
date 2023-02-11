@@ -5,9 +5,9 @@ import NavigationBar from 'components/Navigation';
 
 
 
-import { createRestaurant } from '../graphql/mutations';
-import { listRestaurants } from '../graphql/queries';
-import { onCreateRestaurant } from '../graphql/subscriptions';
+import { createRestaurant } from '../../../graphql/mutations';
+import { listRestaurants } from '../../../graphql/queries';
+import { onCreateRestaurant } from '../../../graphql/subscriptions';
 
 import { Button, Col, Container, Form, Row, Table } from 'react-bootstrap';
 
