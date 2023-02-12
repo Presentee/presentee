@@ -16,9 +16,6 @@ import "./NavStyling.css";
 
 
 // --------------- NAVBAR ---------------------------------
-/* Right now this is considered a header... but I am thinking that this is really more of 
-   a navigation bar. So we might want to change the name of this to NavigationBar. If we 
-   do something like that maybe we do place it in the pages folder. */
 
 const NavigationBar = () => {
     // used for navigations 
