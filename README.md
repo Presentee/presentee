@@ -6,6 +6,12 @@ strategies and data analytics.*
 1. npm i
 2. npm start
 
+## Resources for Amplify
+#### [Amplify Library](https://docs.amplify.aws/lib/q/platform/js/).
+#### [Amplify API References](https://aws-amplify.github.io/amplify-js/api/).
+#### [Amplify Guides](https://docs.amplify.aws/guides/q/platform/js/).
+
+
 ##  Guide to collaboration
 [Here](https://medium.com/@jonathanmines/the-ultimate-github-collaboration-guide-df816e98fb67) is a guide and best practices for collaboration for everyone to work together.
 
