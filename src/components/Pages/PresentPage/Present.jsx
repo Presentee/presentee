@@ -7,9 +7,9 @@ import './Present.css';
 import Presentations from './Presentations';
 
 import VContainer from 'components/CustomComponents/Containers';
-import HContainer from 'components/CustomComponents/Containers';
 import Button from 'components/CustomComponents/Button';
 import ViewPDF from 'components/CustomComponents/PDFViewer';
+import NavigationBar from 'components/Navigation';
 
 
 export default function Present(params) {
@@ -18,6 +18,7 @@ export default function Present(params) {
 
   return (
     <>
+      <NavigationBar />
       <Presentations />
       <Button onClick={() => navigate('/presenting')}> Present Presentation </Button>
       <VContainer style={{ width: '100%', height: '100%', padding: '2px'}}>

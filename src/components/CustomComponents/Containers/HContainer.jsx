@@ -2,7 +2,7 @@
 
 import React, {useContext} from "react";
 import './ContainerStyling.css';
-import ThemeContext from 'components/Context';
+import ThemeContext from 'context';
 
 export default function HContainer(props) {
     

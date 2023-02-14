@@ -1,4 +1,13 @@
 import React from 'react';
+import { 
+  MarketingFooter, 
+  MarketingPricing,  
+  HeroLayout2, 
+  Features2x3,
+} from 'ui-components'
+
+import NavigationBar from 'components/Navigation';
+
 import Button from 'components/CustomComponents/Button'
 import { Storage } from "@aws-amplify/storage"
 
@@ -22,7 +31,9 @@ async function listFiles() {
 
 export default function Home() {
   return (
-    <>
+    <div>
+      {/* The navbar that have the navigation routes */}
+      <NavigationBar />
       <h1>
         Welcome to Presentee!
 
@@ -33,6 +44,12 @@ export default function Home() {
         <Button onClick={listFiles}> list files </Button>
 
       </h1>
-    </>
+      {/* These are the components that come from amplify pull that are auto generated from Figma */}
+      <HeroLayout2 />
+      <Features2x3 />
+      <MarketingPricing />
+      <MarketingFooter />
+      
+    </div>
   );
 }

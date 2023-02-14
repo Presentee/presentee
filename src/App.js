@@ -1,91 +1,78 @@
-// App.js
-import { Authenticator } from '@aws-amplify/ui-react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 
-import 'App.css';
+import ThemeContext from 'context';
+import 'styles.css';
+
 
 import RequireAuth from 'RequireAuth';
-import Login from 'components/Authentification/Login';
-import Layout from 'components/Layout';
-import ThemeContext from 'components/Context/ThemeContext';
-import {Home, Join, About, Present, Create, Presenting,} from 'components/Pages';
 
-/* The PresenteeRoutes function will provide all the routes 
-that are needed to navigate between urls when such buttons 
-are clicked. */
-export default function App() {
+import AboutPage from 'components/Pages/AboutPage';
+import CreatePage from 'components/Pages/CreatePage';
+import PresentPage from 'components/Pages/PresentPage';
+import HomePage from 'components/Pages/HomePage';
+import AdminPage from 'components/Pages/AdminPage';
+import JoinPage from 'components/Pages/JoinPage';
+import LoginPage from 'components/Pages/LoginPage';
 
-  const [pdfFile, setPDFFile] = useState(null)
-  const [darkMode, setDarkMode] = useState(false);
-  const toggleDarkMode = () => { setDarkMode(!darkMode); };
+const App = () => {
 
-  return (
-    <>
-    <Authenticator.Provider>
-      <div className={`App ${darkMode ? 'dark-theme' : 'light-theme'}`}>
-        <ThemeContext.Provider value={{ mode: darkMode, toggle: toggleDarkMode }}>
+    const [pdfFile, setPDFFile] = useState(null);
+    const [darkMode, setDarkMode] = useState(false);
+    const toggleDarkMode = () => { setDarkMode(!darkMode); };
 
-          <BrowserRouter>
-            {/* Routes of App */}
-            <Routes>
-              {/* Parent compontent Layout
-              This holds the routes of all children routes. 
-              This means that inside of Layout there are components
-              that need to be routed to different urls and these
-              are provided here. */}
+    return (
+        <div className={`App ${darkMode ? 'dark-theme' : 'light-theme'}`}>
+            <ThemeContext.Provider value={{ mode: darkMode, toggle: toggleDarkMode }}>
+                <BrowserRouter>
+                    <Routes>
+                        
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/login" element={<LoginPage />} />
 
-              <Route path="/" element={<Layout />}>
+                        {/* Protected route to Join component in routes folder,
+                            will only appear in header if authenticated. */}
+                        <Route path="/join" element={
+                            <RequireAuth>
+                                <JoinPage />
+                            </RequireAuth>
+                        } />
 
-                {/* Child component Home*/}
-                <Route index element={<Home />} />
 
-                {/* Child component Protected*/}
-                <Route
-                  path="/join"
-                  element={
-                    <RequireAuth>
-                      <Join />
-                    </RequireAuth>
-                  }
-                />
+                        <Route path="/create" element={
+                            <RequireAuth>
+                                <CreatePage setPDFFile={setPDFFile} pdfFile={pdfFile} />
+                            </RequireAuth>
+                        } />
 
-                {/* Child component ProtectedSecond */}
-                <Route
-                  path="/present"
-                  element={
-                    <RequireAuth>
-                      <Present pdfFile={pdfFile} />
-                    </RequireAuth>
-                  }
-                />
+                        <Route path="/present" element={
+                            <RequireAuth>
+                                <PresentPage pdfFile={pdfFile} />
+                            </RequireAuth>
+                        } />
 
-                <Route path="/create" element={
-                  <RequireAuth>
-                    <Create setPDFFile={setPDFFile} pdfFile={pdfFile} />
-                  </RequireAuth>
-                } />
+                        {/* The about path will be open reguardless of use is logged in or not */}
+                        <Route path="/about" element={
+                            <AboutPage />
+                        } />
 
-                <Route path="/presenting" element={
-                  <RequireAuth>
-                    <Presenting pdfFile={pdfFile} />
-                  </RequireAuth>
-                } />
 
-                {/* Child component Login */}
 
-                <Route path="/about" element={<About />} />
+                        {/* Protected route to admin component in routes folder,
+                            will only allow to be routed if authenticated. */}
+                        <Route path="/admin" element={
+                            <RequireAuth>
+                                 <AdminPage />
+                            </RequireAuth>
+                        } />
 
-              </Route>
 
-              {/* TODO: Figure out what authentification error is caused when trying to hide unauthenticated elements */}
-              <Route path="/login" element={<Login />} />
-            </Routes>
-          </BrowserRouter>
-        </ThemeContext.Provider>
-      </div>
-      </Authenticator.Provider>
-    </>
-  )
+                    </Routes>
+
+                </BrowserRouter>
+            </ThemeContext.Provider>
+        </div>
+    );
 }
 
+export default App

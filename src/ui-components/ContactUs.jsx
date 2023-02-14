@@ -10,25 +10,26 @@ import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import {
   Button,
   Flex,
+  Icon,
   SelectField,
   Text,
   TextField,
+  View,
 } from "@aws-amplify/ui-react";
 export default function ContactUs(props) {
   const { overrides, ...rest } = props;
   return (
     <Flex
-      gap="16px"
+      gap="24px"
       direction="column"
-      width="773px"
+      width="unset"
       height="unset"
       justifyContent="flex-start"
       alignItems="flex-start"
       position="relative"
       padding="0px 0px 0px 0px"
-      backgroundColor="rgba(255,255,255,1)"
-      {...rest}
       {...getOverrideProps(overrides, "ContactUs")}
+      {...rest}
     >
       <Flex
         gap="8px"
@@ -85,10 +86,10 @@ export default function ContactUs(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="Need something? Presentee is here to help! Feel free to submit a ticket and we will get back to you as soon as possible. "
+          children="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea."
           {...getOverrideProps(
             overrides,
-            "Need something? Presentee is here to help! Feel free to submit a ticket and we will get back to you as soon as possible."
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea."
           )}
         ></Text>
       </Flex>
@@ -168,51 +169,141 @@ export default function ContactUs(props) {
           {...getOverrideProps(overrides, "SUBMIT A REQUEST")}
         ></Text>
       </Flex>
-      <TextField
-        label="First and Last Name "
-        width="761px"
+      <SelectField
+        width="unset"
         shrink="0"
-        backgroundColor="rgba(255,255,255,1)"
+        alignSelf="stretch"
+        label="Label"
+        placeholder="Placeholder"
         size="large"
         isDisabled={false}
         labelHidden={false}
         variation="default"
-        {...getOverrideProps(overrides, "TextField242696")}
+        {...getOverrideProps(overrides, "SelectField29766935")}
+      ></SelectField>
+      <TextField
+        width="unset"
+        shrink="0"
+        alignSelf="stretch"
+        label="Label"
+        placeholder="Placeholder"
+        size="large"
+        isDisabled={false}
+        labelHidden={false}
+        variation="default"
+        {...getOverrideProps(overrides, "TextField29766936")}
       ></TextField>
+      <SelectField
+        width="unset"
+        shrink="0"
+        alignSelf="stretch"
+        label="Label"
+        placeholder="Placeholder"
+        size="large"
+        isDisabled={false}
+        labelHidden={false}
+        variation="default"
+        {...getOverrideProps(overrides, "SelectField29766937")}
+      ></SelectField>
+      <TextField
+        width="unset"
+        shrink="0"
+        alignSelf="stretch"
+        label="Label"
+        placeholder="Placeholder"
+        size="large"
+        isDisabled={false}
+        labelHidden={false}
+        variation="default"
+        {...getOverrideProps(overrides, "TextField29766938")}
+      ></TextField>
+      <TextField
+        width="unset"
+        shrink="0"
+        alignSelf="stretch"
+        label="Label"
+        placeholder="Placeholder"
+        size="large"
+        isDisabled={false}
+        labelHidden={false}
+        variation="default"
+        {...getOverrideProps(overrides, "TextField29766939")}
+      ></TextField>
+      <Button
+        shrink="0"
+        alignSelf="stretch"
+        size="large"
+        isDisabled={false}
+        variation="primary"
+        children="Primary Button"
+        {...getOverrideProps(overrides, "Button")}
+      ></Button>
       <Flex
-        gap="0"
-        direction="column"
+        gap="24px"
+        direction="row"
         width="unset"
         height="unset"
         justifyContent="flex-start"
         alignItems="flex-start"
         shrink="0"
-        alignSelf="stretch"
         position="relative"
         padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "InputGroup322737")}
+        {...getOverrideProps(overrides, "Frame 2829766941")}
       >
         <Flex
-          gap="10px"
-          direction="column"
+          gap="8px"
+          direction="row"
           width="unset"
           height="unset"
-          justifyContent="center"
+          justifyContent="flex-start"
           alignItems="center"
           shrink="0"
-          alignSelf="stretch"
           position="relative"
-          border="1px SOLID rgba(174,179,183,1)"
-          borderRadius="5px"
-          padding="8px 16px 8px 16px"
-          {...getOverrideProps(overrides, "Input322738")}
+          padding="0px 0px 0px 0px"
+          {...getOverrideProps(overrides, "Frame 2829766942")}
         >
+          <View
+            width="24px"
+            height="24px"
+            display="block"
+            gap="unset"
+            alignItems="unset"
+            justifyContent="unset"
+            overflow="hidden"
+            shrink="0"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            {...getOverrideProps(overrides, "Icon29766943")}
+          >
+            <Icon
+              width="20px"
+              height="20px"
+              viewBox={{ minX: 0, minY: 0, width: 20, height: 20 }}
+              paths={[
+                {
+                  d: "M12.25 0.26L12.17 0.22L12.16 0.24C11.46 0.09 10.74 0 10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 5.25 16.69 1.28 12.25 0.26ZM17.41 7L9.42 7L12.13 2.3C14.53 2.96 16.48 4.72 17.41 7ZM11.1 2.08L8.27 7L7.12 9L4.4 4.3C5.84 2.88 7.82 2 10 2C10.37 2 10.74 2.03 11.1 2.08ZM3.7 5.09L6.54 10L7.69 12L2.26 12C2.1 11.36 2 10.69 2 10C2 8.15 2.64 6.45 3.7 5.09ZM2.59 13L10.57 13L7.86 17.7C5.46 17.03 3.52 15.28 2.59 13ZM8.9 17.91L12.89 11L15.61 15.7C14.16 17.12 12.18 18 10 18C9.62 18 9.26 17.96 8.9 17.91L8.9 17.91ZM16.3 14.91L12.3 8L17.73 8C17.9 8.64 18 9.31 18 10C18 11.85 17.36 13.55 16.3 14.91Z",
+                  fill: "rgba(13,26,38,1)",
+                  fillRule: "nonzero",
+                },
+              ]}
+              display="block"
+              gap="unset"
+              alignItems="unset"
+              justifyContent="unset"
+              position="absolute"
+              top="8.33%"
+              bottom="8.33%"
+              left="8.33%"
+              right="8.33%"
+              {...getOverrideProps(overrides, "Vector29766944")}
+            ></Icon>
+          </View>
           <Text
             fontFamily="Inter"
-            fontSize="20px"
+            fontSize="14px"
             fontWeight="400"
-            color="rgba(128,128,128,1)"
-            lineHeight="30px"
+            color="rgba(13,26,38,1)"
+            lineHeight="24px"
             textAlign="left"
             display="block"
             direction="column"
@@ -222,90 +313,84 @@ export default function ContactUs(props) {
             gap="unset"
             alignItems="unset"
             shrink="0"
-            alignSelf="stretch"
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children=""
-            {...getOverrideProps(overrides, "placeholder")}
+            children="Instagram"
+            {...getOverrideProps(overrides, "Instagram")}
+          ></Text>
+        </Flex>
+        <Flex
+          gap="8px"
+          direction="row"
+          width="unset"
+          height="unset"
+          justifyContent="flex-start"
+          alignItems="center"
+          shrink="0"
+          position="relative"
+          padding="0px 0px 0px 0px"
+          {...getOverrideProps(overrides, "Frame 30")}
+        >
+          <View
+            width="24px"
+            height="24px"
+            display="block"
+            gap="unset"
+            alignItems="unset"
+            justifyContent="unset"
+            overflow="hidden"
+            shrink="0"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            {...getOverrideProps(overrides, "Icon29766947")}
+          >
+            <Icon
+              width="15px"
+              height="17px"
+              viewBox={{ minX: 0, minY: 0, width: 15, height: 17 }}
+              paths={[
+                {
+                  d: "M7.36 2L7.76 4L13 4L13 10L9.64 10L9.24 8L2 8L2 2L7.36 2ZM9 0L0 0L0 17L2 17L2 10L7.6 10L8 12L15 12L15 2L9.4 2L9 0Z",
+                  fill: "rgba(13,26,38,1)",
+                  fillRule: "nonzero",
+                },
+              ]}
+              display="block"
+              gap="unset"
+              alignItems="unset"
+              justifyContent="unset"
+              position="absolute"
+              top="16.67%"
+              bottom="12.5%"
+              left="20.83%"
+              right="16.67%"
+              {...getOverrideProps(overrides, "Vector29766948")}
+            ></Icon>
+          </View>
+          <Text
+            fontFamily="Inter"
+            fontSize="14px"
+            fontWeight="400"
+            color="rgba(13,26,38,1)"
+            lineHeight="24px"
+            textAlign="left"
+            display="block"
+            direction="column"
+            justifyContent="unset"
+            width="unset"
+            height="unset"
+            gap="unset"
+            alignItems="unset"
+            shrink="0"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            whiteSpace="pre-wrap"
+            children="Twitter"
+            {...getOverrideProps(overrides, "Twitter")}
           ></Text>
         </Flex>
       </Flex>
-      <TextField
-        label="Email "
-        width="773px"
-        height="86px"
-        shrink="0"
-        placeholder=""
-        size="large"
-        isDisabled={false}
-        labelHidden={false}
-        variation="default"
-        {...getOverrideProps(overrides, "TextField29766938")}
-      ></TextField>
-      <SelectField
-        label="Category"
-        placeholder="What are you contacting us about?"
-        width="unset"
-        shrink="0"
-        alignSelf="stretch"
-        size="large"
-        isDisabled={false}
-        labelHidden={false}
-        variation="default"
-        {...getOverrideProps(overrides, "SelectField")}
-      ></SelectField>
-      <TextField
-        label="Message"
-        width="unset"
-        height="38px"
-        shrink="0"
-        alignSelf="stretch"
-        placeholder=""
-        size="large"
-        isDisabled={false}
-        labelHidden={false}
-        variation="default"
-        {...getOverrideProps(overrides, "TextField29766939")}
-      ></TextField>
-      <Flex
-        gap="0"
-        direction="column"
-        width="unset"
-        height="46px"
-        justifyContent="flex-start"
-        alignItems="flex-start"
-        shrink="0"
-        alignSelf="stretch"
-        position="relative"
-        padding="0px 0px 0px 0px"
-        {...getOverrideProps(overrides, "InputGroup242731")}
-      >
-        <Flex
-          gap="10px"
-          direction="column"
-          width="unset"
-          height="unset"
-          justifyContent="center"
-          alignItems="center"
-          shrink="0"
-          alignSelf="stretch"
-          position="relative"
-          border="1px SOLID rgba(174,179,183,1)"
-          borderRadius="5px"
-          padding="8px 16px 8px 16px"
-          {...getOverrideProps(overrides, "Input242732")}
-        ></Flex>
-      </Flex>
-      <Button
-        shrink="0"
-        alignSelf="stretch"
-        size="large"
-        isDisabled={false}
-        variation="primary"
-        children="Submit Request"
-        {...getOverrideProps(overrides, "Button")}
-      ></Button>
     </Flex>
   );
 }

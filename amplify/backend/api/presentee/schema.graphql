@@ -1,9 +1,15 @@
+type Restaurant @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  description: String
+  city: String
+}
 
-type Presentation @model {
+type Presentation @model @auth(rules: [{allow: private}]) {
   id: ID!
   presentationName: String!
   presenter: String
-  eventKey: String 
-  qrcode: String 
-  owner: String 
+  eventKey: String
+  qrcode: String
 }
+ 

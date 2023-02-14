@@ -1,18 +1,18 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
-// import awsExports from './aws-exports';
-import { Amplify } from "aws-amplify";
-import '@aws-amplify/ui-react/styles.css'
-import { AmplifyProvider } from "@aws-amplify/ui-react";
-import config from './aws-exports';
+import { Authenticator } from '@aws-amplify/ui-react';
+import { Amplify } from 'aws-amplify';
+import ReactDOM from 'react-dom';
 
-// Amplify.configure(awsExports);
-Amplify.configure(config);
+import App from './App';
+
+import '@aws-amplify/ui-react/styles.css';
+
+import aws_exports from './aws-exports';
+
+Amplify.configure(aws_exports);
 
 ReactDOM.render(
-    <AmplifyProvider>
-        <App />
-    </AmplifyProvider>,
+    <Authenticator.Provider>
+      <App />
+    </Authenticator.Provider>,
   document.getElementById("root")
 );

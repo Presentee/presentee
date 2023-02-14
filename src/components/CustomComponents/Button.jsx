@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
-import "./CustomComponentStyling.css";
-import ThemeContext from '../Context/ThemeContext';
+import "../../styles.css";
+import ThemeContext from '../../context/ThemeContext';
 
 export default function Button(props) {
 
