@@ -1,8 +1,67 @@
-type Presentation @model @auth(rules: [{allow: owner}]) {
+type Presentation {
+  _id: ID!
+  Access: [String!]!
+  dtype: String!
+  createdAt: String!
+  numViews: Int!
+}
+
+type User {
+  _id: ID!
+  Ownership: [Presentation!]!
+  createdAt: String!
+  is_premium: Boolean!
+}
+
+type PresentationData {
+  _id: ID!
+  Title: String!
+  S3_Path: String!
+}
+
+type Survey {
+  _id: ID!
+  Multi: Boolean!
+  text: String!
+  Possible_answer: [String!]!
+}
+
+type Vote {
+  _id: ID!
+  Survey_id: String!
+  _vote: String!
+}
+
+type Question {
+  _id: ID!
+  text: String!
+}
+
+type Response {
+  _id: ID!
+  Question_id: String!
+  Response_id: String!
+  text: String!
+}
+
+type Session {
+  _id: ID!
+  control: User!
+  participants: [User!]!
+  presentation_data: PresentationData!
+  Page_number: String!
+  Active_surveys: [Survey!]!
+  Active_questions: [Question!]!
+}
+
+scalar Binary
+
+type Document {
   id: ID!
-  presentationName: String! @auth(rules: [{allow: owner}])
-  presenter: String @auth(rules: [{allow: owner}])
-  eventKey: String @auth(rules: [{allow: owner}])
-  qrcode: String @auth(rules: [{allow: owner}])
-  owner: String @auth(rules: [{allow: owner, operations: [read, delete]}])
+  title: String!
+  file: Binary!
+}
+
+type Mutation {
+  uploadDocument(title: String!, file: Binary!): Document!
 }
