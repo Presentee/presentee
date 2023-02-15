@@ -1,57 +1,66 @@
-// File: UploadFile.js
-import React, { useState } from 'react';
-import { S3 } from 'aws-sdk';
+type Presentation @model{
+  id: ID!
+  Access: [String!]!
+  dtype: String!
+  createdAt: String!
+  numViews: Int!
+}
+type User @model{
+  id: ID!
+  Ownership: [Presentation!]!
+  createdAt: String!
+  is_premium: Boolean!
+}
+type PresentationData @model{
+  id: ID!
+  Title: String!
+  S3_Path: String!
+}
+type Survey @model{
+  id: ID!
+  Multi: Boolean!
+  text: String!
+  Possible_answer: [String!]!
+  votes: [Vote] @connection(keyname : "bySurvey", fields: ["id"])
+}
 
-const config = {
-  bucketName: 'amplify-amplifydemoapp-ampdemo-114114-deployment',
-  //to be modified by the user
-  albumName: 'my-album',
-  region: 'us-west-2',
-  // using the localley stored accesskey
-  accessKeyId: aws.accessKeyId,
-  secretAccessKey: aws.secretAccessKey,
-};
+type Vote @model @key(name: "bySurvey", fields: ["SurveyID"]){
+  id: ID!
+  SurveyID: String!
+  survey: Survey @connection(fields: ["SurveyID"])
+  _vote: String!
+}
+type Question @model{
+  id: ID!
+  text: String!
+  answer: [Response] @connection(keyname:"byQuestion", fields:["id"])
+}
 
-const UploadFile = () => {
-  const [file, setFile] = useState(null);
-  const [loading, setLoading] = useState(false);
+type Response @model @key(name : "byQuestion", fields: ["questionID"]){
+  id: ID!
+  questionID: String!
+  question: Question @connection(fields: ["questionID"])
+  Responseid: String!
+  text: String!
+}
 
-  const handleChange = (event) => {
-    setFile(event.target.files[0]);
-  };
+type Session @model{
+  id: ID!
+  control: User!
+  participants: [User!]!
+  presentation_data: PresentationData!
+  Page_number: String!
+  Active_surveys: [Survey!]!
+  Active_questions: [Question!]!
+}
+scalar Binary
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setLoading(true);
+type Document {
+  id: ID!
+  title: String!
+  file: Binary!
+}
 
-    try {
-      const s3 = new S3({
-        region: config.region,
-        accessKeyId: config.accessKeyId,
-        secretAccessKey: config.secretAccessKey,
-      });
-      const result = await s3.upload({
-        Bucket: config.bucketName,
-        Key: `${config.albumName}/${file.name}`,
-        Body: file,
-        ContentType: file.type,
-      }).promise();
-      console.log('Uploaded file: ', result);
-      setLoading(false);
-    } catch (error) {
-      console.error('Error uploading file: ', error);
-      setLoading(false);
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <input type="file" onChange={handleChange} />
-      <button type="submit" disabled={loading}>
-        {loading ? 'Uploading...' : 'Upload'}
-      </button>
-    </form>
-  );
-};
-
-export default UploadFile;
+type Mutation {
+  uploadDocument(title: String!, file: Binary!): Document!
+}
