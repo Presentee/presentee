@@ -27,7 +27,7 @@ const App = () => {
                 <BrowserRouter>
                     <Routes>
                         
-                        <Route path="/" element={<HomePage />} />
+                        <Route path="/" element={<HomePage setPDFFile={setPDFFile} pdfFile={pdfFile}/>} />
                         <Route path="/login" element={<LoginPage />} />
 
                         {/* Protected route to Join component in routes folder,
