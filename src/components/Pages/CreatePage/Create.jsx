@@ -1,134 +1,117 @@
 import React, { useEffect, useState } from "react";
-import { API, graphqlOperation } from '@aws-amplify/api';
-
-import { listPresentations } from 'graphql/queries';
-import { createPresentation } from 'graphql/mutations';
-import CreatePresentation from './CreatePresentation';
-import FileUpload from 'components/CustomComponents/FileUpload';
-import VContainer from 'components/CustomComponents/Containers';
+import Button from 'components/CustomComponents/Button'
+import { Auth } from 'aws-amplify';
 import NavigationBar from "components/Navigation";
-
-
-//import { useNavigate } from "react-router";
-
-/* This is the page that is for creating a presentation
- * const [form, setForm] = useState() is to keep track of the state that will
- * pass the data forward. This is done by setForm that changes the value of 
- * what the previous data was, and replaces it with the value of setForm.
- */
-
-const initialState = { presentationName: '', presenter: '', eventKey: '' };
+import { Storage } from "@aws-amplify/storage";
+import ViewPDF from 'components/CustomComponents/PDFViewer';
 
 export default function Create(params) {
-  const [formState, setFormState] = useState(initialState);
-  const [presentations, setPresentations] = useState([]);
-  const [apiError, setApiError] = useState();
-  const [isLoading, setIsLoading] = useState(false);
 
-  // navigate will be used to bring back to the root page after the button has
-  // been submitted.
-  //const navigate = useNavigate();
+  // state for the PDF file and response
+  const [activePDFFile, setActivePDFFile] = useState(null);
+  const [response, setResponse] = useState(null);
 
-  useEffect(() => {
-    fetchPresentations();
-  }, []);
-
-  function setInput(key, value) {
-    setFormState({ ...formState, [key]: value });
-  }
-
-  async function fetchPresentations() {
-    setIsLoading(true);
+  // function to upload a file to S3
+  const uploadFile = async (file) => {
     try {
-      const presentationData = await API.graphql(graphqlOperation(listPresentations));
-      const presentations = presentationData.data.listPresentations.items;
-      setPresentations(presentations);
-      setApiError(null);
+      const user = await Auth.currentAuthenticatedUser(); // get the current authenticated user
+      const username = user.username; // get the username of the current authenticated user
+      const fileName = `${username}-${file.name}`;
+      await Storage.put(fileName, file, { contentType: file.type });
+      setResponse(`Successfully uploaded ${fileName}!`);
     } catch (error) {
-      console.error('Failed fetching presentations:', error);
-      setApiError(error);
-    } finally {
-      setIsLoading(false);
+      setResponse(`Error uploading file: ${error}`);
     }
   }
 
-  async function addPresentation() {
-    try {
-      if (!formState.presentationName || !formState.presenter || !formState.eventKey) {
-        return;
-      }
-      const presentation = { ...formState };
-      setPresentations([...presentations, presentation]);
-      setFormState(initialState);
-      await API.graphql(graphqlOperation(createPresentation, { input: presentation }));
-      setApiError(null);
-    } catch (error) {
-      console.error('Failed creating presentation:', error);
-      setApiError(error);
-    }
+  async function convertToBase64(pdfData) {
+    const reader = new FileReader();
+    const base64PDFData = await new Promise((resolve, reject) => {
+
+      // setup event listeners to handle the file reading
+      reader.onloadend = () => {
+        const base64String = reader.result.split(',')[1];
+        resolve(base64String);
+      };
+
+      // handle errors
+      reader.onerror = () => {
+        reject(reader.error);
+      };
+
+      // read the file as a data url
+      reader.readAsDataURL(pdfData);
+    });
+
+    //add the pdf header to the base64 string
+    const base64PDF = 'data:application/pdf;base64,' + base64PDFData;
+
+    // return the base64 string
+    return base64PDF;
   }
 
-  const errorMessage = apiError && (
-    <p style={styles.errorText}>
-      {apiError.errors.map(error => (
-        <p>{error.message}</p>
-      ))}
-    </p>
-  );
+  const [fileName, setFileName] = useState('Choose a file...');
 
-  if (isLoading) {
-    return 'Loading...';
+    useEffect(() => {
+      const fileInput = document.getElementById('file-input');
+      const inputFileLabel = document.querySelector('.input-file-label');
+
+      // update the label when a file is selected
+      const handleChange = () => {
+        const file = fileInput.files[0];
+        if (file) {
+          const pdfData = convertToBase64(file).then(base64PDF => {
+            setActivePDFFile(base64PDF);
+            setFileName(file.name);
+          }).catch(error => {
+            console.error(error);
+          });
+          inputFileLabel.innerHTML = file.name;
+        } else {
+          setActivePDFFile(null);
+          setFileName('Choose a file...');
+          inputFileLabel.innerHTML = 'Choose a file...';
+        }
+      };
+
+      fileInput.addEventListener('change', handleChange);
+
+    });
+
+
+
+  // function to handle the upload button click
+  const handleUploadClick = () => {
+    const fileInput = document.getElementById('file-input');
+    const selectedFile = fileInput.files[0];
+
+    // upload the file if it exists
+    if (selectedFile) {
+      uploadFile(selectedFile);
+    }
+
+    setActivePDFFile(null);
   }
 
   return (
     <>
       <NavigationBar />
-      <VContainer>
-        <h1 style={styles.heading}>Presentee Presentations</h1>
-        {errorMessage}
 
-        <CreatePresentation
-          presentationName={formState.presentationName}
-          presenter={formState.presenter}
-          eventKey={formState.eventKey}
-          onCreate={addPresentation}
-          onPresenterChange={setInput}
-          onPresentationNameChange={setInput}
-          onPresentationEventKeyChange={setInput}
-          setPDFFile={params.setPDFFile}
-        />
-      </VContainer>
-      <div style={{ marginTop: "5rem" }}>
-        <FileUpload setPDFFile={params.setPDFFile} />
+      <div style={{ display: 'flex', justifyContent: 'center', margin: '10px' }}>
+
+      <div className="custom-file-input-wrapper">
+        <input type="file" id="file-input" className="input-file" />
+        <label htmlFor="file-input" className="input-file-label">{fileName}</label>
       </div>
 
-      
+        {/* Button that will send the file to the S3 storage */}
+        <Button onClick={handleUploadClick}> Upload Shown File </Button>
+      </div>
+      <div>
+        <ViewPDF pdfFile={activePDFFile} />
+      </div>
+
     </>
   );
 }
-
-
-const styles = {
-  heading: {
-    textAlign: 'center',
-    marginBottom: '6rem',
-  },
-  container: {
-    margin: '0 auto',
-    padding: 20,
-    backgroundColor: '#FFFFFF',
-    maxWidth: 600,
-  },
-  errorText: {
-    color: 'red',
-    fontWeight: 'bold',
-    border: '2px solid red',
-    padding: 10,
-  },
-  grid: {
-    display: 'grid',
-    gridTemplateColumns: '3fr 1fr',
-    gridGap: '20px',
-  },
-};
 

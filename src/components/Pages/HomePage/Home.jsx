@@ -1,73 +1,66 @@
-// ----------------- IMPORTS ---------------------------
 import React, { useState, useEffect } from 'react';
 
 import NavigationBar from 'components/Navigation';
-import VContainer from 'components/CustomComponents/Containers';
-import HContainer from 'components/CustomComponents/Containers';
 
 import Button from 'components/CustomComponents/Button'
 import { Storage } from "@aws-amplify/storage"
-import { Auth } from 'aws-amplify'; // import the Auth module from aws-amplify
+import { Auth } from 'aws-amplify';
 import './Home.css';
 import ViewPDF from 'components/CustomComponents/PDFViewer';
-// ---------------- END OF IMPORTS -----------------------
+
+import { BiRefresh } from 'react-icons/bi';
 
 // This is the function that will retreive the file from the S3 storage
 async function retreiveFile(fileName) {
   try {
+
+    // get the current user's username
     const user = await Auth.currentAuthenticatedUser();
     const username = user.username;
-    const fileKey = `${username}-${fileName}`;
 
+    // create the file key and retrieve the file from S3
+    const fileKey = `${username}-${fileName}`;
     const result = await Storage.get(fileKey, {
-      // download: true,
+      download: true,
       level: 'public',
     });
 
-    const response = await fetch(result);
-    const arrayBuffer = await response.arrayBuffer();
-    const blob = new Blob([arrayBuffer], { type: 'application/pdf' });
+    // convert the pdf data to a base64 string
+    const pdfData = result.Body;
     const reader = new FileReader();
+    const base64PDFData = await new Promise((resolve, reject) => {
 
-    const base64Test = await new Promise((resolve, reject) => {
+      // setup event listeners to handle the file reading
       reader.onloadend = () => {
         const base64String = reader.result.split(',')[1];
         resolve(base64String);
       };
-  
+
+      // handle errors
       reader.onerror = () => {
         reject(reader.error);
       };
-  
-      reader.readAsDataURL(blob);
+
+      // read the file as a data url
+      reader.readAsDataURL(pdfData);
     });
-    console.log('base64Test: ', base64Test);
-    return 'data:application/pdf;base64,' + base64Test;
 
+    //add the pdf header to the base64 string
+    const base64PDF = 'data:application/pdf;base64,' + base64PDFData;
 
-    // const base64String = await pdfToBase64(result);
-    // const pdfData = result.Body;
-    // const pdfBlob = new Blob([pdfData], { type: 'application/pdf' });
-    // const reader = new FileReader();
-    // reader.readAsDataURL(pdfBlob);
-    // reader.onloadend = () => {
-    //   base64String = reader.result.split(',')[1];
-    // };
-
-    // console.log('Retrieved file: ', pdfData);
-    // console.log('base64String: ', base64String);
-    // return base64String;
+    // return the base64 string
+    return base64PDF;
 
   } catch (error) {
     console.log('Error listing files: ', error);
   }
 }
 
-//Leo's notes, this si the new list File function that search the user's name in the S3 storage,
-//This will return a Componenet with a list of files icons that would be used to retrieve file
-//will work on retrieve file later.
+// This is the function that will list the files in the S3 storage
 async function listFiles() {
   try {
+
+    // get the current user's username
     const user = await Auth.currentAuthenticatedUser();
     const username = user.username;
     const fileList = await Storage.list(`${username}-`, { pageSize: 1000 });
@@ -114,6 +107,7 @@ function getIconForExtension(extension) {
 function DisplayList(params) {
   const [files, setFiles] = useState([]);
 
+  // get the list of files from S3
   useEffect(() => {
     const fetchFiles = async () => {
       const fileList = await listFiles();
@@ -122,14 +116,15 @@ function DisplayList(params) {
     fetchFiles();
   }, []);
 
+  // function to retreive listed file from S3 and set the state of the PDF file
   const retreivePdfFile = async (file) => {
     const returnedPDF = await retreiveFile(file);
     params.setPDFFile(returnedPDF);
-    console.log('returnedPDF: ', returnedPDF)
   };
 
+  // display the list of files
   return (
-    <div>
+    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
       {Array.isArray(files) && files.map((file, index) => (
         <Button key={index} onClick={() => retreivePdfFile(file)}>
           {file}
@@ -144,14 +139,9 @@ function DisplayList(params) {
 
 export default function Home(params) {
 
-  const [showFileList, setShowFileList] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(null);
+  // state for the PDF file and response
+  const [showFileList, setShowFileList] = useState(true);
   const [response, setResponse] = useState(null);
-
-  //function to toggle the file list
-  const toggleFileList = () => {
-    setShowFileList(!showFileList);
-  }
 
   //function to refresh the file list
   const refreshFileList = () => {
@@ -159,20 +149,7 @@ export default function Home(params) {
     setShowFileList(true);
   }
 
-  /* When a user selects a file, it will change the state of the "selectedFile" from empty
-     to the name of the file that was selected.  */
-  const handleFileChange = async (event) => {
-    setSelectedFile(event.target.files[0]);
-  };
-
-  /* When the "send file" button gets pressed it will run this function. 
-     it will upload the file into the s3 button, if upload is successful, 
-     a message that it was successful, otherwise it will return a message 
-     with an error */
-  //Leo's edit, this new function appends the cognito's username infront of the uploaded file name
-  //I tried to get the file to include meta data about the owner but it didn't work so I guess this
-  //is the way to go for now, if I uploaded a File called Labreport.pdf
-  //it become Leo-Labreport.pdf
+  // function to upload a file to S3
   const uploadFile = async (file) => {
     try {
       const user = await Auth.currentAuthenticatedUser(); // get the current authenticated user
@@ -185,10 +162,12 @@ export default function Home(params) {
     }
   }
 
+  // event handler for the file input
   document.addEventListener('DOMContentLoaded', () => {
     const fileInput = document.getElementById('file-input');
     const inputFileLabel = document.querySelector('.input-file-label');
 
+    // update the label when a file is selected
     fileInput.addEventListener('change', () => {
       const fileName = fileInput.value.split('\\').pop();
       if (fileName) {
@@ -199,15 +178,17 @@ export default function Home(params) {
     });
   });
 
+  // function to handle the upload button click
   const handleUploadClick = () => {
     const fileInput = document.getElementById('file-input');
     const selectedFile = fileInput.files[0];
 
+    // upload the file if it exists
     if (selectedFile) {
       uploadFile(selectedFile);
-      console.log(selectedFile);
     }
   }
+
 
   return (
     <div>
@@ -217,7 +198,6 @@ export default function Home(params) {
         Welcome to Presentee!
       </h1>
 
-      {/* HContianer with everything centered */}
       <div style={{ display: 'flex', justifyContent: 'center' }}>
 
         <div className="custom-file-input-wrapper">
@@ -231,14 +211,10 @@ export default function Home(params) {
       <div>
         {!!response && <div>{response}</div>}
       </div>
-
-      <Button onClick={retreiveFile}> retreive file </Button>
-
-      <Button onClick={toggleFileList}> list files </Button>
-
-      <Button onClick={refreshFileList}> refresh file list </Button>
-
-      {showFileList && <DisplayList setPDFFile={params.setPDFFile} pdfFile={params.pdfFile} />}
+      <div style={{display: 'flex', justifyContent: 'center'}}>
+        <Button onClick={refreshFileList}> <BiRefresh style={{ fontSize: '24px' }} /> </Button>
+        {showFileList && <DisplayList setPDFFile={params.setPDFFile}/>}
+      </div>
 
       <ViewPDF pdfFile={params.pdfFile} />
 

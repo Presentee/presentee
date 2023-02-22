@@ -1,0 +1,9 @@
+.pdf-container{
+    width: 100%;
+    height: 1390px;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  

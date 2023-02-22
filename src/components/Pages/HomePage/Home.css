@@ -255,6 +255,6 @@
 }
 
 .custom-file-input-wrapper:hover {
-  background-color: #aaa;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  font-weight: 600;
 }
