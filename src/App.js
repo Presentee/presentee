@@ -14,6 +14,7 @@ import HomePage from 'components/Pages/HomePage';
 import AdminPage from 'components/Pages/AdminPage';
 import JoinPage from 'components/Pages/JoinPage';
 import LoginPage from 'components/Pages/LoginPage';
+import Presenting from 'components/Pages/PresentingPage';
 
 const App = () => {
 
@@ -27,7 +28,7 @@ const App = () => {
                 <BrowserRouter>
                     <Routes>
                         
-                        <Route path="/" element={<HomePage />} />
+                        <Route path="/" element={<HomePage setPDFFile={setPDFFile} pdfFile={pdfFile}/>} />
                         <Route path="/login" element={<LoginPage />} />
 
                         {/* Protected route to Join component in routes folder,
@@ -47,7 +48,7 @@ const App = () => {
 
                         <Route path="/present" element={
                             <RequireAuth>
-                                <PresentPage pdfFile={pdfFile} />
+                                <PresentPage setPDFFile={setPDFFile} pdfFile={pdfFile} />
                             </RequireAuth>
                         } />
 
@@ -65,6 +66,14 @@ const App = () => {
                                  <AdminPage />
                             </RequireAuth>
                         } />
+
+                        {/* Proteted route Presenting */}
+                        <Route path="/presenting" element={
+                            <RequireAuth>
+                                <Presenting pdfFile={pdfFile}/>
+                            </RequireAuth>
+                        } />
+
 
 
                     </Routes>
