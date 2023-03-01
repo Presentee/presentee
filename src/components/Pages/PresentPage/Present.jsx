@@ -13,6 +13,31 @@ import { BiRefresh } from 'react-icons/bi';
 import { Storage } from "@aws-amplify/storage"
 
 
+// This is a function that will open a new window and display the presentation
+function PresentPresentation() {
+  const user = Auth.currentAuthenticatedUser();
+  const username = user.username;
+  const url = `http://localhost:3000/join`;
+  const newWindow = window.open(
+    url, 
+    'PopupWindow', 
+    `
+      toolbar=no,
+      location=no,
+      directories=no,
+      status=no,
+      menubar=no,
+      scrollbars=yes,
+      resizable=yes,
+      width=800,
+      height=600,
+      top=100,
+      left=100
+    `
+  );
+  newWindow.focus();
+}
+
 // This is the function that will retreive the file from the S3 storage
 async function retreiveFile(fileName) {
   try {
@@ -135,6 +160,8 @@ export default function Present(params) {
         <Button onClick={refreshFileList}> <BiRefresh style={{ fontSize: '24px' }} /> </Button>
         {showFileList && <DisplayList setPDFFile={params.setPDFFile} />}
       </div>
+
+      <Button onClick={PresentPresentation}> PopNewWindow </Button>
 
       <Button onClick={() => navigate('/presenting')}> Present Presentation </Button>
       <VContainer style={{ width: '100%', height: '100%', padding: '2px' }}>
