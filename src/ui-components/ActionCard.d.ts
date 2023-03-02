@@ -5,6 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
+import { Restaurant } from "../models";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { ButtonProps, FlexProps, ImageProps, RatingProps, TextProps } from "@aws-amplify/ui-react";
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
@@ -20,6 +21,8 @@ export declare type ActionCardOverridesProps = {
     Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type ActionCardProps = React.PropsWithChildren<Partial<FlexProps> & {
+    restaurant?: Restaurant;
+} & {
     overrides?: ActionCardOverridesProps | undefined | null;
 }>;
 export default function ActionCard(props: ActionCardProps): React.ReactElement;
