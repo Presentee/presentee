@@ -1,82 +1,70 @@
-# **Presentee**: The smart presentation tool
-*A business tool for enterprise businesses to analyze marketing
-strategies and data analytics.*
+# Getting Started with Create React App
 
-## How to run
-1. npm i
-2. npm start
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Resources for Amplify
-#### [Amplify Library](https://docs.amplify.aws/lib/q/platform/js/).
-#### [Amplify API References](https://aws-amplify.github.io/amplify-js/api/).
-#### [Amplify Guides](https://docs.amplify.aws/guides/q/platform/js/).
+## Available Scripts
 
+In the project directory, you can run:
 
-##  Guide to collaboration
-[Here](https://medium.com/@jonathanmines/the-ultimate-github-collaboration-guide-df816e98fb67) is a guide and best practices for collaboration for everyone to work together.
+### `npm start`
 
-## Unit Testing
-There is a tests folder in the src folder that has tests that would be nice to be expended.
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## Comments
-There should probably be a standard to how comments should be written. From the experience of commenting on complex web applications as this project grows we all should be able to understand them. Meaningful comments with explainations and examples would probably be nice for this application since it has a backend.
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-## Cloud Server
-This application is fully run on AWS Amplify. The authenication is being done by cognito. The backend API is being done in GraphQL, more learning about this might be needed.
+### `npm test`
+
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run build`
+
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
 ## Learn More
 
-#### Important updates to React version 18 [Please read here](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html).
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-#### To learn React, check out the [React documentation](https://reactjs.org/).
+### Code Splitting
 
-# FAQs
-## What does Presentee do?
- 
-*The goal of Presentee is to give the presenter tools like polls, question queues, and
-live audience responses to make presentations more effective and easier to manage.*
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-## Who is Presentee for?
-*Presentee is an application for both presenters and the audience to create a more
-engaging, easier to manage presentations.*
+### Analyzing the Bundle Size
 
-## Is there any cost to using the service? Are there ads to support the project? Are there any plans to include any in-app purchases?
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-*As restrictions given to us by our capstone advisors and Bellevue College, this
-application is designed to be a free and open-source project. We have decided not to
-include any ads in financial support for the application, and there are no plans to include
-any in-app purchases.*
+### Making a Progressive Web App
 
-## How do I present using Presentee?
-*Simply sign up, upload your presentation, and click "Start Presentation."*
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-## What would I expect to see and do while using Presentee in the audience?
-*At the beginning of a presentation, you can find a QR code or presentee link to see
-all the custom activities the presenter has made for the presentation. As the
-presentation progresses, you'll be able to look through slides, ask questions, and
-participate in interactive activities. When the presentation ends, you'll be able to rate the
-presentation and leave notes for the presenter.*
+### Advanced Configuration
 
-# Internal FAQs
-## What permissions would users be asked for to use Presentee?
-*Presentee doesn’t need many permissions to function. Basic information about the
-operating system and notification permissions are likely all that’s needed. However,
-users may also enable microphone privileges to enable full-session recording.*
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-## What programming language will Presentee use?
-*Our application will most likely be written in Javascript, using React for web app
-development, and may be transitioned into React-Native to become cross-platform in
-the future. If we transition to running on native software in the future, we will split the
-teams into Objective-C/Swift/SwiftUI for iOS development and Java/Kotlin for android
-development.*
+### Deployment
 
-## Will you consider any security protocols when creating a login process? If so, what kind of authentication services will be used?
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-*There are many industry standards for login authentication. To build trust with our
-users, we will offer external login options through services like Google, Apple, and
-Facebook, as well as the ability to sign in anonymously as a default Guest.*
+### `npm run build` fails to minify
 
-## How can you ensure user authentication is done correctly?
-*We will use third-party authentication like Microsoft Authentication or create our own
-method using industry standard practices.*
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
