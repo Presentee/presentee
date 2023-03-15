@@ -11,3 +11,9 @@
   background-color: #1e1e1e; /* Set the background color to a dark gray */
   border: 1px solid #fff; /* Set the border color to white */
 }
+
+@media (max-width: 700px) {
+  .App .custom-text-input {
+    width: 100%; /* Set the width to 100% */
+  }
+}
