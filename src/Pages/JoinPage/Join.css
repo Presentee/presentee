@@ -1,0 +1,13 @@
+/* Styles for the custom text input element inside .App */
+
+.App .custom-text-input.light {
+  color: #333; /* Set the text color to a dark gray */
+  background-color: #fff; /* Set the background color to white */
+  border: 1px solid #333; /* Set the border color to a dark gray */
+}
+
+.App .custom-text-input.dark {
+  color: #fff; /* Set the text color to white */
+  background-color: #1e1e1e; /* Set the background color to a dark gray */
+  border: 1px solid #fff; /* Set the border color to white */
+}

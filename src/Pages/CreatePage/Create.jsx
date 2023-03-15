@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Button from 'components/CustomComponents/Button'
+import Button from 'CustomComponents/Button'
 import { Auth } from 'aws-amplify';
-import NavigationBar from "components/Navigation";
+import NavigationBar from "Navigation";
 import { Storage } from "@aws-amplify/storage";
-import ViewPDF from 'components/CustomComponents/PDFViewer';
+import ViewPDF from 'CustomComponents/PDFViewer';
 
 export default function Create(params) {
 

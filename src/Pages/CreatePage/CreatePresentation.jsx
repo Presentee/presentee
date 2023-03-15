@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from 'components/CustomComponents/Button';
-import { VContainer } from 'components/CustomComponents/Containers';
+import Button from 'CustomComponents/Button';
+import { VContainer } from 'CustomComponents/Containers';
 
 
 export default function CreatePresentation({

@@ -4,11 +4,11 @@ import ThemeContext from 'context/ThemeContext';
 
 export default function DarkModeSlider(props) {
 
-    const darkMode = useContext(ThemeContext);
+    const { theme, toggle } = useContext(ThemeContext);
 
     return (
-        <label className="toggle-switch" style={props.style}>
-            <input type="checkbox" onChange={darkMode.toggle} />
+        <label className={`toggle-switch .${theme}`} style={props.style}>
+            <input type="checkbox" onChange={toggle} />
             <span className="switch" />
         </label>
     );
