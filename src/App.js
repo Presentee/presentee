@@ -31,7 +31,7 @@ const App = () => {
                 <BrowserRouter>
                     <Routes>
 
-                        <Route path="/" element={<HomePage setPDFFile={setPDFFile} pdfFile={pdfFile} />} />
+                        <Route path="/Home" element={<HomePage setPDFFile={setPDFFile} pdfFile={pdfFile} />} />
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/join" element={<JoinPage />} />
 

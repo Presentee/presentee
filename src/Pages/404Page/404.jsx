@@ -13,7 +13,7 @@ export default function PageNotFound() {
             <NavigationBar />
             <HomeContainer>
                 <h1> 404! Page Not Found </h1>
-                <Button onClick={() => navigate('/')}> Return Home </Button>
+                <Button onClick={() => navigate('/Home')}> Return Home </Button>
             </HomeContainer>
         </div>
     );

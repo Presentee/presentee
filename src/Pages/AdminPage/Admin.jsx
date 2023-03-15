@@ -1,13 +1,13 @@
 import { API, graphqlOperation } from 'aws-amplify';
 
 import React, { useEffect, useReducer } from 'react';
-import NavigationBar from 'components/Navigation';
+import NavigationBar from 'Navigation';
 
 
 
-import { createRestaurant } from '../../../graphql/mutations';
-import { listRestaurants } from '../../../graphql/queries';
-import { onCreateRestaurant } from '../../../graphql/subscriptions';
+import { createRestaurant } from 'graphql/mutations';
+import { listRestaurants } from 'graphql/queries';
+import { onCreateRestaurant } from 'graphql/subscriptions';
 
 import { Button, Col, Container, Form, Row, Table } from 'react-bootstrap';
 

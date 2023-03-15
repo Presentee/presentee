@@ -19,7 +19,7 @@ export default function NavigationBar() {
     return (
         <nav className={`custom-navbar ${theme}`} >
 
-            <a href='/' style={{ display: 'flex', alignItems: 'center', width: '50px', height: '50px', backgroundImage: "url('PresenteeLogo3.png')", backgroundSize: 'cover', minWidth: '50px' }}> </a>
+            <a href='/Home' style={{ display: 'flex', alignItems: 'center', width: '50px', height: '50px', backgroundImage: "url('PresenteeLogo3.png')", backgroundSize: 'cover', minWidth: '50px' }}> </a>
 
             <div>
                 <div className="left-section">
