@@ -31,9 +31,10 @@ const App = () => {
                 <BrowserRouter>
                     <Routes>
 
-                        <Route path="/Home" element={<HomePage setPDFFile={setPDFFile} pdfFile={pdfFile} />} />
+                        <Route path="/Home" element={<HomePage/>} />
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/join" element={<JoinPage />} />
+                        <Route path="/" element={<HomePage/>} />
 
                         <Route path="/create" element={
                             <RequireAuth>
