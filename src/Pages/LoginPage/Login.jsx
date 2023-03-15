@@ -35,7 +35,7 @@ export default function Login() {
 
   useEffect(() => {
     if (route === 'authenticated') {
-        navigate('/home', {replace: true});
+        navigate('/Home', {replace: true});
     }
 });
 

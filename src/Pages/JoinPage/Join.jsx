@@ -1,38 +1,34 @@
 // components/Protected.js
-import VContainer from 'CustomComponents/Containers';
-import Button from 'CustomComponents/Button';
 import NavigationBar from 'Navigation';
-import { Grid } from '@aws-amplify/ui-react';
-import { ScrollView } from '@aws-amplify/ui-react';
-import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
-import ThemeContext from 'context';
+import { ScrollView } from '@aws-amplify/ui-react';
+import QRCode from "react-qr-code";
 import "./Join.css";
 
 export default function Join() {
 
-  const navigate = useNavigate();
-  const [roomID, setRoomID] = useState('');
-  const { theme } = React.useContext(ThemeContext);
+  const [text, setText] = useState("");
 
-  const handleJoin = () => {
-    navigate(`/join/${roomID}`);
-  };
+  function handleChange(e) {
+    setText(e.target.value);
+  }
 
-  const handleInputChange = (event) => {
-    setRoomID(event.target.value);
-  };
-
+  const qrCodeValue = `www.presentee.net/join/${text}`; // construct the QR code value using the "www.presentee.net/join/" string and the text state variable
+  const qrCodeUrl = `https://${qrCodeValue}`; // construct the URL linked to the QR code by adding the "https://" protocol
 
   return (
-    <Grid height="100%" templateRows="auto 1fr">
+    <div className="App">
       <NavigationBar />
       <ScrollView>
-        <VContainer style={{ display: "flex", justifyContent: 'center' }}>
-          <input type="text" className={`custom-text-input ${theme}`} placeholder="Enter Presentee room ID" onChange={handleInputChange}/>
-          <Button style={{ width: 200, fontSize: "3rem" }} onClick={handleJoin}>Join</Button>
-        </VContainer>
+      <header className="App-header">
+        <QRCode value={qrCodeValue} /> {/* use the constructed QR code value */}
+        <a href={qrCodeUrl} target="_blank" rel="noopener noreferrer">{qrCodeUrl}</a> {/* add an "a" tag to display the URL linked to the QR code */}
+        <div className="App-link">
+          <p>Enter the code to encode</p>
+          <input type="text" value={text} onChange={(e)=>{handleChange(e)}}/>
+        </div>
+      </header>
       </ScrollView>
-    </Grid>
+    </div>
   );
 }

@@ -27,16 +27,18 @@ export default function NavigationBar() {
                 </div>
             </div>
 
+
             <div style={{ marginRight: 'auto', marginLeft: 'auto' }}>
-                <Button onClick={() => navigate('/join')}>Join</Button>
 
-                {route === 'authenticated' ? (
-                    <Button onClick={() => navigate('/present')}>Present</Button>
-                ) : null}
-
-                {route === 'authenticated' ? (
-                    <Button onClick={() => navigate('/create')}>Create</Button>
-                ) : null}
+                {route === 'authenticated' && (
+                    <Button onClick={() => navigate('/join')}>Join</Button>
+                )}
+                {route === 'authenticated' && (
+                    <>
+                        <Button onClick={() => navigate('/create')}>Create</Button>
+                        <Button onClick={() => navigate('/present')}>Present</Button>
+                    </>
+                )}
 
                 <Button onClick={() => navigate('/about')}>About</Button>
             </div>

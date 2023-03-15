@@ -1,19 +1,37 @@
-/* Styles for the custom text input element inside .App */
-
-.App .custom-text-input.light {
-  color: #333; /* Set the text color to a dark gray */
-  background-color: #fff; /* Set the background color to white */
-  border: 1px solid #333; /* Set the border color to a dark gray */
+.App {
+  text-align: center;
 }
 
-.App .custom-text-input.dark {
-  color: #fff; /* Set the text color to white */
-  background-color: #1e1e1e; /* Set the background color to a dark gray */
-  border: 1px solid #fff; /* Set the border color to white */
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-@media (max-width: 700px) {
-  .App .custom-text-input {
-    width: 100%; /* Set the width to 100% */
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
