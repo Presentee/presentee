@@ -112,4 +112,3 @@ export const deletePresentation = /* GraphQL */ `
     }
   }
 `;
-// I must not have updated this to allow the pull request to complete
