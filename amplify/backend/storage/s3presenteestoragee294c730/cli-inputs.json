@@ -1,7 +1,7 @@
 {
-  "resourceName": "s3presenteestorageedfa6fc8",
-  "bucketName": "presentee-storage-edfa6fc8",
-  "policyUUID": "dffd9e8d",
+  "resourceName": "s3presenteestoragee294c730",
+  "bucketName": "presentee-storage-e294c730",
+  "policyUUID": "21dafa43",
   "storageAccess": "auth",
   "guestAccess": [],
   "authAccess": [
