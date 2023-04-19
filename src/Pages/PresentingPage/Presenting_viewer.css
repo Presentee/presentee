@@ -1,0 +1,14 @@
+.pdf-container {
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+    /* stack items vertically */
+    flex-direction: column;
+
+    /* hide scrollbars */
+    scrollbar-width: none;
+}

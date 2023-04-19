@@ -1,23 +1,44 @@
 import React from 'react'
-import './PDF_viewer.css'
-import { Viewer, Worker, ScrollMode } from '@react-pdf-viewer/core'
-import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout'
-import { scrollModePlugin } from '@react-pdf-viewer/scroll-mode'
-import '@react-pdf-viewer/core/lib/styles/index.css'
-import '@react-pdf-viewer/default-layout/lib/styles/index.css'
+import { Worker, Viewer } from '@react-pdf-viewer/core';
+import packageJson from '../../../package.json';
+import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
+import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+import { toolbarPlugin } from '@react-pdf-viewer/toolbar';
+import './PDF_viewer.css';
 
 export default function ViewPDF(params) {
 
-    const newplugin = defaultLayoutPlugin()
-    const scrollModePluginInstance = scrollModePlugin();
-    scrollModePluginInstance.switchScrollMode(ScrollMode.Page)
+    const pdfjsWorkerLocation = "https://unpkg.com/pdfjs-dist@" + packageJson.dependencies['pdfjs-dist'] + "/build/pdf.worker.min.js";
+
+    const defaultLayoutPluginInstance = defaultLayoutPlugin(
+        {
+            sidebarTabs: (defaultTabs) => [],
+        }
+    );
+    const toolbarPluginInstance = toolbarPlugin();
+    const { renderDefaultToolbar, Toolbar } = toolbarPluginInstance;
+
+    const transform = (slot) => ({
+        ...slot,
+        // These slots will be empty
+        EnterFullScreen: () => <></>,
+        SwitchTheme: () => <></>,
+        Zoom: () => <></>,
+        ZoomIn: () => <></>,
+        ZoomOut: () => <></>,
+        ShowSearchPopover: () => <></>,
+        Print: () => <></>,
+        Open: () => <></>,
+        
+    });
 
     return (
         <>
             <div className='pdf-container'>
-                <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.15.349/build/pdf.worker.min.js">
+
+                <Worker workerUrl={pdfjsWorkerLocation}>
                     {params.pdfFile && <>
-                        <Viewer fileUrl={params.pdfFile} plugins={[newplugin, scrollModePluginInstance]}/>
+                        <Viewer fileUrl={params.pdfFile} plugins={[defaultLayoutPluginInstance]} />
                     </>}
                     {!params.pdfFile && <>No PDF</>}
                 </Worker>
