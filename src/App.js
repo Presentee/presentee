@@ -10,6 +10,8 @@ import JoinPage from 'Pages/JoinPage';
 import LoginPage from 'Pages/LoginPage';
 import Presenting from 'Pages/PresentingPage';
 import PageNotFound from 'Pages/404Page/404';
+// added the create room button
+import { createAndAppendCreatePresentationButton } from './createroom';
 import 'styles.css';
 
 const App = () => {
