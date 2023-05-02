@@ -1,11 +1,11 @@
 // this part is not hard coded, it will change along with aws-export changes
 // this also needs a npm i aws-amplify
-import { Amplify } from 'aws-amplify'
+import { Amplify, Auth, graphqlOperation } from 'aws-amplify';
 // this is where the uri and api keys gonna resides
 import awsmobile from './aws-exports'
 //Define the GraphQL mutation for creating a new Session
 import { API } from 'aws-amplify'
-import { createPresentation } from  './graphql/mutation'
+import { createPresentation } from  'mutations'
 // configing the amplify lib
 Amplify.configure(awsmobile);
 
