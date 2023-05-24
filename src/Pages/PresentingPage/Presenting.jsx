@@ -5,6 +5,11 @@ import packageJson from '../../../package.json';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import { scrollModePlugin } from '@react-pdf-viewer/scroll-mode';
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
+import CreateAndAppendCreatePresentationButton from 'createroom';
+import Button from 'CustomComponents/Button';
+import { API, graphqlOperation } from 'aws-amplify';
+import { createSession } from 'graphql/mutations';
+
 
 export default function Presentating(params) {
 
@@ -20,10 +25,10 @@ export default function Presentating(params) {
 
     return (
         <>
-            {/* next page button */}
-            <Button variant="contained" color="primary" onClick={nextPage()}>Next Page</Button>
-            {/* previous page button */}
-            <Button variant="contained" color="primary" onClick={prevPage()}>Previous Page</Button>
+            <CreateAndAppendCreatePresentationButton />
+            <Button>prev page</Button>
+            {/* <Button onClick={createNewSession}>Create Presentation</Button> */}
+            <Button>next page</Button>
             <div className='pdf-container'>
                 <Worker workerUrl={pdfjsWorkerLocation}>
                     {params.pdfFile && <>

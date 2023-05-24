@@ -12,13 +12,13 @@ Amplify.configure(awsmobile);
 // this part should be populated with the actual data
 async function createPresentationOnClick() {
   try {
-  	//this part just use cognito's ID check for 
+  	// this part just use cognito's ID check for
     const currentUser = await Auth.currentAuthenticatedUser();
     const userSub = currentUser.attributes.sub;
 
     const input = {
     // by default access set to all users
-  	//data type set to pdf, should change to pptx should we make it that far
+  	// data type set to pdf, should change to pptx should we make it that far
       Access: ["ALL"],
       dtype: "pdf",
       createdAt: new Date().toISOString(),
@@ -34,7 +34,7 @@ async function createPresentationOnClick() {
   }
 }
 // export this as a createAndAppendCreatePresentationButton
-export function createAndAppendCreatePresentationButton() {
+export default function CreateAndAppendCreatePresentationButton() {
   const createPresentationButton = document.createElement('button');
   createPresentationButton.innerText = 'Create Presentation';
   createPresentationButton.onclick = createPresentationOnClick;

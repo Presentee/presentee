@@ -5,7 +5,7 @@ import { ScrollView } from '@aws-amplify/ui-react';
 import QRCode from "react-qr-code";
 import "./Join.css";
 
-export default function Join() {
+export default function Join(props) {
 
   const [text, setText] = useState("");
 
@@ -15,6 +15,7 @@ export default function Join() {
 
   const qrCodeValue = `www.presentee.net/join/${text}`; // construct the QR code value using the "www.presentee.net/join/" string and the text state variable
   const qrCodeUrl = `https://${qrCodeValue}`; // construct the URL linked to the QR code by adding the "https://" protocol
+
 
   return (
     <div className="App">
@@ -29,6 +30,8 @@ export default function Join() {
         </div>
       </header>
       </ScrollView>
+
+
     </div>
   );
 }
