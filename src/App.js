@@ -10,20 +10,67 @@ import JoinPage from 'Pages/JoinPage';
 import LoginPage from 'Pages/LoginPage';
 import Presenting from 'Pages/PresentingPage';
 import PageNotFound from 'Pages/404Page/404';
+import Settings from 'Pages/SettingsPage';
+import ChangePassword from 'Pages/ChangePasswordPage';
+import ChangeEmail from 'Pages/ChangeEmailPage';
 import 'styles.css';
 
 const App = () => {
 
     const [pdfFile, setPDFFile] = useState(null);
+
     const [theme, setTheme] = React.useState(() => {
         const storedTheme = localStorage.getItem('theme');
         return storedTheme ? storedTheme : 'light';
     });
+
     const toggleDarkMode = () => {
         const newTheme = theme === 'dark' ? 'light' : 'dark';
         setTheme(newTheme);
         localStorage.setItem('theme', newTheme);
     };
+
+    const publicRoutes = {
+        "home" : <HomePage />,
+        "login" : <LoginPage />,
+        "join" : <JoinPage />,
+        "*" : <PageNotFound />,
+        "about" : <AboutPage />
+    };
+
+
+    const privateRoutes = {
+        "create" : 
+        <RequireAuth>
+            <CreatePage setPDFFile={setPDFFile} pdfFile={pdfFile} />
+        </RequireAuth>,
+
+        "present" : 
+        <RequireAuth>
+            <PresentPage setPDFFile={setPDFFile} pdfFile={pdfFile} />
+        </RequireAuth>,
+
+        "presenting" : 
+        <RequireAuth>
+            <Presenting pdfFile={pdfFile} />
+        </RequireAuth>,
+
+        "settings" : 
+        <RequireAuth>
+            <Settings />
+        </RequireAuth>,
+
+        "changePassword" : 
+        <RequireAuth>
+            <ChangePassword />
+        </RequireAuth>,
+
+        "changeEmail" : 
+        <RequireAuth> 
+            <ChangeEmail />
+        </RequireAuth>
+    };
+
 
     return (
         <div className={`App ${theme}`}>
@@ -31,37 +78,23 @@ const App = () => {
                 <BrowserRouter>
                     <Routes>
 
-                        <Route path="/Home" element={<HomePage/>} />
-                        <Route path="/login" element={<LoginPage />} />
-                        <Route path="/join" element={<JoinPage />} />
-                        <Route path="/" element={<HomePage/>} />
+                         {/* These are the public routes that will be offered to anyone that enters the website 
+                            without being authenticated. */}
+                        <Route path="/Home" element={publicRoutes["home"]} />
+                        <Route path="/login" element={publicRoutes["login"]} />
+                        <Route path="/join" element={publicRoutes["join"]} />
+                        <Route path="/" element={publicRoutes["home"]} />
+                        <Route path="*" element={publicRoutes["*"]} />
+                        <Route path="/about" element={publicRoutes["about"]} />
 
-                        <Route path="/create" element={
-                            <RequireAuth>
-                                <CreatePage setPDFFile={setPDFFile} pdfFile={pdfFile} />
-                            </RequireAuth>
-                        } />
-
-                        <Route path="/present" element={
-                            <RequireAuth>
-                                <PresentPage setPDFFile={setPDFFile} pdfFile={pdfFile} />
-                            </RequireAuth>
-                        } />
-
-                        {/* The about path will be open reguardless of use is logged in or not */}
-                        <Route path="/about" element={
-                            <AboutPage />
-                        } />
-
-                        {/* Proteted route Presenting */}
-                        <Route path="/presenting" element={
-                            <RequireAuth>
-                                <Presenting pdfFile={pdfFile} />
-                            </RequireAuth>
-                        } />
-
-                        {/* 404 Page */}
-                        <Route path="*" element={<PageNotFound />} />
+                        {/* These are the private routes that will be offered once a user has created an account
+                            and been authenicated. */}
+                        <Route path="/create" element={privateRoutes["create"]} />
+                        <Route path='/present' element={privateRoutes['present']} />
+                        <Route path='/presenting' element={privateRoutes['presenting']} />
+                        <Route path="/settings" element={privateRoutes["settings"]} />
+                        <Route path="/settings/password" element={privateRoutes["changePassword"]} />
+                        <Route path="/settings/email" element={privateRoutes["changeEmail"]} />
                         
                     </Routes>
 
