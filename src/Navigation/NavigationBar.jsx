@@ -51,9 +51,7 @@ export default function NavigationBar() {
                     ""
                 )}
 
-                <div className="right-section">
-                    <DarkModeSlider style={{ marginRight: "10px" }} />
-                </div>
+               
 
                 {route === 'authenticated' ? (
                     <Button onClick={logOut} size="small">Sign Out</Button>
