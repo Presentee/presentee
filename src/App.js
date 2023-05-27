@@ -1,19 +1,19 @@
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import React, { useState, useContext } from 'react';
-import ThemeContext from 'context';
-import RequireAuth from 'RequireAuth';
-import AboutPage from 'Pages/AboutPage';
-import CreatePage from 'Pages/CreatePage';
-import PresentPage from 'Pages/PresentPage';
-import HomePage from 'Pages/HomePage';
-import JoinPage from 'Pages/JoinPage';
-import LoginPage from 'Pages/LoginPage';
-import Presenting from 'Pages/PresentingPage';
-import PageNotFound from 'Pages/404Page/404';
-import Settings from 'Pages/SettingsPage';
-import ChangePassword from 'Pages/ChangePasswordPage';
-import ChangeEmail from 'Pages/ChangeEmailPage';
-import 'styles.css';
+import ThemeContext from './context';
+import RequireAuth from './RequireAuth';
+import AboutPage from './Pages/AboutPage';
+import CreatePage from './Pages/CreatePage';
+import PresentPage from './Pages/PresentPage';
+import HomePage from './Pages/HomePage';
+import JoinPage from './Pages/JoinPage';
+import LoginPage from './Pages/LoginPage';
+import Presenting from './Pages/PresentingPage';
+import PageNotFound from './Pages/404Page/404';
+import Settings from './Pages/SettingsPage';
+import ChangePassword from './Pages/ChangePasswordPage';
+import ChangeEmail from './Pages/ChangeEmailPage';
+import './styles.css';
 
 const App = () => {
 
