@@ -37,7 +37,7 @@ const Settings = () => {
 
               {/* I think the problem with this is it is changing the mode to a global setting, so when logging out it
               it is saving the setting. I am afraid this could be a very big problem. */}
-              <div>
+              <div test-testid='theme-button'>
                 <ThemeButton onClick={toggle} theme={theme} />
               </div>
 
