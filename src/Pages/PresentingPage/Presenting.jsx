@@ -1,5 +1,5 @@
 import React from 'react'
-import './PDF_viewer.css'
+import './Presenting.css'
 import { Viewer, Worker, ScrollMode } from '@react-pdf-viewer/core'
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout'
 import { scrollModePlugin } from '@react-pdf-viewer/scroll-mode'
@@ -17,11 +17,13 @@ export default function Presentating(params) {
             <div className='pdf-container'>
                 <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.15.349/build/pdf.worker.min.js">
                     {params.pdfFile && <>
-                        <Viewer fileUrl={params.pdfFile} plugins={[scrollModePluginInstance]}/>
+                        <Viewer fileUrl={params.pdfFile} plugins={[scrollModePluginInstance, newplugin]}/>
                     </>}
                     {!params.pdfFile && <>No PDF</>}
                 </Worker>
             </div>
+
+            
         </>
     )
 };

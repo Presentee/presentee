@@ -4,7 +4,7 @@ import ThemeContext from 'context';
 
 export default function Button(props) {
 
-  const { theme } = React.useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
 
   return (
     <button className={`custom-button ${theme}`} onClick={props.onClick} style={props.style}>{props.children}</button>

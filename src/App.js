@@ -17,49 +17,8 @@ import './styles.css';
 import NavigationBar from 'Navigation';
 
 
-
-const publicRoutes = {
-    "home" : <HomePage />,
-    "login" : <LoginPage />,
-    "join" : <JoinPage />,
-    "*" : <PageNotFound />,
-    "about" : <AboutPage />
-};
-
-
-const privateRoutes = {
-    "create" : 
-    <RequireAuth>
-        <CreatePage  />
-    </RequireAuth>,
-
-    "present" : 
-    <RequireAuth>
-        <PresentPage  />
-    </RequireAuth>,
-
-    "presenting" : 
-    <RequireAuth>
-        <Presenting />
-    </RequireAuth>,
-
-    "settings" : 
-    <RequireAuth>
-        <Settings />
-    </RequireAuth>,
-
-    "changePassword" : 
-    <RequireAuth>
-        <ChangePassword />
-    </RequireAuth>,
-
-    "changeEmail" : 
-    <RequireAuth> 
-        <ChangeEmail />
-    </RequireAuth>
-};
-
 const App = () => {
+    const [pdfFile, setPDFFile] = React.useState(null);
 
     const [theme, setTheme] = React.useState(() => {
         const storedTheme = localStorage.getItem('theme');
@@ -70,6 +29,46 @@ const App = () => {
         const newTheme = theme === 'dark' ? 'light' : 'dark';
         setTheme(newTheme);
         localStorage.setItem('theme', newTheme);
+    };
+
+    const publicRoutes = {
+        "home" : <HomePage />,
+        "login" : <LoginPage />,
+        "join" : <JoinPage />,
+        "*" : <PageNotFound />,
+        "about" : <AboutPage />
+    };
+
+    const privateRoutes = {
+        "create" : 
+        <RequireAuth>
+            <CreatePage  />
+        </RequireAuth>,
+    
+        "present" : 
+        <RequireAuth>
+            <PresentPage setPDFFile={setPDFFile} pdfFile={pdfFile} />
+        </RequireAuth>,
+    
+        "presenting" : 
+        <RequireAuth>
+            <Presenting setPDFFile={setPDFFile} pdfFile={pdfFile} />
+        </RequireAuth>,
+    
+        "settings" : 
+        <RequireAuth>
+            <Settings />
+        </RequireAuth>,
+    
+        "changePassword" : 
+        <RequireAuth>
+            <ChangePassword />
+        </RequireAuth>,
+    
+        "changeEmail" : 
+        <RequireAuth> 
+            <ChangeEmail />
+        </RequireAuth>
     };
 
     return (
