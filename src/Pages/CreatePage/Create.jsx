@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Button from 'CustomComponents/Button'
 import { Auth } from 'aws-amplify';
-import NavigationBar from "Navigation";
+
 import { Storage } from "@aws-amplify/storage";
 import ViewPDF from 'CustomComponents/PDFViewer';
 
@@ -19,6 +19,7 @@ export default function Create(params) {
       const fileName = `${username}-${file.name}`;
       await Storage.put(fileName, file, { contentType: file.type });
       setResponse(`Successfully uploaded ${fileName}!`);
+      console.log(response);
     } catch (error) {
       setResponse(`Error uploading file: ${error}`);
     }
@@ -67,6 +68,7 @@ export default function Create(params) {
             console.error(error);
           });
           inputFileLabel.innerHTML = file.name;
+          console.log(pdfData);
         } else {
           setActivePDFFile(null);
           setFileName('Choose a file...');
@@ -95,7 +97,6 @@ export default function Create(params) {
 
   return (
     <>
-      <NavigationBar />
 
       <div style={{ display: 'flex', justifyContent: 'center', margin: '10px' }}>
 

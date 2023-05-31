@@ -1,7 +1,7 @@
 import { Authenticator } from '@aws-amplify/ui-react';
 import { Amplify, Storage } from 'aws-amplify';
-import ReactDOM from 'react-dom';
 import {createRoot} from 'react-dom';
+import {BrowserRouter} from 'react-router-dom';
 
 import App from './App';
 
@@ -16,6 +16,8 @@ const container = document.getElementById('app');
 const root = createRoot(container);
 root.render(
   <Authenticator.Provider>
+    <BrowserRouter>
       <App />
+    </BrowserRouter>
   </Authenticator.Provider>
 );

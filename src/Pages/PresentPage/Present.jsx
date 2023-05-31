@@ -6,8 +6,6 @@ import './Present.css';
 import VContainer from 'CustomComponents/Containers';
 import Button from 'CustomComponents/Button';
 import ViewPDF from 'CustomComponents/PDFViewer';
-import NavigationBar from 'Navigation';
-
 import { Auth } from 'aws-amplify';
 import { BiRefresh } from 'react-icons/bi';
 import { Storage } from "@aws-amplify/storage"
@@ -129,7 +127,6 @@ export default function Present(params) {
 
   return (
     <>
-      <NavigationBar />
 
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Button onClick={refreshFileList}> <BiRefresh style={{ fontSize: '24px' }} /> </Button>

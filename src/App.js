@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import ThemeContext from './context';
 import RequireAuth from './RequireAuth';
 import AboutPage from './Pages/AboutPage';
@@ -14,6 +14,7 @@ import Settings from './Pages/SettingsPage';
 import ChangePassword from './Pages/ChangePasswordPage';
 import ChangeEmail from './Pages/ChangeEmailPage';
 import './styles.css';
+import NavigationBar from 'Navigation';
 
 const App = () => {
 
@@ -57,7 +58,7 @@ const App = () => {
 
         "settings" : 
         <RequireAuth>
-            <Settings />
+            <Settings theme={theme} />
         </RequireAuth>,
 
         "changePassword" : 
@@ -74,10 +75,9 @@ const App = () => {
 
     return (
         <div className={`App ${theme}`}>
-            <ThemeContext.Provider value={{ theme: theme, toggle: toggleDarkMode }}>
-                <BrowserRouter>
+            <ThemeContext.Provider value={{ theme: theme, toggle: toggleDarkMode }}> 
+                    <NavigationBar />
                     <Routes>
-
                          {/* These are the public routes that will be offered to anyone that enters the website 
                             without being authenticated. */}
                         <Route path="/Home" element={publicRoutes["home"]} />
@@ -98,9 +98,10 @@ const App = () => {
                         
                     </Routes>
 
-                </BrowserRouter>
+               
             </ThemeContext.Provider>
         </div>
+       
     );
 }
 

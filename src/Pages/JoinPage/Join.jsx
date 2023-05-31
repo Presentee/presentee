@@ -1,5 +1,4 @@
 // components/Protected.js
-import NavigationBar from 'Navigation';
 import React, { useState } from 'react';
 import { ScrollView } from '@aws-amplify/ui-react';
 import QRCode from "react-qr-code";
@@ -18,7 +17,7 @@ export default function Join() {
 
   return (
     <div className="App">
-      <NavigationBar />
+
       <ScrollView>
       <header className="App-header">
         <QRCode value={qrCodeValue} /> {/* use the constructed QR code value */}

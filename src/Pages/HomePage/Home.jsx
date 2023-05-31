@@ -1,5 +1,4 @@
 import React from 'react';
-import NavigationBar from 'Navigation';
 import './Home.css';
 import { HomeContainer } from 'CustomComponents/Containers';
 
@@ -10,7 +9,7 @@ export default function Home() {
 
   return (
     <div>
-      <NavigationBar />
+  
       <HomeContainer>
         <h1>
           Welcome to Presentee!

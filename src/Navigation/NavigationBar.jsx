@@ -1,19 +1,17 @@
 import React, { useContext } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ThemeContext } from '@react-pdf-viewer/core';
 import { useAuthenticator } from '@aws-amplify/ui-react';
-import Button from 'CustomComponents/Button'
 import DarkModeSlider from './DarkModeSlider';
 import "./NavStyling.css";
 
 export default function NavigationBar() {
-    const navigate = useNavigate();
+   
     const { route, signOut } = useAuthenticator((context) => [context.route, context.signOut]);
     const theme = useContext(ThemeContext);
 
     const logOut = () => {
         signOut();
-        navigate('/login');
     }
 
     return (
@@ -29,24 +27,24 @@ export default function NavigationBar() {
 
 
             <div style={{ marginRight: 'auto', marginLeft: 'auto' }}>
-            <Button onClick={() => navigate('/join')}>Join</Button>
+            <Link to="/join">Join</Link>
 
                 {route === 'authenticated' && (
                     <>
-                        <Button onClick={() => navigate('/create')}>Create</Button>
-                        <Button onClick={() => navigate('/present')}>Present</Button>
+                        <Link to='/create'>Create</Link>
+                        <Link to='/present'>Present</Link>
                     </>
                 )}
 
-                <Button onClick={() => navigate('/about')}>About</Button>
+                <Link to='/about'>About</Link>
             </div>
 
             <div className='right-div'>
                 
                 {route === 'authenticated' ? (
-                    <Button onClick={() => navigate('/settings')} size="small">
+                    <Link to='/settings' size="small">
                         Settings
-                    </Button>
+                    </Link>
                 ) : (
                     ""
                 )}
@@ -54,9 +52,11 @@ export default function NavigationBar() {
                
 
                 {route === 'authenticated' ? (
-                    <Button onClick={logOut} size="small">Sign Out</Button>
+                    <button onClick={logOut} size="small">
+                        Sign Out
+                    </button>
                 ) : (
-                    <Button onClick={() => navigate('/login')} marginInlineStart="auto" size="small">Sign In</Button>
+                    <Link to='/login' marginInlineStart="auto" size="small">Sign In</Link>
                 )}
 
             </div>

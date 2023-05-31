@@ -1,6 +1,5 @@
 import ThemeButton from 'CustomComponents/ThemeButton/ThemeButton';
-import NavigationBar from 'Navigation'
-import React, {useContext}  from 'react'
+import React, { useContext }  from 'react'
 import {useNavigate} from 'react-router-dom';
 import ThemeContext from 'context/ThemeContext';
 
@@ -12,7 +11,6 @@ const Settings = () => {
   
   return (
     <>
-        <NavigationBar />
         <div
           style={{
             display: "flex",
@@ -40,7 +38,7 @@ const Settings = () => {
               {/* I think the problem with this is it is changing the mode to a global setting, so when logging out it
               it is saving the setting. I am afraid this could be a very big problem. */}
               <div>
-                <ThemeButton onClick={toggle} />
+                <ThemeButton onClick={toggle} theme={theme} />
               </div>
 
             </div>
