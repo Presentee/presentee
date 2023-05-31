@@ -15,10 +15,9 @@ jest.mock('react-router-dom', () => ({
   }));
 
 describe('App', () => {
-  it('renders the navigation bar', () => {
-    
-    render(
+  it('renders App without crashing', () => {
     useAuthenticator.mockReturnValue({ route: 'unauthenticated', signOut: jest.fn() }),
+    render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
