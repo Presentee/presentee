@@ -7,11 +7,14 @@ import VContainer from 'CustomComponents/Containers';
 import Button from 'CustomComponents/Button';
 import ViewPDF from 'CustomComponents/PDFViewer';
 import NavigationBar from 'Navigation';
+import { createPresentation, updatePresentation, deletePresentation } from "graphql/mutations";
+import { getPresentation, listPresentations } from 'graphql/queries';
 
-import { Auth } from 'aws-amplify';
+import { Auth, API, Storage } from 'aws-amplify';
 import { BiRefresh } from 'react-icons/bi';
-import { Storage } from "@aws-amplify/storage"
 
+let globalFileKey = '';
+let globalFileName = '';
 
 // This is the function that will retreive the file from the S3 storage
 async function retreiveFile(fileName) {
@@ -27,6 +30,9 @@ async function retreiveFile(fileName) {
       download: true,
       level: 'public',
     });
+
+    globalFileKey = fileKey;
+    globalFileName = fileName;
 
     // convert the pdf data to a base64 string
     const pdfData = result.Body;
@@ -127,6 +133,42 @@ export default function Present(params) {
     setShowFileList(true);
   }
 
+  // handle present button click
+  async function handlePresent(params) {
+
+    // if globalFileKey or globalFileName are empty retrerive the file
+    if (globalFileKey == '' || globalFileName == '') {
+      console.error("presentation not loaded");
+      
+      //reload page
+      window.location.reload();
+    }
+    else {
+
+      // create the presentation in the database
+      try {
+        const newPresentation = await API.graphql({
+          query: createPresentation,
+          variables: {
+            input: {
+              "PresentationKey": globalFileKey,
+              "Name": globalFileName,
+              "PageNum": 0,
+            }
+          }
+        });
+
+        // navigate to the presenting page
+        navigate('/presenting');
+
+        params(newPresentation.data.createPresentation.id);
+      } catch (error) {
+        console.error("Error handling presentation: ", error);
+      }
+    }
+  }
+
+
   return (
     <>
       <NavigationBar />
@@ -136,7 +178,7 @@ export default function Present(params) {
         {showFileList && <DisplayList setPDFFile={params.setPDFFile} />}
       </div>
 
-      <Button onClick={() => navigate('/presenting')}> Present Presentation </Button>
+      <Button onClick={() => handlePresent(params.setRoomID)}>Present Presentation</Button>
       <VContainer style={{ width: '100%', height: '100%', padding: '2px' }}>
         <ViewPDF pdfFile={params.pdfFile} />
       </VContainer>

@@ -1,67 +1,15 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateRestaurant = /* GraphQL */ `
-  subscription OnCreateRestaurant(
-    $filter: ModelSubscriptionRestaurantFilterInput
-  ) {
-    onCreateRestaurant(filter: $filter) {
-      id
-      name
-      description
-      city
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onUpdateRestaurant = /* GraphQL */ `
-  subscription OnUpdateRestaurant(
-    $filter: ModelSubscriptionRestaurantFilterInput
-  ) {
-    onUpdateRestaurant(filter: $filter) {
-      id
-      name
-      description
-      city
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onDeleteRestaurant = /* GraphQL */ `
-  subscription OnDeleteRestaurant(
-    $filter: ModelSubscriptionRestaurantFilterInput
-  ) {
-    onDeleteRestaurant(filter: $filter) {
-      id
-      name
-      description
-      city
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
 export const onCreatePresentation = /* GraphQL */ `
   subscription OnCreatePresentation(
     $filter: ModelSubscriptionPresentationFilterInput
   ) {
     onCreatePresentation(filter: $filter) {
       id
-      presentationName
-      presenter
-      eventKey
-      qrcode
+      PresentationKey
+      Name
+      PageNum
       createdAt
       updatedAt
       _version
@@ -76,10 +24,9 @@ export const onUpdatePresentation = /* GraphQL */ `
   ) {
     onUpdatePresentation(filter: $filter) {
       id
-      presentationName
-      presenter
-      eventKey
-      qrcode
+      PresentationKey
+      Name
+      PageNum
       createdAt
       updatedAt
       _version
@@ -94,10 +41,96 @@ export const onDeletePresentation = /* GraphQL */ `
   ) {
     onDeletePresentation(filter: $filter) {
       id
-      presentationName
-      presenter
-      eventKey
-      qrcode
+      PresentationKey
+      Name
+      PageNum
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreatePoll = /* GraphQL */ `
+  subscription OnCreatePoll($filter: ModelSubscriptionPollFilterInput) {
+    onCreatePoll(filter: $filter) {
+      id
+      PollJSON
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdatePoll = /* GraphQL */ `
+  subscription OnUpdatePoll($filter: ModelSubscriptionPollFilterInput) {
+    onUpdatePoll(filter: $filter) {
+      id
+      PollJSON
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeletePoll = /* GraphQL */ `
+  subscription OnDeletePoll($filter: ModelSubscriptionPollFilterInput) {
+    onDeletePoll(filter: $filter) {
+      id
+      PollJSON
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreateQuestions = /* GraphQL */ `
+  subscription OnCreateQuestions(
+    $filter: ModelSubscriptionQuestionsFilterInput
+  ) {
+    onCreateQuestions(filter: $filter) {
+      id
+      Question
+      PageNum
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateQuestions = /* GraphQL */ `
+  subscription OnUpdateQuestions(
+    $filter: ModelSubscriptionQuestionsFilterInput
+  ) {
+    onUpdateQuestions(filter: $filter) {
+      id
+      Question
+      PageNum
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteQuestions = /* GraphQL */ `
+  subscription OnDeleteQuestions(
+    $filter: ModelSubscriptionQuestionsFilterInput
+  ) {
+    onDeleteQuestions(filter: $filter) {
+      id
+      Question
+      PageNum
       createdAt
       updatedAt
       _version

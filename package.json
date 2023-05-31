@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@aws-amplify/ui-react": "^4.3.5",
+    "@aws-amplify/ui-react": "^4.6.0",
     "@react-pdf-viewer/core": "^3.7.0",
     "@react-pdf-viewer/default-layout": "^3.8.0",
     "@react-pdf-viewer/scroll-mode": "^3.11.0",
@@ -12,6 +12,8 @@
     "@testing-library/user-event": "^13.5.0",
     "aws-amplify": "^5.0.19",
     "bootstrap": "^5.2.2",
+    "html-to-image": "^1.11.11",
+    "pdf-lib": "^1.17.1",
     "pdfjs-dist": "^2.15.349",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",

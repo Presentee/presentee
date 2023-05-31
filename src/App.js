@@ -18,6 +18,7 @@ import 'styles.css';
 const App = () => {
 
     const [pdfFile, setPDFFile] = useState(null);
+    const [roomID, setRoomID] = useState(null);
 
     const [theme, setTheme] = React.useState(() => {
         const storedTheme = localStorage.getItem('theme');
@@ -47,12 +48,12 @@ const App = () => {
 
         "present" : 
         <RequireAuth>
-            <PresentPage setPDFFile={setPDFFile} pdfFile={pdfFile} />
+            <PresentPage setPDFFile={setPDFFile} pdfFile={pdfFile} setRoomID={setRoomID} />
         </RequireAuth>,
 
         "presenting" : 
         <RequireAuth>
-            <Presenting pdfFile={pdfFile} />
+            <Presenting pdfFile={pdfFile} roomID={roomID} />
         </RequireAuth>,
 
         "settings" : 
@@ -83,6 +84,7 @@ const App = () => {
                         <Route path="/Home" element={publicRoutes["home"]} />
                         <Route path="/login" element={publicRoutes["login"]} />
                         <Route path="/join" element={publicRoutes["join"]} />
+                        <Route path="/join/:roomNum" element={publicRoutes["join"]} />
                         <Route path="/" element={publicRoutes["home"]} />
                         <Route path="*" element={publicRoutes["*"]} />
                         <Route path="/about" element={publicRoutes["about"]} />

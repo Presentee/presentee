@@ -1,81 +1,13 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getRestaurant = /* GraphQL */ `
-  query GetRestaurant($id: ID!) {
-    getRestaurant(id: $id) {
-      id
-      name
-      description
-      city
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const listRestaurants = /* GraphQL */ `
-  query ListRestaurants(
-    $filter: ModelRestaurantFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listRestaurants(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        description
-        city
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncRestaurants = /* GraphQL */ `
-  query SyncRestaurants(
-    $filter: ModelRestaurantFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncRestaurants(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        name
-        description
-        city
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
 export const getPresentation = /* GraphQL */ `
   query GetPresentation($id: ID!) {
     getPresentation(id: $id) {
       id
-      presentationName
-      presenter
-      eventKey
-      qrcode
+      PresentationKey
+      Name
+      PageNum
       createdAt
       updatedAt
       _version
@@ -93,10 +25,9 @@ export const listPresentations = /* GraphQL */ `
     listPresentations(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        presentationName
-        presenter
-        eventKey
-        qrcode
+        PresentationKey
+        Name
+        PageNum
         createdAt
         updatedAt
         _version
@@ -123,10 +54,134 @@ export const syncPresentations = /* GraphQL */ `
     ) {
       items {
         id
-        presentationName
-        presenter
-        eventKey
-        qrcode
+        PresentationKey
+        Name
+        PageNum
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getPoll = /* GraphQL */ `
+  query GetPoll($id: ID!) {
+    getPoll(id: $id) {
+      id
+      PollJSON
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listPolls = /* GraphQL */ `
+  query ListPolls(
+    $filter: ModelPollFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPolls(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        PollJSON
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncPolls = /* GraphQL */ `
+  query SyncPolls(
+    $filter: ModelPollFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncPolls(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        PollJSON
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getQuestions = /* GraphQL */ `
+  query GetQuestions($id: ID!) {
+    getQuestions(id: $id) {
+      id
+      Question
+      PageNum
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listQuestions = /* GraphQL */ `
+  query ListQuestions(
+    $filter: ModelQuestionsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listQuestions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        Question
+        PageNum
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncQuestions = /* GraphQL */ `
+  query SyncQuestions(
+    $filter: ModelQuestionsFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncQuestions(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        Question
+        PageNum
         createdAt
         updatedAt
         _version
