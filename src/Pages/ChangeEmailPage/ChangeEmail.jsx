@@ -7,7 +7,7 @@ import {
   FormControl,
   FormLabel,
 } from "react-bootstrap";
-import LoaderButton from "../../CustomComponents/LoaderButton";
+import LoaderButton from "../../CustomComponents/LoaderButton/LoaderButton";
 import { useFormFields } from "../../lib/hooksLib";
 import "./ChangeEmail.css";
 import NavigationBar from "Navigation";

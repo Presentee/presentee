@@ -61,8 +61,6 @@ const privateRoutes = {
 
 const App = () => {
 
-    
-
     const [theme, setTheme] = React.useState(() => {
         const storedTheme = localStorage.getItem('theme');
         return storedTheme ? storedTheme : 'light';
@@ -74,35 +72,30 @@ const App = () => {
         localStorage.setItem('theme', newTheme);
     };
 
-  
-
-
     return (
         <div className={`App ${theme}`}>
             <ThemeContext.Provider value={{ theme: theme, toggle: toggleDarkMode }}> 
-                    <NavigationBar theme={theme} />
-                    <Routes>
-                         {/* These are the public routes that will be offered to anyone that enters the website 
-                            without being authenticated. */}
-                        <Route path="/Home" element={publicRoutes["home"]} />
-                        <Route path="/login" element={publicRoutes["login"]} />
-                        <Route path="/join" element={publicRoutes["join"]} />
-                        <Route path="/" element={publicRoutes["home"]} />
-                        <Route path="*" element={publicRoutes["*"]} />
-                        <Route path="/about" element={publicRoutes["about"]} />
+                <NavigationBar theme={theme} />
+                <Routes>
+                    {/* These are the public routes that will be offered to anyone that enters the website 
+                        without being authenticated. */}
+                    <Route path="/Home" element={publicRoutes["home"]} />
+                    <Route path="/login" element={publicRoutes["login"]} />
+                    <Route path="/join" element={publicRoutes["join"]} />
+                    <Route path="/" element={publicRoutes["home"]} />
+                    <Route path="*" element={publicRoutes["*"]} />
+                    <Route path="/about" element={publicRoutes["about"]} />
 
-                        {/* These are the private routes that will be offered once a user has created an account
-                            and been authenicated. */}
-                        <Route path="/create" element={privateRoutes["create"]} />
-                        <Route path='/present' element={privateRoutes['present']} />
-                        <Route path='/presenting' element={privateRoutes['presenting']} />
-                        <Route path="/settings" element={privateRoutes["settings"]} />
-                        <Route path="/settings/password" element={privateRoutes["changePassword"]} />
-                        <Route path="/settings/email" element={privateRoutes["changeEmail"]} />
+                    {/* These are the private routes that will be offered once a user has created an account
+                        and been authenicated. */}
+                    <Route path="/create" element={privateRoutes["create"]} />
+                    <Route path='/present' element={privateRoutes['present']} />
+                    <Route path='/presenting' element={privateRoutes['presenting']} />
+                    <Route path="/settings" element={privateRoutes["settings"]} />
+                    <Route path="/settings/password" element={privateRoutes["changePassword"]} />
+                    <Route path="/settings/email" element={privateRoutes["changeEmail"]} />
                         
-                    </Routes>
-
-               
+                </Routes>
             </ThemeContext.Provider>
         </div>
        
