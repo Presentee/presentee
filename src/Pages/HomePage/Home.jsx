@@ -6,10 +6,8 @@ import { HomeContainer } from 'CustomComponents/Containers';
 
 export default function Home() {
 
-
   return (
-    <div>
-  
+    <>
       <HomeContainer>
         <h1>
           Welcome to Presentee!
@@ -22,6 +20,6 @@ export default function Home() {
           memorable.
         </p>
       </HomeContainer>
-    </div>
+    </>
   );
 }

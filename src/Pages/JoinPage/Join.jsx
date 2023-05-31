@@ -1,6 +1,5 @@
 // components/Protected.js
 import React, { useState } from 'react';
-import { ScrollView } from '@aws-amplify/ui-react';
 import QRCode from "react-qr-code";
 import "./Join.css";
 
@@ -16,18 +15,15 @@ export default function Join() {
   const qrCodeUrl = `https://${qrCodeValue}`; // construct the URL linked to the QR code by adding the "https://" protocol
 
   return (
-    <div className="App">
-
-      <ScrollView>
-      <header className="App-header">
-        <QRCode value={qrCodeValue} /> {/* use the constructed QR code value */}
-        <a href={qrCodeUrl} target="_blank" rel="noopener noreferrer">{qrCodeUrl}</a> {/* add an "a" tag to display the URL linked to the QR code */}
-        <div className="App-link">
-          <p>Enter the code to encode</p>
-          <input type="text" value={text} onChange={(e)=>{handleChange(e)}}/>
+      <div className='App'>
+        <div className="App-header">
+          <QRCode value={qrCodeValue} /> {/* use the constructed QR code value */}
+          <a href={qrCodeUrl} target="_blank" rel="noopener noreferrer">{qrCodeUrl}</a> {/* add an "a" tag to display the URL linked to the QR code */}
+          <div className="App-link">
+            <p>Enter the code to encode</p>
+            <input type="text" value={text} onChange={(e)=>{handleChange(e)}}/>
+          </div>
         </div>
-      </header>
-      </ScrollView>
-    </div>
+      </div>
   );
 }
