@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import { ThemeContext } from '@react-pdf-viewer/core';
 import { useAuthenticator } from '@aws-amplify/ui-react';
-import DarkModeSlider from './DarkModeSlider';
 import "./NavStyling.css";
 
 export default function NavigationBar() {
@@ -18,12 +17,6 @@ export default function NavigationBar() {
         <nav className={`custom-navbar ${theme}`} >
 
             <a href='/Home' style={{ display: 'flex', alignItems: 'center', width: '50px', height: '50px', backgroundImage: "url('PresenteeLogo3.png')", backgroundSize: 'cover', minWidth: '50px' }}> </a>
-
-            <div>
-                <div className="left-section">
-                    <DarkModeSlider style={{ marginRight: "20px" }} />
-                </div>
-            </div>
 
 
             <div style={{ marginRight: 'auto', marginLeft: 'auto' }}>
@@ -56,7 +49,7 @@ export default function NavigationBar() {
                         Sign Out
                     </button>
                 ) : (
-                    <Link to='/login' marginInlineStart="auto" size="small">Sign In</Link>
+                    <Link to='/login' margininlinestart="auto" size="small">Sign In</Link>
                 )}
 
             </div>

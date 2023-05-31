@@ -16,9 +16,52 @@ import ChangeEmail from './Pages/ChangeEmailPage';
 import './styles.css';
 import NavigationBar from 'Navigation';
 
+
+
+const publicRoutes = {
+    "home" : <HomePage />,
+    "login" : <LoginPage />,
+    "join" : <JoinPage />,
+    "*" : <PageNotFound />,
+    "about" : <AboutPage />
+};
+
+
+const privateRoutes = {
+    "create" : 
+    <RequireAuth>
+        <CreatePage  />
+    </RequireAuth>,
+
+    "present" : 
+    <RequireAuth>
+        <PresentPage  />
+    </RequireAuth>,
+
+    "presenting" : 
+    <RequireAuth>
+        <Presenting />
+    </RequireAuth>,
+
+    "settings" : 
+    <RequireAuth>
+        <Settings />
+    </RequireAuth>,
+
+    "changePassword" : 
+    <RequireAuth>
+        <ChangePassword />
+    </RequireAuth>,
+
+    "changeEmail" : 
+    <RequireAuth> 
+        <ChangeEmail />
+    </RequireAuth>
+};
+
 const App = () => {
 
-    const [pdfFile, setPDFFile] = useState(null);
+    
 
     const [theme, setTheme] = React.useState(() => {
         const storedTheme = localStorage.getItem('theme');
@@ -31,52 +74,13 @@ const App = () => {
         localStorage.setItem('theme', newTheme);
     };
 
-    const publicRoutes = {
-        "home" : <HomePage />,
-        "login" : <LoginPage />,
-        "join" : <JoinPage />,
-        "*" : <PageNotFound />,
-        "about" : <AboutPage />
-    };
-
-
-    const privateRoutes = {
-        "create" : 
-        <RequireAuth>
-            <CreatePage setPDFFile={setPDFFile} pdfFile={pdfFile} />
-        </RequireAuth>,
-
-        "present" : 
-        <RequireAuth>
-            <PresentPage setPDFFile={setPDFFile} pdfFile={pdfFile} />
-        </RequireAuth>,
-
-        "presenting" : 
-        <RequireAuth>
-            <Presenting pdfFile={pdfFile} />
-        </RequireAuth>,
-
-        "settings" : 
-        <RequireAuth>
-            <Settings theme={theme} />
-        </RequireAuth>,
-
-        "changePassword" : 
-        <RequireAuth>
-            <ChangePassword />
-        </RequireAuth>,
-
-        "changeEmail" : 
-        <RequireAuth> 
-            <ChangeEmail />
-        </RequireAuth>
-    };
+  
 
 
     return (
         <div className={`App ${theme}`}>
             <ThemeContext.Provider value={{ theme: theme, toggle: toggleDarkMode }}> 
-                    <NavigationBar />
+                    <NavigationBar theme={theme} />
                     <Routes>
                          {/* These are the public routes that will be offered to anyone that enters the website 
                             without being authenticated. */}
