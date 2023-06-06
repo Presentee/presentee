@@ -5,35 +5,32 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, TextAreaFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, TextAreaFieldProps } from "@aws-amplify/ui-react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 export declare type ValidationResponse = {
     hasError: boolean;
     errorMessage?: string;
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
-export declare type PollCreateFormInputValues = {
+export declare type PolltestCreateFormInputValues = {
     PollJSON?: string;
-    Question?: string;
 };
-export declare type PollCreateFormValidationValues = {
+export declare type PolltestCreateFormValidationValues = {
     PollJSON?: ValidationFunction<string>;
-    Question?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type PollCreateFormOverridesProps = {
-    PollCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
+export declare type PolltestCreateFormOverridesProps = {
+    PolltestCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
     PollJSON?: PrimitiveOverrideProps<TextAreaFieldProps>;
-    Question?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
-export declare type PollCreateFormProps = React.PropsWithChildren<{
-    overrides?: PollCreateFormOverridesProps | undefined | null;
+export declare type PolltestCreateFormProps = React.PropsWithChildren<{
+    overrides?: PolltestCreateFormOverridesProps | undefined | null;
 } & {
     clearOnSuccess?: boolean;
-    onSubmit?: (fields: PollCreateFormInputValues) => PollCreateFormInputValues;
-    onSuccess?: (fields: PollCreateFormInputValues) => void;
-    onError?: (fields: PollCreateFormInputValues, errorMessage: string) => void;
-    onChange?: (fields: PollCreateFormInputValues) => PollCreateFormInputValues;
-    onValidate?: PollCreateFormValidationValues;
+    onSubmit?: (fields: PolltestCreateFormInputValues) => PolltestCreateFormInputValues;
+    onSuccess?: (fields: PolltestCreateFormInputValues) => void;
+    onError?: (fields: PolltestCreateFormInputValues, errorMessage: string) => void;
+    onChange?: (fields: PolltestCreateFormInputValues) => PolltestCreateFormInputValues;
+    onValidate?: PolltestCreateFormValidationValues;
 } & React.CSSProperties>;
-export default function PollCreateForm(props: PollCreateFormProps): React.ReactElement;
+export default function PolltestCreateForm(props: PolltestCreateFormProps): React.ReactElement;

@@ -1,0 +1,35 @@
+type PollAnswers @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Answer: String
+  pollID: ID! @index(name: "byPoll")
+}
+
+type Poll @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  PollJSON: AWSJSON
+  Question: String
+  PollAnswers: [PollAnswers] @hasMany(indexName: "byPoll", fields: ["id"])
+}
+
+type QuestionsAnswer @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Answer: String
+  questionsID: ID! @index(name: "byQuestions")
+}
+
+type Questions @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Question: String
+  PageNum: String
+  presentationID: ID! @index(name: "byPresentation")
+  Questions_Answers: [QuestionsAnswer] @hasMany(indexName: "byQuestions", fields: ["id"])
+}
+
+type Presentation @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  PresentationKey: String!
+  Name: String
+  PageNum: Int
+  Presentation_Question: [Questions] @hasMany(indexName: "byPresentation", fields: ["id"])
+}
+ 

@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps, TextAreaFieldProps } from "@aws-amplify/ui-react";
+import { GridProps, TextAreaFieldProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 import { Poll } from "../models";
 export declare type ValidationResponse = {
@@ -15,14 +15,17 @@ export declare type ValidationResponse = {
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type PollUpdateFormInputValues = {
     PollJSON?: string;
+    Question?: string;
 };
 export declare type PollUpdateFormValidationValues = {
     PollJSON?: ValidationFunction<string>;
+    Question?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type PollUpdateFormOverridesProps = {
     PollUpdateFormGrid?: PrimitiveOverrideProps<GridProps>;
     PollJSON?: PrimitiveOverrideProps<TextAreaFieldProps>;
+    Question?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type PollUpdateFormProps = React.PropsWithChildren<{
     overrides?: PollUpdateFormOverridesProps | undefined | null;

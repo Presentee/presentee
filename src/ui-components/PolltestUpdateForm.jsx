@@ -6,21 +6,15 @@
 
 /* eslint-disable */
 import * as React from "react";
-import {
-  Button,
-  Flex,
-  Grid,
-  TextAreaField,
-  TextField,
-} from "@aws-amplify/ui-react";
+import { Button, Flex, Grid, TextAreaField } from "@aws-amplify/ui-react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
-import { Poll } from "../models";
+import { Polltest } from "../models";
 import { fetchByPath, validateField } from "./utils";
 import { DataStore } from "aws-amplify";
-export default function PollUpdateForm(props) {
+export default function PolltestUpdateForm(props) {
   const {
     id: idProp,
-    poll: pollModelProp,
+    polltest: polltestModelProp,
     onSuccess,
     onError,
     onSubmit,
@@ -31,37 +25,33 @@ export default function PollUpdateForm(props) {
   } = props;
   const initialValues = {
     PollJSON: "",
-    Question: "",
   };
   const [PollJSON, setPollJSON] = React.useState(initialValues.PollJSON);
-  const [Question, setQuestion] = React.useState(initialValues.Question);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    const cleanValues = pollRecord
-      ? { ...initialValues, ...pollRecord }
+    const cleanValues = polltestRecord
+      ? { ...initialValues, ...polltestRecord }
       : initialValues;
     setPollJSON(
       typeof cleanValues.PollJSON === "string"
         ? cleanValues.PollJSON
         : JSON.stringify(cleanValues.PollJSON)
     );
-    setQuestion(cleanValues.Question);
     setErrors({});
   };
-  const [pollRecord, setPollRecord] = React.useState(pollModelProp);
+  const [polltestRecord, setPolltestRecord] = React.useState(polltestModelProp);
   React.useEffect(() => {
     const queryData = async () => {
       const record = idProp
-        ? await DataStore.query(Poll, idProp)
-        : pollModelProp;
-      setPollRecord(record);
+        ? await DataStore.query(Polltest, idProp)
+        : polltestModelProp;
+      setPolltestRecord(record);
     };
     queryData();
-  }, [idProp, pollModelProp]);
-  React.useEffect(resetStateValues, [pollRecord]);
+  }, [idProp, polltestModelProp]);
+  React.useEffect(resetStateValues, [polltestRecord]);
   const validations = {
     PollJSON: [{ type: "JSON" }],
-    Question: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -90,7 +80,6 @@ export default function PollUpdateForm(props) {
         event.preventDefault();
         let modelFields = {
           PollJSON,
-          Question,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -121,7 +110,7 @@ export default function PollUpdateForm(props) {
             }
           });
           await DataStore.save(
-            Poll.copyOf(pollRecord, (updated) => {
+            Polltest.copyOf(polltestRecord, (updated) => {
               Object.assign(updated, modelFields);
             })
           );
@@ -134,7 +123,7 @@ export default function PollUpdateForm(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "PollUpdateForm")}
+      {...getOverrideProps(overrides, "PolltestUpdateForm")}
       {...rest}
     >
       <TextAreaField
@@ -147,7 +136,6 @@ export default function PollUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               PollJSON: value,
-              Question,
             };
             const result = onChange(modelFields);
             value = result?.PollJSON ?? value;
@@ -162,31 +150,6 @@ export default function PollUpdateForm(props) {
         hasError={errors.PollJSON?.hasError}
         {...getOverrideProps(overrides, "PollJSON")}
       ></TextAreaField>
-      <TextField
-        label="Question"
-        isRequired={false}
-        isReadOnly={false}
-        value={Question}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              PollJSON,
-              Question: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.Question ?? value;
-          }
-          if (errors.Question?.hasError) {
-            runValidationTasks("Question", value);
-          }
-          setQuestion(value);
-        }}
-        onBlur={() => runValidationTasks("Question", Question)}
-        errorMessage={errors.Question?.errorMessage}
-        hasError={errors.Question?.hasError}
-        {...getOverrideProps(overrides, "Question")}
-      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
@@ -198,7 +161,7 @@ export default function PollUpdateForm(props) {
             event.preventDefault();
             resetStateValues();
           }}
-          isDisabled={!(idProp || pollModelProp)}
+          isDisabled={!(idProp || polltestModelProp)}
           {...getOverrideProps(overrides, "ResetButton")}
         ></Button>
         <Flex
@@ -210,7 +173,7 @@ export default function PollUpdateForm(props) {
             type="submit"
             variation="primary"
             isDisabled={
-              !(idProp || pollModelProp) ||
+              !(idProp || polltestModelProp) ||
               Object.values(errors).some((e) => e?.hasError)
             }
             {...getOverrideProps(overrides, "SubmitButton")}
