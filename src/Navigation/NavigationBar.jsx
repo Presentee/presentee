@@ -7,8 +7,14 @@ import DarkModeSlider from './DarkModeSlider';
 import "./NavStyling.css";
 
 export default function NavigationBar() {
+    
     const navigate = useNavigate();
-    const { route, signOut } = useAuthenticator((context) => [context.route, context.signOut]);
+
+    const { route, signOut } = useAuthenticator( (context) => ({
+        route: context.route,
+        signOut: context.signOut,
+    }));    
+
     const theme = useContext(ThemeContext);
 
     const logOut = () => {

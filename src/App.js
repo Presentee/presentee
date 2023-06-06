@@ -97,7 +97,6 @@ const App = () => {
                         <Route path="/settings/email" element={privateRoutes["changeEmail"]} />
                         
                     </Routes>
-
                 </BrowserRouter>
             </ThemeContext.Provider>
         </div>

@@ -22,8 +22,7 @@ const Settings = () => {
                 <p>Settings Page</p>
             </div>
 
-            <div style={{ marginBottom: "1rem" }}>
-            </div>
+            <div style={{ marginBottom: "1rem" }}></div>
 
             <div style={{ display: "flex", flexDirection: "column" }}>
 
