@@ -29,7 +29,7 @@ export default function Login() {
   useEffect(() => {
     if (user) {
       navigate('/Home', { replace: true });
-      location.reload();
+      //location.reload();
     }
   }, [user, navigate]);
 
