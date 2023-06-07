@@ -41,8 +41,8 @@ const App = () => {
         "join" : <JoinPage />,
         "*" : <PageNotFound />,
         "about" : <AboutPage />,
-        "questions" : <QuestionsPage />,
-        "polls" : <PollsPage />
+        // "questions" : <QuestionsPage />,
+        // "polls" : <PollsPage />
     };
 
 
@@ -95,8 +95,8 @@ const App = () => {
                         <Route path="/" element={publicRoutes["home"]} />
                         <Route path="*" element={publicRoutes["*"]} />
                         <Route path="/about" element={publicRoutes["about"]} />
-                        <Route path="/questions" element={publicRoutes["questions"]} />
-                        <Route path="/polls" element={publicRoutes["polls"]} />
+                        {/* <Route path="/questions" element={publicRoutes["questions"]} /> */}
+                        {/* <Route path="/polls" element={publicRoutes["polls"]} /> */}
 
                         {/* These are the private routes that will be offered once a user has created an account
                             and been authenicated. */}
