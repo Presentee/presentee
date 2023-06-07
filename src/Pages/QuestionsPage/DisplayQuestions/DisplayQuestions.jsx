@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
-import { onCreateQuestions, onDeleteQuestions, onCreateQuestionsAnswer } from './graphql/subscriptions';
-import { listQuestions, listQuestionsAnswers } from './graphql/queries';
-import { deleteQuestions, deleteQuestionsAnswer } from './graphql/mutations';
-import CreateQuestion from './CreateQuestion';
-import AnswerQuestion from './AnswerQuestion';
+import { onCreateQuestions, onDeleteQuestions, onCreateQuestionsAnswer } from '../../../graphql/subscriptions';
+import { listQuestions, listQuestionsAnswers } from '../../../graphql/queries';
+import { deleteQuestions, deleteQuestionsAnswer } from '../../../graphql/mutations';
+import CreateQuestion from '../CreateQuestion/CreateQuestion';
+import AnswerQuestion from '../AnswerQuestions/AnswerQuestion';
 
 const DisplayQuestions = () => {
   const [questions, setQuestions] = useState([]);

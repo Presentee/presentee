@@ -22,7 +22,9 @@ export default function NavigationBar() {
 
 
             <div style={{ marginRight: 'auto', marginLeft: 'auto' }}>
-            <Button onClick={() => navigate('/join')}>Join</Button>
+                <Button onClick={() => navigate("/questions")}>Questions</Button>
+                <Button onClick={() => navigate('/join')}>Join</Button>
+
 
                 {route === 'authenticated' && (
                     <>

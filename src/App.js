@@ -13,8 +13,10 @@ import PageNotFound from 'Pages/404Page/404';
 import Settings from 'Pages/SettingsPage';
 import ChangePassword from 'Pages/ChangePasswordPage';
 import ChangeEmail from 'Pages/ChangeEmailPage';
+import QuestionsPage from 'Pages/QuestionsPage/QuestionsPage';
 import NavigationBar from 'Navigation';
 import 'styles.css';
+
 
 const App = () => {
 
@@ -37,7 +39,8 @@ const App = () => {
         "login" : <LoginPage />,
         "join" : <JoinPage />,
         "*" : <PageNotFound />,
-        "about" : <AboutPage />
+        "about" : <AboutPage />,
+        "questions" : <QuestionsPage />
     };
 
 
@@ -90,6 +93,7 @@ const App = () => {
                         <Route path="/" element={publicRoutes["home"]} />
                         <Route path="*" element={publicRoutes["*"]} />
                         <Route path="/about" element={publicRoutes["about"]} />
+                        <Route path="/questions" element={publicRoutes["questions"]} />
 
                         {/* These are the private routes that will be offered once a user has created an account
                             and been authenicated. */}

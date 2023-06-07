@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
-import { createQuestions } from './graphql/mutations';
+import { createQuestions } from '../../../graphql/mutations';
 
 const CreateQuestion = () => {
   const [newQuestion, setNewQuestion] = useState('');
