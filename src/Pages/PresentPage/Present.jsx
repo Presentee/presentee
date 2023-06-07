@@ -190,7 +190,7 @@ export default function Present(params) {
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <Button onClick={() => handlePresent(params.setRoomID)} style={{ margin: '10px' }}>Present Presentation</Button>
             <h1>Preview</h1>
-            <ViewPDF style={{ display: 'flex', flexDirection: 'row', flex: '1' }} pdfFile={params.pdfFile} />
+            <ViewPDF pdfFile={params.pdfFile} />
           </div>
         </div>
       </HomeContainer>

@@ -1,7 +1,5 @@
 .pdf-container{
     width: 100%;
-    height: calc(100vh - 242px);
-    overflow-y: auto;
-    display: flex;
+    height: calc(100vh - 148px);
   }
   

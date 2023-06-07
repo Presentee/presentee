@@ -13,25 +13,9 @@
     },
     "categories": {
       "auth": {
-        "demo": {
-          "allowUnauthenticatedIdentities": false,
-          "authRoleArn": "arn:aws:iam::802237808688:role/amplify-presentee-dev-135536-authRole",
-          "authRoleName": "amplify-presentee-dev-135536-authRole",
-          "identityPoolId": "us-west-2:d91cf79d-138e-4995-8f6f-2612f905839f",
-          "identityPoolName": "testAuthIdentityPool__dev",
-          "nativeClientId": "5d0gnu9vomuhto8ubigfnfu65g",
-          "unauthRoleArn": "arn:aws:iam::802237808688:role/amplify-presentee-dev-135536-unauthRole",
-          "unauthRoleName": "amplify-presentee-dev-135536-unauthRole",
-          "userPoolId": "us-west-2_b8zii2l56",
-          "userPoolName": "presentee-dev",
-          "webClientId": "5d0gnu9vomuhto8ubigfnfu65g"
-        }
+        "demo": {}
       },
       "storage": {
-        "demo64cd15bd": {
-          "bucketName": "presentee-final-demo-bucket",
-          "region": "us-west-2"
-        },
         "s3demostoragea7cef4f7": {}
       }
     }

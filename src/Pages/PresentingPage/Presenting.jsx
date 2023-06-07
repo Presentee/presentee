@@ -8,7 +8,7 @@ import '@react-pdf-viewer/default-layout/lib/styles/index.css'
 import { PDFDocument } from 'pdf-lib';
 import { useEffect, useState } from 'react'
 import { Auth } from 'aws-amplify';
-import packageJson from '../../../package.json';
+import Button from 'CustomComponents/Button';
 
 export default function Presentating(params) {
 
@@ -20,17 +20,17 @@ export default function Presentating(params) {
             await modifyPdf();
         };
         runAsync();
-    }, );
-    
+    },);
+
 
     const [pdfBytes, setPdfBytes] = useState(null);
 
-    const newplugin = defaultLayoutPlugin()
+    const defaultLayoutPluginInstance = defaultLayoutPlugin({
+        sidebarTabs: (defaultTabs) => [],
+    });
+
     const scrollModePluginInstance = scrollModePlugin();
     scrollModePluginInstance.switchScrollMode(ScrollMode.Page)
-    
-
-
 
     async function modifyPdf() {
         try {
@@ -44,8 +44,20 @@ export default function Presentating(params) {
 
             const page = pdfDoc.addPage([width, height])
             // page.drawText("PresentationID: " + params.roomID, { x: 50, y: 200});
-            page.drawText("PresentationID: " + "F723S", { x: 50, y: 50});
-            
+
+            //draw presentee join message in bold
+            page.drawText("Presentee.net/join/5723S", { x: 140, y: 300, size: 40, })
+
+            // add an image to the pdf
+            const PngUrl = 'PresenteeDemoQR.png'
+            const PngImageBytes = await fetch(PngUrl).then((res) => res.arrayBuffer())
+            const PngImage = await pdfDoc.embedPng(PngImageBytes)
+            page.drawImage(PngImage, {
+                x: 260,
+                y: 25,
+                width: 200,
+                height: 200,
+            })
             pdfDoc.insertPage(0, page)
 
             setPdfBytes('data:application/pdf;base64,' + await pdfDoc.saveAsBase64());
@@ -61,11 +73,13 @@ export default function Presentating(params) {
             <div className='pdf-container'>
                 <Worker workerUrl={workerUrl}>
                     {pdfBytes && <>
-                        <Viewer fileUrl={pdfBytes} plugins={[scrollModePluginInstance, newplugin]} />
+                        <Viewer enableSmoothScroll={false} fileUrl={pdfBytes} theme="dark" plugins={[defaultLayoutPluginInstance]} />
                     </>}
                     {!pdfBytes && <>No PDF</>}
                 </Worker>
             </div>
+            <Button>Poll One</Button>
+            <Button>View Questions</Button>
         </>
     )
 };
