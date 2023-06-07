@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { listQuestions, listQuestionsAnswers } from './graphql/queries';
+import {subscribeToDeletedQuestions, subscribeToNewAnswers, subscribeToNewQuestions} from './graphql/subscriptions';
 
 function ClientDisplayQuestions() {
   const [questions, setQuestions] = useState([]);
@@ -9,7 +10,7 @@ function ClientDisplayQuestions() {
 
   useEffect(() => {
     fetchQuestions();
-  }, []);
+  }, [subscribeToDeletedQuestions, subscribeToNewAnswers, subscribeToNewQuestions]);
 
   const fetchQuestions = async () => {
     try {
