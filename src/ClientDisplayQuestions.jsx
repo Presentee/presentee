@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { listQuestions, listQuestionsAnswers } from './graphql/queries';
-import {subscribeToDeletedQuestions, subscribeToNewAnswers, subscribeToNewQuestions} from './graphql/subscriptions';
 
 function ClientDisplayQuestions() {
   const [questions, setQuestions] = useState([]);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [answers, setAnswers] = useState([]);
 
-  useEffect(() => {
-    fetchQuestions();
-  }, [subscribeToDeletedQuestions, subscribeToNewAnswers, subscribeToNewQuestions]);
+  
 
   const fetchQuestions = async () => {
     try {
@@ -20,6 +17,10 @@ function ClientDisplayQuestions() {
       console.error("Error fetching questions:", error);
     }
   }
+
+  useEffect(() => {
+    fetchQuestions();
+  }, []);
 
   const fetchAnswers = async (questionId) => {
     try {
