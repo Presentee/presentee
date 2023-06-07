@@ -14,17 +14,17 @@
     "categories": {
       "auth": {
         "demo": {
-          "allowUnauthenticatedIdentities": false,
-          "authRoleArn": "arn:aws:iam::802237808688:role/amplify-presentee-dev-135536-authRole",
-          "authRoleName": "amplify-presentee-dev-135536-authRole",
-          "identityPoolId": "us-west-2:d91cf79d-138e-4995-8f6f-2612f905839f",
-          "identityPoolName": "testAuthIdentityPool__dev",
-          "nativeClientId": "5d0gnu9vomuhto8ubigfnfu65g",
-          "unauthRoleArn": "arn:aws:iam::802237808688:role/amplify-presentee-dev-135536-unauthRole",
-          "unauthRoleName": "amplify-presentee-dev-135536-unauthRole",
-          "userPoolId": "us-west-2_b8zii2l56",
-          "userPoolName": "presentee-dev",
-          "webClientId": "5d0gnu9vomuhto8ubigfnfu65g"
+          "allowUnauthenticatedIdentities": true,
+          "authRoleArn": "arn:aws:iam::802237808688:role/amplify-demo-demo-195912-authRole",
+          "authRoleName": "amplify-demo-demo-195912-authRole",
+          "identityPoolId": "us-west-2:34429667-482a-439b-a129-2926ebe1219b",
+          "identityPoolName": "testAuthIdentityPool__demo",
+          "nativeClientId": "7s49165vah0j5gib6hqtatgld8",
+          "unauthRoleArn": "arn:aws:iam::802237808688:role/amplify-demo-demo-195912-unauthRole",
+          "unauthRoleName": "amplify-demo-demo-195912-unauthRole",
+          "userPoolId": "us-west-2_g9tk0Xvtq",
+          "userPoolName": "demo-demo",
+          "webClientId": "3nb02hq3l0l0jh4mfth3l26e4o"
         }
       }
     }

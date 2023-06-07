@@ -6,7 +6,9 @@
   "usernameAttributes": [
     "email"
   ],
-  "requiredAttributes": [],
+  "requiredAttributes": [
+    "name"
+  ],
   "passwordPolicyMinLength": 8,
   "passwordPolicyCharacters": [
     "Requires Lowercase",
