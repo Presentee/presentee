@@ -1,9 +1,6 @@
 import React from 'react';
 import './Home.css';
 import { HomeContainer } from 'CustomComponents/Containers';
-import Button from 'CustomComponents/Button';
-import { Auth } from 'aws-amplify';
-
 
 
 export default function Home() {
