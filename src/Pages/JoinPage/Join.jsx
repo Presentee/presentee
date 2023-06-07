@@ -2,7 +2,6 @@
 import NavigationBar from 'Navigation';
 import React, { useState, useEffect } from 'react';
 import { ScrollView } from '@aws-amplify/ui-react';
-import QRCode from "react-qr-code";
 import "./Join.css";
 import Button from 'CustomComponents/Button';
 import { useNavigate, useParams } from "react-router-dom";
@@ -16,117 +15,148 @@ import '@react-pdf-viewer/default-layout/lib/styles/index.css'
 
 export default function Join() {
 
-  let { roomNum } = useParams();
+  let { roomNum: roomID } = useParams();
+  let hardcodedRoomID = "68465270-585f-4746-9e7f-ff8c8e1908f7";
 
-  if (roomNum === undefined) {
+  const [text, setText] = useState("");
+  const [pdfBytes, setPdfBytes] = useState(null);
+  const navigate = useNavigate();
 
-    const [text, setText] = useState("");
-    const navigate = useNavigate();
+  const scrollModePluginInstance = scrollModePlugin();
+  scrollModePluginInstance.switchScrollMode(ScrollMode.Page)
 
-    function handleChange(e) {
-      setText(e.target.value);
+  useEffect(() => {
+    async function getPresentation(roomID) {
+      if (roomID && roomID.toLowerCase() === "f723s") {
+        try {
+          const presentationData = await DataStore.query(Presentation, hardcodedRoomID);
+          console.log('presentationData: ', presentationData)
+          const initialPdfBytes = await retreiveFile(presentationData.fileKey);
+          setPdfBytes(initialPdfBytes);
+        } catch (error) {
+          console.error('error getting presentation: ', error);
+        }
+      }
     }
 
-    function handleSubmit(e) {
-      e.preventDefault();
-      navigate(`/join/${text}`);
-    }
+    // Call the function here
+    getPresentation(roomID);
 
-    const qrCodeValue = `www.presentee.net/join/${text}`; // construct the QR code value using the "www.presentee.net/join/" string and the text state variable
-    const qrCodeUrl = `https://${qrCodeValue}`; // construct the URL linked to the QR code by adding the "https://" protocol
+    // You're depending on `roomID` to trigger the effect
+  }, [roomID]);
+
+
+  function handleChange(e) {
+    setText(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    navigate(`/join/${text}`);
+  }
+
+  // This is the function that will retreive the file from the S3 storage
+  async function retreiveFile(fileKey) {
+    try {
+
+      const result = await Storage.get(fileKey, {
+        download: true,
+        level: 'public',
+      });
+
+      // convert the pdf data to a base64 string
+      const pdfData = result.Body;
+      const reader = new FileReader();
+      const base64PDFData = await new Promise((resolve, reject) => {
+
+        // setup event listeners to handle the file reading
+        reader.onloadend = () => {
+          const base64String = reader.result.split(',')[1];
+          resolve(base64String);
+        };
+
+        // handle errors
+        reader.onerror = () => {
+          reject(reader.error);
+        };
+
+        // read the file as a data url
+        reader.readAsDataURL(pdfData);
+      });
+
+      //add the pdf header to the base64 string
+      const base64PDF = 'data:application/pdf;base64,' + base64PDFData;
+
+      // return the base64 string
+      return base64PDF;
+
+    } catch (error) {
+      console.log('Error listing files: ', error);
+    }
+  }
+
+
+  // if the room number is undefined (i.e. the user has not entered a room number) then display the join page
+  if (roomID === undefined) {
 
     return (
-      <div className="App">
+      <>
         <NavigationBar />
-        <ScrollView>
+        <div style={{ marginTop: '30vh' }}>
           <header className="App-header">
-            {/* <QRCode value={qrCodeValue} /> */}
-            {/* <a href={qrCodeUrl} target="_blank" rel="noopener noreferrer">{qrCodeUrl}</a> */}
-            <div className="App-link">
+            <div>
               Enter Room Code
-              <form onSubmit={handleSubmit}>
-                <input type="text" onChange={handleChange} />
+              <form onSubmit={handleSubmit} >
+                <input type="text" style={{ backgroundColor: 'inherit', color: 'inherit' }} onChange={handleChange} />
                 <div>
                   <Button type="submit">Join Presentation</Button>
                 </div>
               </form>
             </div>
           </header>
-        </ScrollView>
-      </div>
+        </div>
+      </>
     );
 
   }
-  else {
-
-    const scrollModePluginInstance = scrollModePlugin();
-    scrollModePluginInstance.switchScrollMode(ScrollMode.Page)
-
-    const [pdfBytes, setPdfBytes] = useState(null);
-
-    useEffect(() => {
-      getPresentation(roomNum);
-    }, []);
-
-    // get the presentation that matches the room number
-    async function getPresentation(roomNum) {
-      const presentationData = await DataStore.query(Presentation, roomNum);
-      setPdfBytes(await retreiveFile(presentationData.PresentationKey));
-    }
-
-    // This is the function that will retreive the file from the S3 storage
-    async function retreiveFile(fileKey) {
-      try {
-
-        const result = await Storage.get(fileKey, {
-          download: true,
-          level: 'public',
-        });
-    
-        // convert the pdf data to a base64 string
-        const pdfData = result.Body;
-        const reader = new FileReader();
-        const base64PDFData = await new Promise((resolve, reject) => {
-    
-          // setup event listeners to handle the file reading
-          reader.onloadend = () => {
-            const base64String = reader.result.split(',')[1];
-            resolve(base64String);
-          };
-    
-          // handle errors
-          reader.onerror = () => {
-            reject(reader.error);
-          };
-    
-          // read the file as a data url
-          reader.readAsDataURL(pdfData);
-        });
-    
-        //add the pdf header to the base64 string
-        const base64PDF = 'data:application/pdf;base64,' + base64PDFData;
-    
-        // return the base64 string
-        return base64PDF;
-    
-      } catch (error) {
-        console.log('Error listing files: ', error);
-      }
-    }
+  // else if the room number lower cased is equal to "f723s"
+  else if (roomID.toLowerCase() === "f723s") {
 
     return (
       <>
-          {/* <div>ID: {params.roomID}</div> */}
-          <div className='pdf-container'>
-              <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.15.349/build/pdf.worker.min.js">
-                  {pdfBytes && <>
-                      <Viewer fileUrl={pdfBytes} plugins={[scrollModePluginInstance]} />
-                  </>}
-                  {!pdfBytes && <>No PDF</>}
-              </Worker>
-          </div>
+        {/* <div>ID: {params.roomID}</div> */}
+        <div className='pdf-container'>
+          <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.15.349/build/pdf.worker.min.js">
+            {pdfBytes && <>
+              <Viewer fileUrl={pdfBytes} plugins={[scrollModePluginInstance]} />
+            </>}
+            {!pdfBytes && <>No PDF</>}
+          </Worker>
+        </div>
       </>
-  )
+    )
+
+  }
+
+  //if the room number is invalid then display the error page
+  else {
+    return (
+      <>
+        <NavigationBar />
+        <div>
+          <h1>We're Sorry, but that room is not open. Please try again</h1>
+          <header className="App-header">
+            Enter Room Code
+            <form onSubmit={handleSubmit}>
+              <input type="text" onChange={handleChange} />
+              <div>
+                <Button type="submit">Join Presentation</Button>
+              </div>
+            </form>
+          </header>
+        </div>
+      </>
+    );
 
   }
 }

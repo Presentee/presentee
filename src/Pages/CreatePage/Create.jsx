@@ -4,6 +4,7 @@ import { Auth } from 'aws-amplify';
 import NavigationBar from "Navigation";
 import { Storage } from "@aws-amplify/storage";
 import ViewPDF from 'CustomComponents/PDFViewer';
+import { HomeContainer } from "CustomComponents/Containers";
 
 export default function Create(params) {
 
@@ -52,31 +53,31 @@ export default function Create(params) {
 
   const [fileName, setFileName] = useState('Choose a file...');
 
-    useEffect(() => {
-      const fileInput = document.getElementById('file-input');
-      const inputFileLabel = document.querySelector('.input-file-label');
+  useEffect(() => {
+    const fileInput = document.getElementById('file-input');
+    const inputFileLabel = document.querySelector('.input-file-label');
 
-      // update the label when a file is selected
-      const handleChange = () => {
-        const file = fileInput.files[0];
-        if (file) {
-          const pdfData = convertToBase64(file).then(base64PDF => {
-            setActivePDFFile(base64PDF);
-            setFileName(file.name);
-          }).catch(error => {
-            console.error(error);
-          });
-          inputFileLabel.innerHTML = file.name;
-        } else {
-          setActivePDFFile(null);
-          setFileName('Choose a file...');
-          inputFileLabel.innerHTML = 'Choose a file...';
-        }
-      };
+    // update the label when a file is selected
+    const handleChange = () => {
+      const file = fileInput.files[0];
+      if (file) {
+        const pdfData = convertToBase64(file).then(base64PDF => {
+          setActivePDFFile(base64PDF);
+          setFileName(file.name);
+        }).catch(error => {
+          console.error(error);
+        });
+        inputFileLabel.innerHTML = file.name;
+      } else {
+        setActivePDFFile(null);
+        setFileName('Choose a file...');
+        inputFileLabel.innerHTML = 'Choose a file...';
+      }
+    };
 
-      fileInput.addEventListener('change', handleChange);
+    fileInput.addEventListener('change', handleChange);
 
-    });
+  });
 
 
 
@@ -97,19 +98,22 @@ export default function Create(params) {
     <>
       <NavigationBar />
 
-      <div style={{ display: 'flex', justifyContent: 'center', margin: '10px' }}>
+      <HomeContainer>
+        <div style={{ display: 'flex', justifyContent: 'center', margin: '10px', maxWidth: 'max-width: 1200px' }}>
 
-      <div className="custom-file-input-wrapper">
-        <input type="file" id="file-input" className="input-file" />
-        <label htmlFor="file-input" className="input-file-label">{fileName}</label>
-      </div>
+          <div className="custom-file-input-wrapper">
+            <input type="file" id="file-input" className="input-file" />
+            <label htmlFor="file-input" className="input-file-label">{fileName}</label>
+          </div>
 
-        {/* Button that will send the file to the S3 storage */}
-        <Button onClick={handleUploadClick}> Upload Shown File </Button>
-      </div>
-      <div>
-        <ViewPDF pdfFile={activePDFFile} />
-      </div>
+          {/* Button that will send the file to the S3 storage */}
+          <Button onClick={handleUploadClick}> Upload Shown File </Button>
+        </div>
+        <div style={{ width: '100%' }}>
+          <h1>Preview</h1>
+          <ViewPDF pdfFile={activePDFFile} />
+        </div>
+      </HomeContainer>
 
     </>
   );

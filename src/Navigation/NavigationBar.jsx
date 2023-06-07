@@ -43,13 +43,13 @@ export default function NavigationBar() {
 
             <div className='right-div'>
                 
-                {route === 'authenticated' ? (
+                {/* {route === 'authenticated' ? (
                     <Button onClick={() => navigate('/settings')} size="small">
                         Settings
                     </Button>
                 ) : (
                     ""
-                )}
+                )} */}
 
                 <div className="right-section">
                     <DarkModeSlider style={{ marginRight: "10px" }} />

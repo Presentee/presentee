@@ -2,11 +2,14 @@ import React from 'react';
 import NavigationBar from 'Navigation';
 import './Home.css';
 import { HomeContainer } from 'CustomComponents/Containers';
+import Button from 'CustomComponents/Button';
+import { Storage } from "@aws-amplify/storage"
+import { API, graphqlOperation } from 'aws-amplify';
+import { listPresentations } from 'graphql/queries';
 
 
 
 export default function Home() {
-
 
   return (
     <div>

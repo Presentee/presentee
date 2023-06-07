@@ -1,6 +1,6 @@
 {
   "api": {
-    "presentee": {
+    "demo": {
       "dependsOn": [],
       "output": {
         "authConfig": {
@@ -23,7 +23,7 @@
     }
   },
   "auth": {
-    "presentee": {
+    "demo": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -40,7 +40,9 @@
           ],
           "passwordPolicyMinLength": 8
         },
-        "signupAttributes": [],
+        "signupAttributes": [
+          "NAME"
+        ],
         "socialProviders": [],
         "usernameAttributes": [
           "EMAIL"
@@ -53,8 +55,114 @@
       "service": "Cognito"
     }
   },
+  "parameters": {
+    "AMPLIFY_auth_demo_allowUnauthenticatedIdentities": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "demo"
+        }
+      ]
+    },
+    "AMPLIFY_auth_demo_authRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "demo"
+        }
+      ]
+    },
+    "AMPLIFY_auth_demo_authRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "demo"
+        }
+      ]
+    },
+    "AMPLIFY_auth_demo_identityPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "demo"
+        }
+      ]
+    },
+    "AMPLIFY_auth_demo_identityPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "demo"
+        }
+      ]
+    },
+    "AMPLIFY_auth_demo_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "demo"
+        }
+      ]
+    },
+    "AMPLIFY_auth_demo_unauthRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "demo"
+        }
+      ]
+    },
+    "AMPLIFY_auth_demo_unauthRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "demo"
+        }
+      ]
+    },
+    "AMPLIFY_auth_demo_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "demo"
+        }
+      ]
+    },
+    "AMPLIFY_auth_demo_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "demo"
+        }
+      ]
+    },
+    "AMPLIFY_auth_demo_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "demo"
+        }
+      ]
+    },
+    "AMPLIFY_storage_demo64cd15bd_bucketName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "demo64cd15bd"
+        }
+      ]
+    },
+    "AMPLIFY_storage_demo64cd15bd_region": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "demo64cd15bd"
+        }
+      ]
+    }
+  },
   "storage": {
-    "s3presenteestoragee294c730": {
+    "s3demostoragea7cef4f7": {
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
       "service": "S3"

@@ -1,22 +1,38 @@
 {
   "demo": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-presentee-demo-92620-authRole",
-      "UnauthRoleArn": "arn:aws:iam::802237808688:role/amplify-presentee-demo-92620-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::802237808688:role/amplify-presentee-demo-92620-authRole",
+      "AuthRoleName": "amplify-demo-demo-195912-authRole",
+      "UnauthRoleArn": "arn:aws:iam::802237808688:role/amplify-demo-demo-195912-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::802237808688:role/amplify-demo-demo-195912-authRole",
       "Region": "us-west-2",
-      "DeploymentBucketName": "amplify-presentee-demo-92620-deployment",
-      "UnauthRoleName": "amplify-presentee-demo-92620-unauthRole",
-      "StackName": "amplify-presentee-demo-92620",
-      "StackId": "arn:aws:cloudformation:us-west-2:802237808688:stack/amplify-presentee-demo-92620/0b69be50-fa15-11ed-8acc-068a32ac8067",
-      "AmplifyAppId": "d6c4p7xpqm24q"
+      "DeploymentBucketName": "amplify-demo-demo-195912-deployment",
+      "UnauthRoleName": "amplify-demo-demo-195912-unauthRole",
+      "StackName": "amplify-demo-demo-195912",
+      "StackId": "arn:aws:cloudformation:us-west-2:802237808688:stack/amplify-demo-demo-195912/9f59a060-01ba-11ee-be58-02fdbf91bd8f",
+      "AmplifyAppId": "dxjmticwhmd2v"
     },
     "categories": {
       "auth": {
-        "presentee": {}
+        "demo": {
+          "allowUnauthenticatedIdentities": false,
+          "authRoleArn": "arn:aws:iam::802237808688:role/amplify-presentee-dev-135536-authRole",
+          "authRoleName": "amplify-presentee-dev-135536-authRole",
+          "identityPoolId": "us-west-2:d91cf79d-138e-4995-8f6f-2612f905839f",
+          "identityPoolName": "testAuthIdentityPool__dev",
+          "nativeClientId": "5d0gnu9vomuhto8ubigfnfu65g",
+          "unauthRoleArn": "arn:aws:iam::802237808688:role/amplify-presentee-dev-135536-unauthRole",
+          "unauthRoleName": "amplify-presentee-dev-135536-unauthRole",
+          "userPoolId": "us-west-2_b8zii2l56",
+          "userPoolName": "presentee-dev",
+          "webClientId": "5d0gnu9vomuhto8ubigfnfu65g"
+        }
       },
       "storage": {
-        "s3presenteestoragee294c730": {}
+        "demo64cd15bd": {
+          "bucketName": "presentee-final-demo-bucket",
+          "region": "us-west-2"
+        },
+        "s3demostoragea7cef4f7": {}
       }
     }
   }

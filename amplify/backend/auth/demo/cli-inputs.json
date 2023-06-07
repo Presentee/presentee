@@ -2,9 +2,9 @@
   "version": "1",
   "cognitoConfig": {
     "identityPoolName": "testAuthIdentityPool",
-    "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "presen6c0589dd",
-    "userPoolName": "presentee",
+    "allowUnauthenticatedIdentities": true,
+    "resourceNameTruncated": "demo6f9a367a",
+    "userPoolName": "demo",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -14,8 +14,8 @@
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "Verification code: {####}",
-    "emailVerificationMessage": "Verification code: {####}",
+    "emailVerificationSubject": "Presentee Verification Code",
+    "emailVerificationMessage": "Your Presentee verification code is: {####}",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [
@@ -24,16 +24,18 @@
       "Requires Symbols",
       "Requires Uppercase"
     ],
-    "requiredAttributes": [],
+    "requiredAttributes": [
+      "name"
+    ],
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [],
     "userpoolClientReadAttributes": [],
-    "userpoolClientLambdaRole": "presen6c0589dd_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "demo6f9a367a_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "6c0589dd",
-    "resourceName": "presentee",
+    "sharedId": "6f9a367a",
+    "resourceName": "demo",
     "authSelections": "identityPoolAndUserPool",
     "serviceName": "Cognito",
     "usernameAttributes": [
@@ -46,6 +48,20 @@
     "thirdPartyAuth": false,
     "authProviders": [],
     "usernameCaseSensitive": false,
-    "useEnabledMfas": true
+    "useEnabledMfas": true,
+    "authRoleArn": {
+      "Fn::GetAtt": [
+        "AuthRole",
+        "Arn"
+      ]
+    },
+    "unauthRoleArn": {
+      "Fn::GetAtt": [
+        "UnauthRole",
+        "Arn"
+      ]
+    },
+    "breakCircularDependency": true,
+    "dependsOn": []
   }
 }

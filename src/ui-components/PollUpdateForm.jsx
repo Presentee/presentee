@@ -6,7 +6,13 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { Button, Flex, Grid, TextAreaField } from "@aws-amplify/ui-react";
+import {
+  Button,
+  Flex,
+  Grid,
+  TextAreaField,
+  TextField,
+} from "@aws-amplify/ui-react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Poll } from "../models";
 import { fetchByPath, validateField } from "./utils";
@@ -25,8 +31,10 @@ export default function PollUpdateForm(props) {
   } = props;
   const initialValues = {
     PollJSON: "",
+    Question: "",
   };
   const [PollJSON, setPollJSON] = React.useState(initialValues.PollJSON);
+  const [Question, setQuestion] = React.useState(initialValues.Question);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = pollRecord
@@ -37,6 +45,7 @@ export default function PollUpdateForm(props) {
         ? cleanValues.PollJSON
         : JSON.stringify(cleanValues.PollJSON)
     );
+    setQuestion(cleanValues.Question);
     setErrors({});
   };
   const [pollRecord, setPollRecord] = React.useState(pollModelProp);
@@ -52,6 +61,7 @@ export default function PollUpdateForm(props) {
   React.useEffect(resetStateValues, [pollRecord]);
   const validations = {
     PollJSON: [{ type: "JSON" }],
+    Question: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -80,6 +90,7 @@ export default function PollUpdateForm(props) {
         event.preventDefault();
         let modelFields = {
           PollJSON,
+          Question,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -136,6 +147,7 @@ export default function PollUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               PollJSON: value,
+              Question,
             };
             const result = onChange(modelFields);
             value = result?.PollJSON ?? value;
@@ -150,6 +162,31 @@ export default function PollUpdateForm(props) {
         hasError={errors.PollJSON?.hasError}
         {...getOverrideProps(overrides, "PollJSON")}
       ></TextAreaField>
+      <TextField
+        label="Question"
+        isRequired={false}
+        isReadOnly={false}
+        value={Question}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              PollJSON,
+              Question: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.Question ?? value;
+          }
+          if (errors.Question?.hasError) {
+            runValidationTasks("Question", value);
+          }
+          setQuestion(value);
+        }}
+        onBlur={() => runValidationTasks("Question", Question)}
+        errorMessage={errors.Question?.errorMessage}
+        hasError={errors.Question?.hasError}
+        {...getOverrideProps(overrides, "Question")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
