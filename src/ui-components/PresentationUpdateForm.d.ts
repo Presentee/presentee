@@ -16,12 +16,12 @@ export declare type ValidationFunction<T> = (value: T, validationResponse: Valid
 export declare type PresentationUpdateFormInputValues = {
     PresentationKey?: string;
     Name?: string;
-    PageNum?: string;
+    PageNum?: number;
 };
 export declare type PresentationUpdateFormValidationValues = {
     PresentationKey?: ValidationFunction<string>;
     Name?: ValidationFunction<string>;
-    PageNum?: ValidationFunction<string>;
+    PageNum?: ValidationFunction<number>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type PresentationUpdateFormOverridesProps = {

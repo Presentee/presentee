@@ -24,19 +24,15 @@ export default function QuestionsCreateForm(props) {
   } = props;
   const initialValues = {
     Question: "",
-    PageNum: "",
   };
   const [Question, setQuestion] = React.useState(initialValues.Question);
-  const [PageNum, setPageNum] = React.useState(initialValues.PageNum);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setQuestion(initialValues.Question);
-    setPageNum(initialValues.PageNum);
     setErrors({});
   };
   const validations = {
     Question: [],
-    PageNum: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -65,7 +61,6 @@ export default function QuestionsCreateForm(props) {
         event.preventDefault();
         let modelFields = {
           Question,
-          PageNum,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -121,7 +116,6 @@ export default function QuestionsCreateForm(props) {
           if (onChange) {
             const modelFields = {
               Question: value,
-              PageNum,
             };
             const result = onChange(modelFields);
             value = result?.Question ?? value;
@@ -135,35 +129,6 @@ export default function QuestionsCreateForm(props) {
         errorMessage={errors.Question?.errorMessage}
         hasError={errors.Question?.hasError}
         {...getOverrideProps(overrides, "Question")}
-      ></TextField>
-      <TextField
-        label="Page num"
-        isRequired={false}
-        isReadOnly={false}
-        type="number"
-        step="any"
-        value={PageNum}
-        onChange={(e) => {
-          let value = isNaN(parseInt(e.target.value))
-            ? e.target.value
-            : parseInt(e.target.value);
-          if (onChange) {
-            const modelFields = {
-              Question,
-              PageNum: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.PageNum ?? value;
-          }
-          if (errors.PageNum?.hasError) {
-            runValidationTasks("PageNum", value);
-          }
-          setPageNum(value);
-        }}
-        onBlur={() => runValidationTasks("PageNum", PageNum)}
-        errorMessage={errors.PageNum?.errorMessage}
-        hasError={errors.PageNum?.hasError}
-        {...getOverrideProps(overrides, "PageNum")}
       ></TextField>
       <Flex
         justifyContent="space-between"
