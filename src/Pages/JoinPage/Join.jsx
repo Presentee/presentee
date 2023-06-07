@@ -16,7 +16,7 @@ import Button from 'CustomComponents/Button';
 export default function Join() {
 
   let { roomNum: roomID } = useParams();
-  let hardcodedRoomID = "68465270-585f-4746-9e7f-ff8c8e1908f7";
+  let hardcodedRoomID = "34b88d2a-c0e4-4145-9156-ecd9101a39a6";
 
   const [text, setText] = useState("");
   const [pdfBytes, setPdfBytes] = useState(null);
