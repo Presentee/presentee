@@ -78,7 +78,7 @@ const App = () => {
         <div className={`App ${theme}`}>
             <ThemeContext.Provider value={{ theme: theme, toggle: toggleDarkMode }}>
                 <BrowserRouter>
-                    <NavigationBar />
+                    <NavigationBar theme={theme}/>
                     <Routes>
 
                          {/* These are the public routes that will be offered to anyone that enters the website 
