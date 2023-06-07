@@ -6,9 +6,8 @@ import './Present.css';
 import VContainer from 'CustomComponents/Containers';
 import Button from 'CustomComponents/Button';
 import ViewPDF from 'CustomComponents/PDFViewer';
-import NavigationBar from 'Navigation';
-import { createPresentation, updatePresentation, deletePresentation } from "graphql/mutations";
-import { getPresentation, listPresentations } from 'graphql/queries';
+import { createPresentation } from "graphql/mutations";
+
 
 import { Auth, API, Storage } from 'aws-amplify';
 import { BiRefresh } from 'react-icons/bi';
@@ -137,7 +136,7 @@ export default function Present(params) {
   async function handlePresent(params) {
 
     // if globalFileKey or globalFileName are empty retrerive the file
-    if (globalFileKey == '' || globalFileName == '') {
+    if (globalFileKey === '' || globalFileName === '') {
       console.error("presentation not loaded");
       
       //reload page
@@ -171,7 +170,7 @@ export default function Present(params) {
 
   return (
     <>
-      <NavigationBar />
+     
 
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Button onClick={refreshFileList}> <BiRefresh style={{ fontSize: '24px' }} /> </Button>

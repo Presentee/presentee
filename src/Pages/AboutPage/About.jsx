@@ -1,11 +1,9 @@
 import React from 'react';
-import NavigationBar from 'Navigation';
 import { HomeContainer } from 'CustomComponents/Containers';
 
 export default function AboutPage() {
     return (
         <>
-            <NavigationBar/>
             <HomeContainer>
                 <div style={{ position: 'relative', minHeight: '100vh' }}>
                     <div style={{position: 'relative', zIndex: 1}}>

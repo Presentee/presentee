@@ -6,5 +6,7 @@ export {default as Present} from './PresentPage';
 export {default as Presenting} from './PresentingPage';
 export {default as Admin} from './AdminPage';
 export {default as Login} from './LoginPage';
+export {default as Questions} from './QuestionsPage';
+export {default as Polls} from './PollsPage';
 
 

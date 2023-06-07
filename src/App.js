@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import ThemeContext from 'context';
 import RequireAuth from 'RequireAuth';
 import AboutPage from 'Pages/AboutPage';
@@ -13,7 +13,11 @@ import PageNotFound from 'Pages/404Page/404';
 import Settings from 'Pages/SettingsPage';
 import ChangePassword from 'Pages/ChangePasswordPage';
 import ChangeEmail from 'Pages/ChangeEmailPage';
+import QuestionsPage from 'Pages/QuestionsPage/QuestionsPage';
+import PollsPage from 'Pages/PollsPage/PollsPage';
+import NavigationBar from 'Navigation';
 import 'styles.css';
+
 
 const App = () => {
 
@@ -36,7 +40,9 @@ const App = () => {
         "login" : <LoginPage />,
         "join" : <JoinPage />,
         "*" : <PageNotFound />,
-        "about" : <AboutPage />
+        "about" : <AboutPage />,
+        "questions" : <QuestionsPage />,
+        "polls" : <PollsPage />
     };
 
 
@@ -77,6 +83,7 @@ const App = () => {
         <div className={`App ${theme}`}>
             <ThemeContext.Provider value={{ theme: theme, toggle: toggleDarkMode }}>
                 <BrowserRouter>
+                    <NavigationBar theme={theme}/>
                     <Routes>
 
                          {/* These are the public routes that will be offered to anyone that enters the website 
@@ -88,6 +95,8 @@ const App = () => {
                         <Route path="/" element={publicRoutes["home"]} />
                         <Route path="*" element={publicRoutes["*"]} />
                         <Route path="/about" element={publicRoutes["about"]} />
+                        <Route path="/questions" element={publicRoutes["questions"]} />
+                        <Route path="/polls" element={publicRoutes["polls"]} />
 
                         {/* These are the private routes that will be offered once a user has created an account
                             and been authenicated. */}

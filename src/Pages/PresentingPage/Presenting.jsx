@@ -5,10 +5,13 @@ import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout'
 import { scrollModePlugin } from '@react-pdf-viewer/scroll-mode'
 import '@react-pdf-viewer/core/lib/styles/index.css'
 import '@react-pdf-viewer/default-layout/lib/styles/index.css'
-import { degrees, PDFDocument, rgb, StandardFonts } from 'pdf-lib';
+import { PDFDocument } from 'pdf-lib';
 import { useEffect, useState } from 'react'
 
 export default function Presentating(params) {
+
+    const pdfjsVersion = require('pdfjs-dist/package.json').version;
+    const workerUrl = `https://unpkg.com/pdfjs-dist@${pdfjsVersion}/build/pdf.worker.min.js`;
 
     useEffect(() => {
         const runAsync = async () => {
@@ -16,7 +19,7 @@ export default function Presentating(params) {
         };
         
         runAsync();
-    }, []);
+    }, );
     
 
     const [pdfBytes, setPdfBytes] = useState(null);
@@ -51,9 +54,9 @@ export default function Presentating(params) {
         <>
             {/* <div>ID: {params.roomID}</div> */}
             <div className='pdf-container'>
-                <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.15.349/build/pdf.worker.min.js">
+                <Worker workerUrl={workerUrl}>
                     {pdfBytes && <>
-                        <Viewer fileUrl={pdfBytes} plugins={[scrollModePluginInstance]} />
+                        <Viewer fileUrl={pdfBytes} plugins={[scrollModePluginInstance, newplugin]} />
                     </>}
                     {!pdfBytes && <>No PDF</>}
                 </Worker>

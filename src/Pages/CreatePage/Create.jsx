@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Button from 'CustomComponents/Button'
 import { Auth } from 'aws-amplify';
-import NavigationBar from "Navigation";
 import { Storage } from "@aws-amplify/storage";
 import ViewPDF from 'CustomComponents/PDFViewer';
 
@@ -22,62 +21,64 @@ export default function Create(params) {
     } catch (error) {
       setResponse(`Error uploading file: ${error}`);
     }
+    console.log({response})
   }
 
-  async function convertToBase64(pdfData) {
+  async function convertToBase64(file) {
     const reader = new FileReader();
     const base64PDFData = await new Promise((resolve, reject) => {
-
+  
       // setup event listeners to handle the file reading
       reader.onloadend = () => {
         const base64String = reader.result.split(',')[1];
         resolve(base64String);
       };
-
+  
       // handle errors
       reader.onerror = () => {
         reject(reader.error);
       };
-
+  
       // read the file as a data url
-      reader.readAsDataURL(pdfData);
+      reader.readAsDataURL(file);
     });
-
-    //add the pdf header to the base64 string
+  
+    // add the pdf header to the base64 string
     const base64PDF = 'data:application/pdf;base64,' + base64PDFData;
-
+  
     // return the base64 string
     return base64PDF;
   }
-
+  
   const [fileName, setFileName] = useState('Choose a file...');
-
-    useEffect(() => {
-      const fileInput = document.getElementById('file-input');
-      const inputFileLabel = document.querySelector('.input-file-label');
-
-      // update the label when a file is selected
-      const handleChange = () => {
-        const file = fileInput.files[0];
-        if (file) {
-          const pdfData = convertToBase64(file).then(base64PDF => {
+  
+  useEffect(() => {
+    const fileInput = document.getElementById('file-input');
+    const inputFileLabel = document.querySelector('.input-file-label');
+  
+    // update the label when a file is selected
+    const handleChange = () => {
+      const file = fileInput.files[0];
+      if (file) {
+        convertToBase64(file)
+          .then(base64PDF => {
             setActivePDFFile(base64PDF);
             setFileName(file.name);
-          }).catch(error => {
+          })
+          .catch(error => {
             console.error(error);
           });
-          inputFileLabel.innerHTML = file.name;
-        } else {
-          setActivePDFFile(null);
-          setFileName('Choose a file...');
-          inputFileLabel.innerHTML = 'Choose a file...';
-        }
-      };
-
-      fileInput.addEventListener('change', handleChange);
-
-    });
-
+        inputFileLabel.innerHTML = file.name;
+      } else {
+        setActivePDFFile(null);
+        setFileName('Choose a file...');
+        inputFileLabel.innerHTML = 'Choose a file...';
+      }
+    };
+  
+    fileInput.addEventListener('change', handleChange);
+  });
+  
 
 
   // function to handle the upload button click
@@ -95,7 +96,7 @@ export default function Create(params) {
 
   return (
     <>
-      <NavigationBar />
+     
 
       <div style={{ display: 'flex', justifyContent: 'center', margin: '10px' }}>
 

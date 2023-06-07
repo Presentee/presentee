@@ -40,7 +40,7 @@ export default function PresentationCreateForm(props) {
     setErrors({});
   };
   const validations = {
-    PresentationKey: [],
+    PresentationKey: [{ type: "Required" }],
     Name: [],
     PageNum: [],
   };
@@ -120,7 +120,7 @@ export default function PresentationCreateForm(props) {
     >
       <TextField
         label="Presentation key"
-        isRequired={false}
+        isRequired={true}
         isReadOnly={false}
         value={PresentationKey}
         onChange={(e) => {
@@ -174,9 +174,13 @@ export default function PresentationCreateForm(props) {
         label="Page num"
         isRequired={false}
         isReadOnly={false}
+        type="number"
+        step="any"
         value={PageNum}
         onChange={(e) => {
-          let { value } = e.target;
+          let value = isNaN(parseInt(e.target.value))
+            ? e.target.value
+            : parseInt(e.target.value);
           if (onChange) {
             const modelFields = {
               PresentationKey,

@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { ThemeContext } from '@react-pdf-viewer/core';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import Button from 'CustomComponents/Button'
-import DarkModeSlider from './DarkModeSlider';
 import "./NavStyling.css";
 
 export default function NavigationBar() {
@@ -21,15 +20,12 @@ export default function NavigationBar() {
 
             <a href='/Home' style={{ display: 'flex', alignItems: 'center', width: '50px', height: '50px', backgroundImage: "url('PresenteeLogo3.png')", backgroundSize: 'cover', minWidth: '50px' }}> </a>
 
-            <div>
-                <div className="left-section">
-                    <DarkModeSlider style={{ marginRight: "20px" }} />
-                </div>
-            </div>
-
 
             <div style={{ marginRight: 'auto', marginLeft: 'auto' }}>
-            <Button onClick={() => navigate('/join')}>Join</Button>
+                <Button onClick={() => navigate("/questions")}>Questions</Button>
+                <Button onClick={() => navigate("/polls")}>Polls</Button>
+                <Button onClick={() => navigate('/join')}>Join</Button>
+
 
                 {route === 'authenticated' && (
                     <>
@@ -51,9 +47,6 @@ export default function NavigationBar() {
                     ""
                 )}
 
-                <div className="right-section">
-                    <DarkModeSlider style={{ marginRight: "10px" }} />
-                </div>
 
                 {route === 'authenticated' ? (
                     <Button onClick={logOut} size="small">Sign Out</Button>
