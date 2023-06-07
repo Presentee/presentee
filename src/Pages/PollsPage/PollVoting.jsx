@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { API } from 'aws-amplify';
-import { createPollAnswers as CreatePollAnswerMutation } from './graphql/mutations';
+import { createPollAnswers as CreatePollAnswerMutation } from '../../graphql/mutations';
 
 const PollVoting = ({poll}) => {
     const [selectedOption, setSelectedOption] = useState(null);

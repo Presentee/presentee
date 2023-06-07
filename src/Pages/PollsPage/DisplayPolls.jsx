@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { API, graphqlOperation } from "aws-amplify";
-import { listPolls, listPollAnswers } from "./graphql/queries";
-import { deletePoll } from "./graphql/mutations";
-import { onCreatePoll } from "./graphql/subscriptions";
+import { listPolls, listPollAnswers } from "../../graphql/queries";
+import { deletePoll } from "../../graphql/mutations";
+import { onCreatePoll } from "../../graphql/subscriptions";
 
 const DisplayPolls = () => {
   const [polls, setPolls] = useState([]);

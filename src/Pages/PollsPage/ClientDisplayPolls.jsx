@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
-import { listPolls } from './graphql/queries';
+import { listPolls } from '../../graphql/queries';
 import PollVoting from './PollVoting';
 
 function ClientDisplayPolls() {

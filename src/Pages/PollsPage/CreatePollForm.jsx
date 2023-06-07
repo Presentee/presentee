@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
-import { createPoll } from './graphql/mutations';
+import { createPoll } from '../../graphql/mutations';
 
 const CreatePollForm = () => {
   const [question, setQuestion] = useState('');
