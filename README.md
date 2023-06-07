@@ -16,7 +16,7 @@ strategies and data analytics.*
 [Here](https://medium.com/@jonathanmines/the-ultimate-github-collaboration-guide-df816e98fb67) is a guide and best practices for collaboration for everyone to work together.
 
 ## Unit Testing
-There is a tests folder in the src folder that has tests that would be nice to be expended.
+In the src folder there is an App.test.jsx file for the tests of App.js. Other than that, there are a few tests mostly inside the src/Pages folder. For each of the page componets there will be a folder marked __test__. These are the folders that house the tests for that specific component. Testing coverage I would say is roughly 40%.
 
 ## Comments
 There should probably be a standard to how comments should be written. From the experience of commenting on complex web applications as this project grows we all should be able to understand them. Meaningful comments with explainations and examples would probably be nice for this application since it has a backend.
