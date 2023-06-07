@@ -10,6 +10,9 @@ import { useEffect, useState } from 'react'
 
 export default function Presentating(params) {
 
+    const pdfjsVersion = require('pdfjs-dist/package.json').version;
+    const workerUrl = `https://unpkg.com/pdfjs-dist@${pdfjsVersion}/build/pdf.worker.min.js`;
+
     useEffect(() => {
         const runAsync = async () => {
             await modifyPdf();
@@ -51,7 +54,7 @@ export default function Presentating(params) {
         <>
             {/* <div>ID: {params.roomID}</div> */}
             <div className='pdf-container'>
-                <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.15.349/build/pdf.worker.min.js">
+                <Worker workerUrl={workerUrl}>
                     {pdfBytes && <>
                         <Viewer fileUrl={pdfBytes} plugins={[scrollModePluginInstance, newplugin]} />
                     </>}
