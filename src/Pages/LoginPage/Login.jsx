@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'CustomComponents/Button';
 import './login.css';
@@ -11,7 +11,7 @@ export default function Login() {
   const { route } = useAuthenticator((context) => [context.route] );
 
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+  const user = null;
   // const [showSignUp, setShowSignUp] = useState(false);
 
   // toggle showSignUp state

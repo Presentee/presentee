@@ -16,7 +16,7 @@ export default function Presentating(params) {
         };
         
         runAsync();
-    }, []);
+    }, );
     
 
     const [pdfBytes, setPdfBytes] = useState(null);
@@ -53,7 +53,7 @@ export default function Presentating(params) {
             <div className='pdf-container'>
                 <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.15.349/build/pdf.worker.min.js">
                     {pdfBytes && <>
-                        <Viewer fileUrl={pdfBytes} plugins={[scrollModePluginInstance]} />
+                        <Viewer fileUrl={pdfBytes} plugins={[scrollModePluginInstance, newplugin]} />
                     </>}
                     {!pdfBytes && <>No PDF</>}
                 </Worker>
