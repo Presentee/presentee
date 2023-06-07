@@ -9,8 +9,33 @@ import { PDFDocument } from 'pdf-lib';
 import { useEffect, useState } from 'react'
 import { Auth } from 'aws-amplify';
 import Button from 'CustomComponents/Button';
+import QuestionsModal from './QuestionsModal'
+import PollsModal from './PollsModal'
 
 export default function Presentating(params) {
+
+    const [isGuest, setIsGuest] = useState(null);
+
+    //check if user is logged in by checking if user id creates and error
+    async function test() {
+        try {
+            const user = await Auth.currentAuthenticatedUser();
+            setIsGuest(false);
+        } catch (error) {
+            setIsGuest(true);
+        }
+    }
+
+    const [showQuestionsModal, setShowQuestionsModal] = useState(false);
+    const [showPollModal, setShowPollModal] = useState(false);
+
+    const toggleQuestionsModal = () => {
+        setShowQuestionsModal(!showQuestionsModal);
+    }
+
+    const togglePollModal = () => {
+        setShowPollModal(!showPollModal);
+    }
 
     const pdfjsVersion = require('pdfjs-dist/package.json').version;
     const workerUrl = `https://unpkg.com/pdfjs-dist@${pdfjsVersion}/build/pdf.worker.min.js`;
@@ -22,9 +47,7 @@ export default function Presentating(params) {
         runAsync();
     },);
 
-
     const [pdfBytes, setPdfBytes] = useState(null);
-
     const defaultLayoutPluginInstance = defaultLayoutPlugin({
         sidebarTabs: (defaultTabs) => [],
     });
@@ -78,8 +101,14 @@ export default function Presentating(params) {
                     {!pdfBytes && <>No PDF</>}
                 </Worker>
             </div>
-            <Button>Poll One</Button>
-            <Button>View Questions</Button>
+
+            {/* buttons enabled if user  */}
+            {!isGuest && <> 
+            <Button onClick={togglePollModal}>Poll One</Button>
+            <Button onClick={toggleQuestionsModal} >View Questions</Button>
+            </>}
+            <QuestionsModal isOpen={showQuestionsModal} toggle={toggleQuestionsModal} />
+            <PollsModal isOpen={showPollModal} toggle={togglePollModal} />
         </>
     )
 };

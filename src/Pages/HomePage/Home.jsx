@@ -2,9 +2,7 @@ import React from 'react';
 import './Home.css';
 import { HomeContainer } from 'CustomComponents/Containers';
 import Button from 'CustomComponents/Button';
-import { Storage } from "@aws-amplify/storage"
-import { API, graphqlOperation } from 'aws-amplify';
-import { listPresentations } from 'graphql/queries';
+import { Auth } from 'aws-amplify';
 
 
 

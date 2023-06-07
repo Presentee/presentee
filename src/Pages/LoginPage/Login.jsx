@@ -50,9 +50,9 @@ export default function Login() {
 
   return (
     <>
-      <Authenticator>
+      {/* <Authenticator>
         {({ signOut }) => <Button onClick={signOut}>Sign Out</Button>}
-      </Authenticator>
+      </Authenticator> */}
 
       <div className={`custom-login ${theme}`}>
         {user ? (
