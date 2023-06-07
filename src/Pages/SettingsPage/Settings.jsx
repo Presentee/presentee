@@ -1,4 +1,3 @@
-import NavigationBar from 'Navigation'
 import React  from 'react'
 import {useNavigate} from 'react-router-dom';
 
@@ -8,7 +7,6 @@ const Settings = () => {
   
   return (
     <>
-        <NavigationBar />
         <div
           style={{
             display: "flex",

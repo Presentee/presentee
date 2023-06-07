@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Button from 'CustomComponents/Button'
 import { Auth } from 'aws-amplify';
-import NavigationBar from "Navigation";
 import { Storage } from "@aws-amplify/storage";
 import ViewPDF from 'CustomComponents/PDFViewer';
 
@@ -95,7 +94,7 @@ export default function Create(params) {
 
   return (
     <>
-      <NavigationBar />
+     
 
       <div style={{ display: 'flex', justifyContent: 'center', margin: '10px' }}>
 

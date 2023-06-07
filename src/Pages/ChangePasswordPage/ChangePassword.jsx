@@ -1,6 +1,5 @@
 import React from 'react';
 import { AccountSettings } from '@aws-amplify/ui-react';
-import NavigationBar from 'Navigation';
 
 export default function ChangePassword() {
 
@@ -22,7 +21,7 @@ export default function ChangePassword() {
   
   return (
     <>
-    <NavigationBar />
+  
     
     <AccountSettings.ChangePassword 
       onSuccess={handleSuccess} 

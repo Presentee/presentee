@@ -10,7 +10,7 @@ import {
 import LoaderButton from "../../CustomComponents/LoaderButton";
 import { useFormFields } from "../../lib/hooksLib";
 import "./ChangeEmail.css";
-import NavigationBar from "Navigation";
+
 
 export default function ChangeEmail() {
   const nav = useNavigate();
@@ -112,7 +112,7 @@ export default function ChangeEmail() {
 
   return (
     <>
-    <NavigationBar />
+
     <div className="ChangeEmail">
       {!codeSent ? renderUpdateForm() : renderConfirmationForm()}
     </div>

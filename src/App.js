@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import ThemeContext from 'context';
 import RequireAuth from 'RequireAuth';
 import AboutPage from 'Pages/AboutPage';
@@ -13,6 +13,7 @@ import PageNotFound from 'Pages/404Page/404';
 import Settings from 'Pages/SettingsPage';
 import ChangePassword from 'Pages/ChangePasswordPage';
 import ChangeEmail from 'Pages/ChangeEmailPage';
+import NavigationBar from 'Navigation';
 import 'styles.css';
 
 const App = () => {
@@ -77,6 +78,7 @@ const App = () => {
         <div className={`App ${theme}`}>
             <ThemeContext.Provider value={{ theme: theme, toggle: toggleDarkMode }}>
                 <BrowserRouter>
+                    <NavigationBar />
                     <Routes>
 
                          {/* These are the public routes that will be offered to anyone that enters the website 

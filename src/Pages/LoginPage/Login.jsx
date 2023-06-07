@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Auth } from 'aws-amplify';
 import Button from 'CustomComponents/Button';
-import NavigationBar from 'Navigation';
-import CustomLogin from './CustomLogin';
-import CustomSignUp from './CustomSignup';
-import ThemeContext from 'context';
 import './login.css';
 import {
   useAuthenticator,
@@ -50,7 +45,6 @@ export default function Login() {
 
   return (
     <>
-      <NavigationBar />
       <Authenticator>
         {({ signOut }) => <Button onClick={signOut}>Sign Out</Button>}
       </Authenticator>
