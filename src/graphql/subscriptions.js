@@ -11,9 +11,6 @@ export const onCreateQuestionsAnswer = /* GraphQL */ `
       newquestionsID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -27,9 +24,6 @@ export const onUpdateQuestionsAnswer = /* GraphQL */ `
       newquestionsID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -43,9 +37,6 @@ export const onDeleteQuestionsAnswer = /* GraphQL */ `
       newquestionsID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -63,18 +54,11 @@ export const onCreateQuestions = /* GraphQL */ `
           newquestionsID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -92,18 +76,11 @@ export const onUpdateQuestions = /* GraphQL */ `
           newquestionsID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -121,18 +98,11 @@ export const onDeleteQuestions = /* GraphQL */ `
           newquestionsID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -146,9 +116,6 @@ export const onCreatePollAnswers = /* GraphQL */ `
       pollID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -162,9 +129,6 @@ export const onUpdatePollAnswers = /* GraphQL */ `
       pollID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -178,9 +142,6 @@ export const onDeletePollAnswers = /* GraphQL */ `
       pollID
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -197,18 +158,11 @@ export const onCreatePoll = /* GraphQL */ `
           pollID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -225,18 +179,11 @@ export const onUpdatePoll = /* GraphQL */ `
           pollID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -253,18 +200,11 @@ export const onDeletePoll = /* GraphQL */ `
           pollID
           createdAt
           updatedAt
-          _version
-          _deleted
-          _lastChangedAt
         }
         nextToken
-        startedAt
       }
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -279,9 +219,6 @@ export const onCreatePresentation = /* GraphQL */ `
       PageNum
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -296,9 +233,6 @@ export const onUpdatePresentation = /* GraphQL */ `
       PageNum
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;
@@ -313,9 +247,6 @@ export const onDeletePresentation = /* GraphQL */ `
       PageNum
       createdAt
       updatedAt
-      _version
-      _deleted
-      _lastChangedAt
     }
   }
 `;

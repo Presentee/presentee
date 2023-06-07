@@ -39,13 +39,13 @@ export default function NavigationBar() {
 
             <div className='right-div'>
                 
-                {route === 'authenticated' ? (
+                {/* {route === 'authenticated' ? (
                     <Button onClick={() => navigate('/settings')} size="small">
                         Settings
                     </Button>
                 ) : (
                     ""
-                )}
+                )} */}
 
 
                 {route === 'authenticated' ? (

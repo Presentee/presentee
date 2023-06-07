@@ -3,6 +3,7 @@ import Button from 'CustomComponents/Button'
 import { Auth } from 'aws-amplify';
 import { Storage } from "@aws-amplify/storage";
 import ViewPDF from 'CustomComponents/PDFViewer';
+import { HomeContainer } from "CustomComponents/Containers";
 
 export default function Create(params) {
 
@@ -51,23 +52,21 @@ export default function Create(params) {
   }
   
   const [fileName, setFileName] = useState('Choose a file...');
-  
+
   useEffect(() => {
     const fileInput = document.getElementById('file-input');
     const inputFileLabel = document.querySelector('.input-file-label');
-  
+
     // update the label when a file is selected
     const handleChange = () => {
       const file = fileInput.files[0];
       if (file) {
-        convertToBase64(file)
-          .then(base64PDF => {
-            setActivePDFFile(base64PDF);
-            setFileName(file.name);
-          })
-          .catch(error => {
-            console.error(error);
-          });
+        const pdfData = convertToBase64(file).then(base64PDF => {
+          setActivePDFFile(base64PDF);
+          setFileName(file.name);
+        }).catch(error => {
+          console.error(error);
+        });
         inputFileLabel.innerHTML = file.name;
       } else {
         setActivePDFFile(null);
@@ -75,10 +74,11 @@ export default function Create(params) {
         inputFileLabel.innerHTML = 'Choose a file...';
       }
     };
-  
+
     fileInput.addEventListener('change', handleChange);
+
   });
-  
+
 
 
   // function to handle the upload button click
@@ -96,21 +96,24 @@ export default function Create(params) {
 
   return (
     <>
-     
+      <NavigationBar />
 
-      <div style={{ display: 'flex', justifyContent: 'center', margin: '10px' }}>
+      <HomeContainer>
+        <div style={{ display: 'flex', justifyContent: 'center', margin: '10px', maxWidth: 'max-width: 1200px' }}>
 
-      <div className="custom-file-input-wrapper">
-        <input type="file" id="file-input" className="input-file" />
-        <label htmlFor="file-input" className="input-file-label">{fileName}</label>
-      </div>
+          <div className="custom-file-input-wrapper">
+            <input type="file" id="file-input" className="input-file" />
+            <label htmlFor="file-input" className="input-file-label">{fileName}</label>
+          </div>
 
-        {/* Button that will send the file to the S3 storage */}
-        <Button onClick={handleUploadClick}> Upload Shown File </Button>
-      </div>
-      <div>
-        <ViewPDF pdfFile={activePDFFile} />
-      </div>
+          {/* Button that will send the file to the S3 storage */}
+          <Button onClick={handleUploadClick}> Upload Shown File </Button>
+        </div>
+        <div style={{ width: '100%' }}>
+          <h1>Preview</h1>
+          <ViewPDF pdfFile={activePDFFile} />
+        </div>
+      </HomeContainer>
 
     </>
   );

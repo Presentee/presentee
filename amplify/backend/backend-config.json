@@ -26,9 +26,33 @@
     "demo": {
       "customAuth": false,
       "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [
+            "REQUIRES_LOWERCASE",
+            "REQUIRES_NUMBERS",
+            "REQUIRES_SYMBOLS",
+            "REQUIRES_UPPERCASE"
+          ],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "NAME"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
       "providerPlugin": "awscloudformation",
-      "service": "Cognito",
-      "serviceType": "imported"
+      "service": "Cognito"
     }
   },
   "parameters": {
@@ -119,7 +143,29 @@
           "resourceName": "demo"
         }
       ]
+    },
+    "AMPLIFY_storage_demo64cd15bd_bucketName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "demo64cd15bd"
+        }
+      ]
+    },
+    "AMPLIFY_storage_demo64cd15bd_region": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "demo64cd15bd"
+        }
+      ]
     }
   },
-  "storage": {}
+  "storage": {
+    "s3demostoragea7cef4f7": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
+    }
+  }
 }

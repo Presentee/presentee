@@ -14,7 +14,7 @@ export default function ViewPDF(params) {
 
     return (
         <>
-            <div className='pdf-container'>
+            <div className='pdf-container' >
                 <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.15.349/build/pdf.worker.min.js">
                     {params.pdfFile && <>
                         <Viewer fileUrl={params.pdfFile} plugins={[newplugin, scrollModePluginInstance]}/>

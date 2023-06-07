@@ -7,6 +7,8 @@ import '@react-pdf-viewer/core/lib/styles/index.css'
 import '@react-pdf-viewer/default-layout/lib/styles/index.css'
 import { PDFDocument } from 'pdf-lib';
 import { useEffect, useState } from 'react'
+import { Auth } from 'aws-amplify';
+import packageJson from '../../../package.json';
 
 export default function Presentating(params) {
 
@@ -17,7 +19,6 @@ export default function Presentating(params) {
         const runAsync = async () => {
             await modifyPdf();
         };
-        
         runAsync();
     }, );
     
@@ -27,6 +28,9 @@ export default function Presentating(params) {
     const newplugin = defaultLayoutPlugin()
     const scrollModePluginInstance = scrollModePlugin();
     scrollModePluginInstance.switchScrollMode(ScrollMode.Page)
+    
+
+
 
     async function modifyPdf() {
         try {
@@ -39,8 +43,9 @@ export default function Presentating(params) {
             const { width, height } = firstPage.getSize()
 
             const page = pdfDoc.addPage([width, height])
-            page.drawText("PresentationID: " + params.roomID, { x: 50, y: 200});
-            // page.drawRectangle({ x: 50, y: 200, width: 500, height: 100, borderWidth: 1 })
+            // page.drawText("PresentationID: " + params.roomID, { x: 50, y: 200});
+            page.drawText("PresentationID: " + "F723S", { x: 50, y: 50});
+            
             pdfDoc.insertPage(0, page)
 
             setPdfBytes('data:application/pdf;base64,' + await pdfDoc.saveAsBase64());

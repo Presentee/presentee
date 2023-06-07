@@ -3,14 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import './Present.css';
-import VContainer from 'CustomComponents/Containers';
+import VContainer, { HomeContainer } from 'CustomComponents/Containers';
 import Button from 'CustomComponents/Button';
 import ViewPDF from 'CustomComponents/PDFViewer';
+import NavigationBar from 'Navigation';
 import { createPresentation } from "graphql/mutations";
 
-
 import { Auth, API, Storage } from 'aws-amplify';
-import { BiRefresh } from 'react-icons/bi';
+import { BiRefresh, BiTrash, BiListUl, BiCategory } from 'react-icons/bi';
 
 let globalFileKey = '';
 let globalFileName = '';
@@ -108,13 +108,20 @@ function DisplayList(params) {
 
   // display the list of files
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-      {Array.isArray(files) && files.map((file, index) => (
-        <Button key={index} onClick={() => retreivePdfFile(file)}>
-          {file}
-        </Button>
-      ))}
-    </div>
+    <>
+      <div style={{ display: 'flex', flexDirection: 'column'}}>
+        {Array.isArray(files) && files.map((file, index) => (
+          <div style={{ displau: 'flex', flexDirection: 'row'}}>
+            <Button key={index} style={{ maxWidth: '400px', overflow: 'hidden' }} onClick={() => retreivePdfFile(file)}>
+              {file}
+            </Button>
+            <Button><BiListUl style={{ fontSize: '20px' }} /></Button>
+            <Button><BiCategory style={{ fontSize: '20px' }} /></Button>
+            <Button><BiTrash style={{ fontSize: '20px' }} /></Button>
+          </div>
+        ))}
+      </div>
+    </>
   );
 
 }
@@ -138,7 +145,7 @@ export default function Present(params) {
     // if globalFileKey or globalFileName are empty retrerive the file
     if (globalFileKey === '' || globalFileName === '') {
       console.error("presentation not loaded");
-      
+
       //reload page
       window.location.reload();
     }
@@ -170,17 +177,26 @@ export default function Present(params) {
 
   return (
     <>
-     
+      <NavigationBar />
 
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Button onClick={refreshFileList}> <BiRefresh style={{ fontSize: '24px' }} /> </Button>
-        {showFileList && <DisplayList setPDFFile={params.setPDFFile} />}
-      </div>
+      <HomeContainer style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', maxWidth: '1800px' }}>
+        <div style={{ margin: '10px', maxWidth: 'max-width: 1400px' }}>
 
-      <Button onClick={() => handlePresent(params.setRoomID)}>Present Presentation</Button>
-      <VContainer style={{ width: '100%', height: '100%', padding: '2px' }}>
-        <ViewPDF pdfFile={params.pdfFile} />
-      </VContainer>
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', maxWidth: '800px', overflow: 'clip' }}>
+            <Button onClick={refreshFileList}> <BiRefresh style={{ fontSize: '24px' }} /> </Button>
+            {showFileList && <DisplayList setPDFFile={params.setPDFFile} />}
+          </div>
+        </div>
+
+        <div style={{ width: '100%', maxWidth: '1000px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <Button onClick={() => handlePresent(params.setRoomID)} style={{ margin: '10px' }}>Present Presentation</Button>
+            <h1>Preview</h1>
+            <ViewPDF style={{ display: 'flex', flexDirection: 'row', flex: '1' }} pdfFile={params.pdfFile} />
+          </div>
+        </div>
+      </HomeContainer>
+
     </>
   );
-}
+} 
