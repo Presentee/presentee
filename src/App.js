@@ -5,6 +5,8 @@ import awsconfig from './aws-exports';
 import CreatePollForm from './createpolltest.js';
 import DisplayPolls from './displaypoll.js';
 import ClientDisplayPolls from './ClientDisplayPolls.js'
+import DisplayQuestions from './DisplayQuestions.js'
+import ClientDisplayQuestions from './ClientDisplayQuestions.js'
 
 function App() {
   return (
@@ -12,7 +14,7 @@ function App() {
       <h1>Create a new Poll</h1>
       <CreatePollForm />
       <h1>All Polls</h1>
-      <DisplayPolls />
+      <DisplayQuestions />
     </div>
   );
 }

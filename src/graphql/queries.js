@@ -1,6 +1,105 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getQuestionsAnswer = /* GraphQL */ `
+  query GetQuestionsAnswer($id: ID!) {
+    getQuestionsAnswer(id: $id) {
+      id
+      Answer
+      newquestionsID
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listQuestionsAnswers = /* GraphQL */ `
+  query ListQuestionsAnswers(
+    $filter: ModelQuestionsAnswerFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listQuestionsAnswers(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        Answer
+        newquestionsID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const questionsAnswersByNewquestionsID = /* GraphQL */ `
+  query QuestionsAnswersByNewquestionsID(
+    $newquestionsID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelQuestionsAnswerFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    questionsAnswersByNewquestionsID(
+      newquestionsID: $newquestionsID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        Answer
+        newquestionsID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getQuestions = /* GraphQL */ `
+  query GetQuestions($id: ID!) {
+    getQuestions(id: $id) {
+      id
+      Question
+      QuestionsAnswers {
+        items {
+          id
+          Answer
+          newquestionsID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listQuestions = /* GraphQL */ `
+  query ListQuestions(
+    $filter: ModelQuestionsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listQuestions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        Question
+        QuestionsAnswers {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
 export const getPollAnswers = /* GraphQL */ `
   query GetPollAnswers($id: ID!) {
     getPollAnswers(id: $id) {
@@ -98,139 +197,6 @@ export const listPolls = /* GraphQL */ `
     }
   }
 `;
-export const getQuestionsAnswer = /* GraphQL */ `
-  query GetQuestionsAnswer($id: ID!) {
-    getQuestionsAnswer(id: $id) {
-      id
-      Answer
-      questionsID
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listQuestionsAnswers = /* GraphQL */ `
-  query ListQuestionsAnswers(
-    $filter: ModelQuestionsAnswerFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listQuestionsAnswers(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        Answer
-        questionsID
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const questionsAnswersByQuestionsID = /* GraphQL */ `
-  query QuestionsAnswersByQuestionsID(
-    $questionsID: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelQuestionsAnswerFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    questionsAnswersByQuestionsID(
-      questionsID: $questionsID
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        Answer
-        questionsID
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getQuestions = /* GraphQL */ `
-  query GetQuestions($id: ID!) {
-    getQuestions(id: $id) {
-      id
-      Question
-      PageNum
-      presentationID
-      Questions_Answers {
-        items {
-          id
-          Answer
-          questionsID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listQuestions = /* GraphQL */ `
-  query ListQuestions(
-    $filter: ModelQuestionsFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listQuestions(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        Question
-        PageNum
-        presentationID
-        Questions_Answers {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const questionsByPresentationID = /* GraphQL */ `
-  query QuestionsByPresentationID(
-    $presentationID: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelQuestionsFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    questionsByPresentationID(
-      presentationID: $presentationID
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        Question
-        PageNum
-        presentationID
-        Questions_Answers {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
 export const getPresentation = /* GraphQL */ `
   query GetPresentation($id: ID!) {
     getPresentation(id: $id) {
@@ -238,17 +204,6 @@ export const getPresentation = /* GraphQL */ `
       PresentationKey
       Name
       PageNum
-      Presentation_Question {
-        items {
-          id
-          Question
-          PageNum
-          presentationID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
       createdAt
       updatedAt
     }
@@ -266,9 +221,6 @@ export const listPresentations = /* GraphQL */ `
         PresentationKey
         Name
         PageNum
-        Presentation_Question {
-          nextToken
-        }
         createdAt
         updatedAt
       }

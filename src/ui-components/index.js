@@ -5,6 +5,8 @@
  **************************************************************************/
 
 export { default as studioTheme } from "./studioTheme";
+export { default as QuestionsCreateForm } from "./QuestionsCreateForm";
+export { default as QuestionsUpdateForm } from "./QuestionsUpdateForm";
 export { default as PollCreateForm } from "./PollCreateForm";
 export { default as PollUpdateForm } from "./PollUpdateForm";
 export { default as PresentationCreateForm } from "./PresentationCreateForm";

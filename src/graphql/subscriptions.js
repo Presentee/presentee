@@ -1,6 +1,111 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateQuestionsAnswer = /* GraphQL */ `
+  subscription OnCreateQuestionsAnswer(
+    $filter: ModelSubscriptionQuestionsAnswerFilterInput
+  ) {
+    onCreateQuestionsAnswer(filter: $filter) {
+      id
+      Answer
+      newquestionsID
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateQuestionsAnswer = /* GraphQL */ `
+  subscription OnUpdateQuestionsAnswer(
+    $filter: ModelSubscriptionQuestionsAnswerFilterInput
+  ) {
+    onUpdateQuestionsAnswer(filter: $filter) {
+      id
+      Answer
+      newquestionsID
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteQuestionsAnswer = /* GraphQL */ `
+  subscription OnDeleteQuestionsAnswer(
+    $filter: ModelSubscriptionQuestionsAnswerFilterInput
+  ) {
+    onDeleteQuestionsAnswer(filter: $filter) {
+      id
+      Answer
+      newquestionsID
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateQuestions = /* GraphQL */ `
+  subscription OnCreateQuestions(
+    $filter: ModelSubscriptionQuestionsFilterInput
+  ) {
+    onCreateQuestions(filter: $filter) {
+      id
+      Question
+      QuestionsAnswers {
+        items {
+          id
+          Answer
+          newquestionsID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateQuestions = /* GraphQL */ `
+  subscription OnUpdateQuestions(
+    $filter: ModelSubscriptionQuestionsFilterInput
+  ) {
+    onUpdateQuestions(filter: $filter) {
+      id
+      Question
+      QuestionsAnswers {
+        items {
+          id
+          Answer
+          newquestionsID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteQuestions = /* GraphQL */ `
+  subscription OnDeleteQuestions(
+    $filter: ModelSubscriptionQuestionsFilterInput
+  ) {
+    onDeleteQuestions(filter: $filter) {
+      id
+      Question
+      QuestionsAnswers {
+        items {
+          id
+          Answer
+          newquestionsID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreatePollAnswers = /* GraphQL */ `
   subscription OnCreatePollAnswers(
     $filter: ModelSubscriptionPollAnswersFilterInput
@@ -103,117 +208,6 @@ export const onDeletePoll = /* GraphQL */ `
     }
   }
 `;
-export const onCreateQuestionsAnswer = /* GraphQL */ `
-  subscription OnCreateQuestionsAnswer(
-    $filter: ModelSubscriptionQuestionsAnswerFilterInput
-  ) {
-    onCreateQuestionsAnswer(filter: $filter) {
-      id
-      Answer
-      questionsID
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateQuestionsAnswer = /* GraphQL */ `
-  subscription OnUpdateQuestionsAnswer(
-    $filter: ModelSubscriptionQuestionsAnswerFilterInput
-  ) {
-    onUpdateQuestionsAnswer(filter: $filter) {
-      id
-      Answer
-      questionsID
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteQuestionsAnswer = /* GraphQL */ `
-  subscription OnDeleteQuestionsAnswer(
-    $filter: ModelSubscriptionQuestionsAnswerFilterInput
-  ) {
-    onDeleteQuestionsAnswer(filter: $filter) {
-      id
-      Answer
-      questionsID
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateQuestions = /* GraphQL */ `
-  subscription OnCreateQuestions(
-    $filter: ModelSubscriptionQuestionsFilterInput
-  ) {
-    onCreateQuestions(filter: $filter) {
-      id
-      Question
-      PageNum
-      presentationID
-      Questions_Answers {
-        items {
-          id
-          Answer
-          questionsID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateQuestions = /* GraphQL */ `
-  subscription OnUpdateQuestions(
-    $filter: ModelSubscriptionQuestionsFilterInput
-  ) {
-    onUpdateQuestions(filter: $filter) {
-      id
-      Question
-      PageNum
-      presentationID
-      Questions_Answers {
-        items {
-          id
-          Answer
-          questionsID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteQuestions = /* GraphQL */ `
-  subscription OnDeleteQuestions(
-    $filter: ModelSubscriptionQuestionsFilterInput
-  ) {
-    onDeleteQuestions(filter: $filter) {
-      id
-      Question
-      PageNum
-      presentationID
-      Questions_Answers {
-        items {
-          id
-          Answer
-          questionsID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const onCreatePresentation = /* GraphQL */ `
   subscription OnCreatePresentation(
     $filter: ModelSubscriptionPresentationFilterInput
@@ -223,17 +217,6 @@ export const onCreatePresentation = /* GraphQL */ `
       PresentationKey
       Name
       PageNum
-      Presentation_Question {
-        items {
-          id
-          Question
-          PageNum
-          presentationID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
       createdAt
       updatedAt
     }
@@ -248,17 +231,6 @@ export const onUpdatePresentation = /* GraphQL */ `
       PresentationKey
       Name
       PageNum
-      Presentation_Question {
-        items {
-          id
-          Question
-          PageNum
-          presentationID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
       createdAt
       updatedAt
     }
@@ -273,17 +245,6 @@ export const onDeletePresentation = /* GraphQL */ `
       PresentationKey
       Name
       PageNum
-      Presentation_Question {
-        items {
-          id
-          Question
-          PageNum
-          presentationID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
       createdAt
       updatedAt
     }
