@@ -15,7 +15,7 @@ const DisplayQuestions = () => {
     subscribeToNewQuestions();
     subscribeToDeletedQuestions();
     subscribeToNewAnswers();
-  }, []);
+  });
 
   const fetchQuestions = async () => {
     try {

@@ -139,3 +139,83 @@ export const onDeleteQuestions = /* GraphQL */ `
     }
   }
 `;
+
+export const onCreateQuestionsAnswer = /* GraphQL */ `
+  subscription OnCreateQuestionsAnswer(
+    $filter: ModelSubscriptionQuestionsAnswerFilterInput
+  ) {
+    onCreateQuestionsAnswer(filter: $filter) {
+      id
+      Answer
+      newquestionsID
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateQuestionsAnswer = /* GraphQL */ `
+  subscription OnUpdateQuestionsAnswer(
+    $filter: ModelSubscriptionQuestionsAnswerFilterInput
+  ) {
+    onUpdateQuestionsAnswer(filter: $filter) {
+      id
+      Answer
+      newquestionsID
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteQuestionsAnswer = /* GraphQL */ `
+  subscription OnDeleteQuestionsAnswer(
+    $filter: ModelSubscriptionQuestionsAnswerFilterInput
+  ) {
+    onDeleteQuestionsAnswer(filter: $filter) {
+      id
+      Answer
+      newquestionsID
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
+export const onCreatePollAnswers = /* GraphQL */ `
+  subscription OnCreatePollAnswers(
+    $filter: ModelSubscriptionPollAnswersFilterInput
+  ) {
+    onCreatePollAnswers(filter: $filter) {
+      id
+      Answer
+      pollID
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdatePollAnswers = /* GraphQL */ `
+  subscription OnUpdatePollAnswers(
+    $filter: ModelSubscriptionPollAnswersFilterInput
+  ) {
+    onUpdatePollAnswers(filter: $filter) {
+      id
+      Answer
+      pollID
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeletePollAnswers = /* GraphQL */ `
+  subscription OnDeletePollAnswers(
+    $filter: ModelSubscriptionPollAnswersFilterInput
+  ) {
+    onDeletePollAnswers(filter: $filter) {
+      id
+      Answer
+      pollID
+      createdAt
+      updatedAt
+    }
+  }
+`;

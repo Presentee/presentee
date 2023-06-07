@@ -193,3 +193,152 @@ export const syncQuestions = /* GraphQL */ `
     }
   }
 `;
+
+export const getPollAnswers = /* GraphQL */ `
+  query GetPollAnswers($id: ID!) {
+    getPollAnswers(id: $id) {
+      id
+      Answer
+      pollID
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listPollAnswers = /* GraphQL */ `
+  query ListPollAnswers(
+    $filter: ModelPollAnswersFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPollAnswers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        Answer
+        pollID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const pollAnswersByPollID = /* GraphQL */ `
+  query PollAnswersByPollID(
+    $pollID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelPollAnswersFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    pollAnswersByPollID(
+      pollID: $pollID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        Answer
+        pollID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+
+
+export const getQuestionsAnswer = /* GraphQL */ `
+  query GetQuestionsAnswer($id: ID!) {
+    getQuestionsAnswer(id: $id) {
+      id
+      Answer
+      questionsID
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listQuestionsAnswers = /* GraphQL */ `
+  query ListQuestionsAnswers(
+    $filter: ModelQuestionsAnswerFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listQuestionsAnswers(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        Answer
+        questionsID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const questionsAnswersByQuestionsID = /* GraphQL */ `
+  query QuestionsAnswersByQuestionsID(
+    $questionsID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelQuestionsAnswerFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    questionsAnswersByQuestionsID(
+      questionsID: $questionsID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        Answer
+        questionsID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+
+
+export const questionsByPresentationID = /* GraphQL */ `
+  query QuestionsByPresentationID(
+    $presentationID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelQuestionsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    questionsByPresentationID(
+      presentationID: $presentationID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        Question
+        PageNum
+        presentationID
+        Questions_Answers {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
