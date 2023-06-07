@@ -1,114 +1,57 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createQuestionsAnswer = /* GraphQL */ `
-  mutation CreateQuestionsAnswer(
-    $input: CreateQuestionsAnswerInput!
-    $condition: ModelQuestionsAnswerConditionInput
+export const createPresentation = /* GraphQL */ `
+  mutation CreatePresentation(
+    $input: CreatePresentationInput!
+    $condition: ModelPresentationConditionInput
   ) {
-    createQuestionsAnswer(input: $input, condition: $condition) {
+    createPresentation(input: $input, condition: $condition) {
       id
-      Answer
-      newquestionsID
+      PresentationKey
+      Name
+      PageNum
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const updateQuestionsAnswer = /* GraphQL */ `
-  mutation UpdateQuestionsAnswer(
-    $input: UpdateQuestionsAnswerInput!
-    $condition: ModelQuestionsAnswerConditionInput
+export const updatePresentation = /* GraphQL */ `
+  mutation UpdatePresentation(
+    $input: UpdatePresentationInput!
+    $condition: ModelPresentationConditionInput
   ) {
-    updateQuestionsAnswer(input: $input, condition: $condition) {
+    updatePresentation(input: $input, condition: $condition) {
       id
-      Answer
-      newquestionsID
+      PresentationKey
+      Name
+      PageNum
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const deleteQuestionsAnswer = /* GraphQL */ `
-  mutation DeleteQuestionsAnswer(
-    $input: DeleteQuestionsAnswerInput!
-    $condition: ModelQuestionsAnswerConditionInput
+export const deletePresentation = /* GraphQL */ `
+  mutation DeletePresentation(
+    $input: DeletePresentationInput!
+    $condition: ModelPresentationConditionInput
   ) {
-    deleteQuestionsAnswer(input: $input, condition: $condition) {
+    deletePresentation(input: $input, condition: $condition) {
       id
-      Answer
-      newquestionsID
+      PresentationKey
+      Name
+      PageNum
       createdAt
       updatedAt
-    }
-  }
-`;
-export const createQuestions = /* GraphQL */ `
-  mutation CreateQuestions(
-    $input: CreateQuestionsInput!
-    $condition: ModelQuestionsConditionInput
-  ) {
-    createQuestions(input: $input, condition: $condition) {
-      id
-      Question
-      QuestionsAnswers {
-        items {
-          id
-          Answer
-          newquestionsID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateQuestions = /* GraphQL */ `
-  mutation UpdateQuestions(
-    $input: UpdateQuestionsInput!
-    $condition: ModelQuestionsConditionInput
-  ) {
-    updateQuestions(input: $input, condition: $condition) {
-      id
-      Question
-      QuestionsAnswers {
-        items {
-          id
-          Answer
-          newquestionsID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteQuestions = /* GraphQL */ `
-  mutation DeleteQuestions(
-    $input: DeleteQuestionsInput!
-    $condition: ModelQuestionsConditionInput
-  ) {
-    deleteQuestions(input: $input, condition: $condition) {
-      id
-      Question
-      QuestionsAnswers {
-        items {
-          id
-          Answer
-          newquestionsID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -123,6 +66,9 @@ export const createPollAnswers = /* GraphQL */ `
       pollID
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -137,6 +83,9 @@ export const updatePollAnswers = /* GraphQL */ `
       pollID
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -151,6 +100,9 @@ export const deletePollAnswers = /* GraphQL */ `
       pollID
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -170,11 +122,18 @@ export const createPoll = /* GraphQL */ `
           pollID
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
         nextToken
+        startedAt
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -194,11 +153,18 @@ export const updatePoll = /* GraphQL */ `
           pollID
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
         nextToken
+        startedAt
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -218,56 +184,159 @@ export const deletePoll = /* GraphQL */ `
           pollID
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
         nextToken
+        startedAt
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const createPresentation = /* GraphQL */ `
-  mutation CreatePresentation(
-    $input: CreatePresentationInput!
-    $condition: ModelPresentationConditionInput
+export const createQuestionsAnswer = /* GraphQL */ `
+  mutation CreateQuestionsAnswer(
+    $input: CreateQuestionsAnswerInput!
+    $condition: ModelQuestionsAnswerConditionInput
   ) {
-    createPresentation(input: $input, condition: $condition) {
+    createQuestionsAnswer(input: $input, condition: $condition) {
       id
-      PresentationKey
-      Name
-      PageNum
+      Answer
+      newquestionsID
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const updatePresentation = /* GraphQL */ `
-  mutation UpdatePresentation(
-    $input: UpdatePresentationInput!
-    $condition: ModelPresentationConditionInput
+export const updateQuestionsAnswer = /* GraphQL */ `
+  mutation UpdateQuestionsAnswer(
+    $input: UpdateQuestionsAnswerInput!
+    $condition: ModelQuestionsAnswerConditionInput
   ) {
-    updatePresentation(input: $input, condition: $condition) {
+    updateQuestionsAnswer(input: $input, condition: $condition) {
       id
-      PresentationKey
-      Name
-      PageNum
+      Answer
+      newquestionsID
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
-export const deletePresentation = /* GraphQL */ `
-  mutation DeletePresentation(
-    $input: DeletePresentationInput!
-    $condition: ModelPresentationConditionInput
+export const deleteQuestionsAnswer = /* GraphQL */ `
+  mutation DeleteQuestionsAnswer(
+    $input: DeleteQuestionsAnswerInput!
+    $condition: ModelQuestionsAnswerConditionInput
   ) {
-    deletePresentation(input: $input, condition: $condition) {
+    deleteQuestionsAnswer(input: $input, condition: $condition) {
       id
-      PresentationKey
-      Name
-      PageNum
+      Answer
+      newquestionsID
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const createQuestions = /* GraphQL */ `
+  mutation CreateQuestions(
+    $input: CreateQuestionsInput!
+    $condition: ModelQuestionsConditionInput
+  ) {
+    createQuestions(input: $input, condition: $condition) {
+      id
+      Question
+      QuestionsAnswers {
+        items {
+          id
+          Answer
+          newquestionsID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateQuestions = /* GraphQL */ `
+  mutation UpdateQuestions(
+    $input: UpdateQuestionsInput!
+    $condition: ModelQuestionsConditionInput
+  ) {
+    updateQuestions(input: $input, condition: $condition) {
+      id
+      Question
+      QuestionsAnswers {
+        items {
+          id
+          Answer
+          newquestionsID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteQuestions = /* GraphQL */ `
+  mutation DeleteQuestions(
+    $input: DeleteQuestionsInput!
+    $condition: ModelQuestionsConditionInput
+  ) {
+    deleteQuestions(input: $input, condition: $condition) {
+      id
+      Question
+      QuestionsAnswers {
+        items {
+          id
+          Answer
+          newquestionsID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;

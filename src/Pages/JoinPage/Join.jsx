@@ -3,6 +3,15 @@ import NavigationBar from 'Navigation';
 import React, { useState, useEffect } from 'react';
 import { ScrollView } from '@aws-amplify/ui-react';
 import "./Join.css";
+import { useParams, useNavigate } from 'react-router-dom';
+import { Storage, DataStore } from 'aws-amplify';
+import { Presentation } from 'models';
+import { Viewer, Worker, ScrollMode } from '@react-pdf-viewer/core';
+import '@react-pdf-viewer/core/lib/styles/index.css';
+import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+import { scrollModePlugin } from '@react-pdf-viewer/scroll-mode';
+import Button from 'CustomComponents/Button';
+
 
 export default function Join() {
 
@@ -92,7 +101,6 @@ export default function Join() {
 
     return (
       <>
-        <NavigationBar />
         <div style={{ marginTop: '30vh' }}>
           <header className="App-header">
             <div>
@@ -133,7 +141,6 @@ export default function Join() {
   else {
     return (
       <>
-        <NavigationBar />
         <div>
           <h1>We're Sorry, but that room is not open. Please try again</h1>
           <header className="App-header">

@@ -96,8 +96,6 @@ export default function Create(params) {
 
   return (
     <>
-      <NavigationBar />
-
       <HomeContainer>
         <div style={{ display: 'flex', justifyContent: 'center', margin: '10px', maxWidth: 'max-width: 1200px' }}>
 

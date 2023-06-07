@@ -1,6 +1,6 @@
 import { ModelInit, MutableModel, __modelMeta__, ManagedIdentifier } from "@aws-amplify/datastore";
 // @ts-ignore
-import { LazyLoading, LazyLoadingDisabled } from "@aws-amplify/datastore";
+import { LazyLoading, LazyLoadingDisabled, AsyncCollection } from "@aws-amplify/datastore";
 
 
 
@@ -12,9 +12,9 @@ type EagerPresentation = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly PresentationKey?: string | null;
+  readonly PresentationKey: string;
   readonly Name?: string | null;
-  readonly PageNum?: string | null;
+  readonly PageNum?: number | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -25,9 +25,9 @@ type LazyPresentation = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly PresentationKey?: string | null;
+  readonly PresentationKey: string;
   readonly Name?: string | null;
-  readonly PageNum?: string | null;
+  readonly PageNum?: number | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -38,6 +38,36 @@ export declare const Presentation: (new (init: ModelInit<Presentation>) => Prese
   copyOf(source: Presentation, mutator: (draft: MutableModel<Presentation>) => MutableModel<Presentation> | void): Presentation;
 }
 
+type EagerPollAnswers = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<PollAnswers, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly Answer?: string | null;
+  readonly pollID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyPollAnswers = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<PollAnswers, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly Answer?: string | null;
+  readonly pollID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type PollAnswers = LazyLoading extends LazyLoadingDisabled ? EagerPollAnswers : LazyPollAnswers
+
+export declare const PollAnswers: (new (init: ModelInit<PollAnswers>) => PollAnswers) & {
+  copyOf(source: PollAnswers, mutator: (draft: MutableModel<PollAnswers>) => MutableModel<PollAnswers> | void): PollAnswers;
+}
+
 type EagerPoll = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Poll, 'id'>;
@@ -45,6 +75,8 @@ type EagerPoll = {
   };
   readonly id: string;
   readonly PollJSON?: string | null;
+  readonly Question?: string | null;
+  readonly PollAnswers?: (PollAnswers | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -56,6 +88,8 @@ type LazyPoll = {
   };
   readonly id: string;
   readonly PollJSON?: string | null;
+  readonly Question?: string | null;
+  readonly PollAnswers: AsyncCollection<PollAnswers>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -66,6 +100,36 @@ export declare const Poll: (new (init: ModelInit<Poll>) => Poll) & {
   copyOf(source: Poll, mutator: (draft: MutableModel<Poll>) => MutableModel<Poll> | void): Poll;
 }
 
+type EagerQuestionsAnswer = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<QuestionsAnswer, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly Answer?: string | null;
+  readonly newquestionsID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyQuestionsAnswer = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<QuestionsAnswer, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly Answer?: string | null;
+  readonly newquestionsID: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type QuestionsAnswer = LazyLoading extends LazyLoadingDisabled ? EagerQuestionsAnswer : LazyQuestionsAnswer
+
+export declare const QuestionsAnswer: (new (init: ModelInit<QuestionsAnswer>) => QuestionsAnswer) & {
+  copyOf(source: QuestionsAnswer, mutator: (draft: MutableModel<QuestionsAnswer>) => MutableModel<QuestionsAnswer> | void): QuestionsAnswer;
+}
+
 type EagerQuestions = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Questions, 'id'>;
@@ -73,7 +137,7 @@ type EagerQuestions = {
   };
   readonly id: string;
   readonly Question?: string | null;
-  readonly PageNum?: number | null;
+  readonly QuestionsAnswers?: (QuestionsAnswer | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -85,7 +149,7 @@ type LazyQuestions = {
   };
   readonly id: string;
   readonly Question?: string | null;
-  readonly PageNum?: number | null;
+  readonly QuestionsAnswers: AsyncCollection<QuestionsAnswer>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

@@ -1,13 +1,8 @@
-type QuestionsAnswer @model @auth(rules: [{allow: public}]) {
+type Presentation @model @auth(rules: [{allow: public}]) {
   id: ID!
-  Answer: String
-  newquestionsID: ID! @index(name: "byQuestions")
-}
-
-type Questions @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  Question: String
-  QuestionsAnswers: [QuestionsAnswer] @hasMany(indexName: "byQuestions", fields: ["id"])
+  PresentationKey: String!
+  Name: String
+  PageNum: Int
 }
 
 type PollAnswers @model @auth(rules: [{allow: public}]) {
@@ -23,10 +18,15 @@ type Poll @model @auth(rules: [{allow: public}]) {
   PollAnswers: [PollAnswers] @hasMany(indexName: "byPoll", fields: ["id"])
 }
 
-type Presentation @model @auth(rules: [{allow: public}]) {
+type QuestionsAnswer @model @auth(rules: [{allow: public}]) {
   id: ID!
-  PresentationKey: String!
-  Name: String
-  PageNum: Int
+  Answer: String
+  newquestionsID: ID! @index(name: "byQuestions")
+}
+
+type Questions @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Question: String
+  QuestionsAnswers: [QuestionsAnswer] @hasMany(indexName: "byQuestions", fields: ["id"])
 }
  

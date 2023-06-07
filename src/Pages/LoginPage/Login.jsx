@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'CustomComponents/Button';
 import './login.css';
@@ -6,6 +6,10 @@ import {
   useAuthenticator,
   Authenticator,
 } from '@aws-amplify/ui-react';
+import { Auth } from 'aws-amplify';
+import CustomLogin from './CustomLogin';
+import { ThemeContext } from '@react-pdf-viewer/core';
+
 
 export default function Login() {
   const { route } = useAuthenticator((context) => [context.route]);

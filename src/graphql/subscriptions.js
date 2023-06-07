@@ -1,6 +1,189 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreatePresentation = /* GraphQL */ `
+  subscription OnCreatePresentation(
+    $filter: ModelSubscriptionPresentationFilterInput
+  ) {
+    onCreatePresentation(filter: $filter) {
+      id
+      PresentationKey
+      Name
+      PageNum
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdatePresentation = /* GraphQL */ `
+  subscription OnUpdatePresentation(
+    $filter: ModelSubscriptionPresentationFilterInput
+  ) {
+    onUpdatePresentation(filter: $filter) {
+      id
+      PresentationKey
+      Name
+      PageNum
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeletePresentation = /* GraphQL */ `
+  subscription OnDeletePresentation(
+    $filter: ModelSubscriptionPresentationFilterInput
+  ) {
+    onDeletePresentation(filter: $filter) {
+      id
+      PresentationKey
+      Name
+      PageNum
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreatePollAnswers = /* GraphQL */ `
+  subscription OnCreatePollAnswers(
+    $filter: ModelSubscriptionPollAnswersFilterInput
+  ) {
+    onCreatePollAnswers(filter: $filter) {
+      id
+      Answer
+      pollID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdatePollAnswers = /* GraphQL */ `
+  subscription OnUpdatePollAnswers(
+    $filter: ModelSubscriptionPollAnswersFilterInput
+  ) {
+    onUpdatePollAnswers(filter: $filter) {
+      id
+      Answer
+      pollID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeletePollAnswers = /* GraphQL */ `
+  subscription OnDeletePollAnswers(
+    $filter: ModelSubscriptionPollAnswersFilterInput
+  ) {
+    onDeletePollAnswers(filter: $filter) {
+      id
+      Answer
+      pollID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreatePoll = /* GraphQL */ `
+  subscription OnCreatePoll($filter: ModelSubscriptionPollFilterInput) {
+    onCreatePoll(filter: $filter) {
+      id
+      PollJSON
+      Question
+      PollAnswers {
+        items {
+          id
+          Answer
+          pollID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdatePoll = /* GraphQL */ `
+  subscription OnUpdatePoll($filter: ModelSubscriptionPollFilterInput) {
+    onUpdatePoll(filter: $filter) {
+      id
+      PollJSON
+      Question
+      PollAnswers {
+        items {
+          id
+          Answer
+          pollID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeletePoll = /* GraphQL */ `
+  subscription OnDeletePoll($filter: ModelSubscriptionPollFilterInput) {
+    onDeletePoll(filter: $filter) {
+      id
+      PollJSON
+      Question
+      PollAnswers {
+        items {
+          id
+          Answer
+          pollID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
 export const onCreateQuestionsAnswer = /* GraphQL */ `
   subscription OnCreateQuestionsAnswer(
     $filter: ModelSubscriptionQuestionsAnswerFilterInput
@@ -11,6 +194,9 @@ export const onCreateQuestionsAnswer = /* GraphQL */ `
       newquestionsID
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -24,6 +210,9 @@ export const onUpdateQuestionsAnswer = /* GraphQL */ `
       newquestionsID
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -37,6 +226,9 @@ export const onDeleteQuestionsAnswer = /* GraphQL */ `
       newquestionsID
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -54,11 +246,18 @@ export const onCreateQuestions = /* GraphQL */ `
           newquestionsID
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
         nextToken
+        startedAt
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -76,11 +275,18 @@ export const onUpdateQuestions = /* GraphQL */ `
           newquestionsID
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
         nextToken
+        startedAt
       }
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -98,155 +304,18 @@ export const onDeleteQuestions = /* GraphQL */ `
           newquestionsID
           createdAt
           updatedAt
+          _version
+          _deleted
+          _lastChangedAt
         }
         nextToken
+        startedAt
       }
       createdAt
       updatedAt
-    }
-  }
-`;
-export const onCreatePollAnswers = /* GraphQL */ `
-  subscription OnCreatePollAnswers(
-    $filter: ModelSubscriptionPollAnswersFilterInput
-  ) {
-    onCreatePollAnswers(filter: $filter) {
-      id
-      Answer
-      pollID
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdatePollAnswers = /* GraphQL */ `
-  subscription OnUpdatePollAnswers(
-    $filter: ModelSubscriptionPollAnswersFilterInput
-  ) {
-    onUpdatePollAnswers(filter: $filter) {
-      id
-      Answer
-      pollID
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeletePollAnswers = /* GraphQL */ `
-  subscription OnDeletePollAnswers(
-    $filter: ModelSubscriptionPollAnswersFilterInput
-  ) {
-    onDeletePollAnswers(filter: $filter) {
-      id
-      Answer
-      pollID
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreatePoll = /* GraphQL */ `
-  subscription OnCreatePoll($filter: ModelSubscriptionPollFilterInput) {
-    onCreatePoll(filter: $filter) {
-      id
-      PollJSON
-      Question
-      PollAnswers {
-        items {
-          id
-          Answer
-          pollID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdatePoll = /* GraphQL */ `
-  subscription OnUpdatePoll($filter: ModelSubscriptionPollFilterInput) {
-    onUpdatePoll(filter: $filter) {
-      id
-      PollJSON
-      Question
-      PollAnswers {
-        items {
-          id
-          Answer
-          pollID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeletePoll = /* GraphQL */ `
-  subscription OnDeletePoll($filter: ModelSubscriptionPollFilterInput) {
-    onDeletePoll(filter: $filter) {
-      id
-      PollJSON
-      Question
-      PollAnswers {
-        items {
-          id
-          Answer
-          pollID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreatePresentation = /* GraphQL */ `
-  subscription OnCreatePresentation(
-    $filter: ModelSubscriptionPresentationFilterInput
-  ) {
-    onCreatePresentation(filter: $filter) {
-      id
-      PresentationKey
-      Name
-      PageNum
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdatePresentation = /* GraphQL */ `
-  subscription OnUpdatePresentation(
-    $filter: ModelSubscriptionPresentationFilterInput
-  ) {
-    onUpdatePresentation(filter: $filter) {
-      id
-      PresentationKey
-      Name
-      PageNum
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeletePresentation = /* GraphQL */ `
-  subscription OnDeletePresentation(
-    $filter: ModelSubscriptionPresentationFilterInput
-  ) {
-    onDeletePresentation(filter: $filter) {
-      id
-      PresentationKey
-      Name
-      PageNum
-      createdAt
-      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;

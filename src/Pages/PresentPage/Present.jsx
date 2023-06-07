@@ -177,8 +177,6 @@ export default function Present(params) {
 
   return (
     <>
-      <NavigationBar />
-
       <HomeContainer style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', maxWidth: '1800px' }}>
         <div style={{ margin: '10px', maxWidth: 'max-width: 1400px' }}>
 

@@ -14,7 +14,7 @@ export const schema = {
                     "name": "PresentationKey",
                     "isArray": false,
                     "type": "String",
-                    "isRequired": false,
+                    "isRequired": true,
                     "attributes": []
                 },
                 "Name": {
@@ -27,7 +27,7 @@ export const schema = {
                 "PageNum": {
                     "name": "PageNum",
                     "isArray": false,
-                    "type": "String",
+                    "type": "Int",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -73,6 +73,81 @@ export const schema = {
                 }
             ]
         },
+        "PollAnswers": {
+            "name": "PollAnswers",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "Answer": {
+                    "name": "Answer",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "pollID": {
+                    "name": "pollID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "PollAnswers",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byPoll",
+                        "fields": [
+                            "pollID"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "Poll": {
             "name": "Poll",
             "fields": {
@@ -89,6 +164,29 @@ export const schema = {
                     "type": "AWSJSON",
                     "isRequired": false,
                     "attributes": []
+                },
+                "Question": {
+                    "name": "Question",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "PollAnswers": {
+                    "name": "PollAnswers",
+                    "isArray": true,
+                    "type": {
+                        "model": "PollAnswers"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "pollID"
+                        ]
+                    }
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -132,6 +230,81 @@ export const schema = {
                 }
             ]
         },
+        "QuestionsAnswer": {
+            "name": "QuestionsAnswer",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "Answer": {
+                    "name": "Answer",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "newquestionsID": {
+                    "name": "newquestionsID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "QuestionsAnswers",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byQuestions",
+                        "fields": [
+                            "newquestionsID"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "Questions": {
             "name": "Questions",
             "fields": {
@@ -149,12 +322,21 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "PageNum": {
-                    "name": "PageNum",
-                    "isArray": false,
-                    "type": "Int",
+                "QuestionsAnswers": {
+                    "name": "QuestionsAnswers",
+                    "isArray": true,
+                    "type": {
+                        "model": "QuestionsAnswer"
+                    },
                     "isRequired": false,
-                    "attributes": []
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "newquestionsID"
+                        ]
+                    }
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -202,5 +384,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.3",
-    "version": "c688ec40ae815f37fb46bd6453970e2a"
+    "version": "1609f6e41bdb7c530f1aafa4dbfd3f78"
 };

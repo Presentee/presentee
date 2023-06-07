@@ -20,14 +20,16 @@ const awsmobile = {
         "NAME"
     ],
     "aws_cognito_mfa_configuration": "OFF",
-    "aws_cognito_mfa_types": [],
+    "aws_cognito_mfa_types": [
+        "SMS"
+    ],
     "aws_cognito_password_protection_settings": {
         "passwordPolicyMinLength": 8,
         "passwordPolicyCharacters": [
             "REQUIRES_LOWERCASE",
-            "REQUIRES_UPPERCASE",
             "REQUIRES_NUMBERS",
-            "REQUIRES_SYMBOLS"
+            "REQUIRES_SYMBOLS",
+            "REQUIRES_UPPERCASE"
         ]
     },
     "aws_cognito_verification_mechanisms": [
