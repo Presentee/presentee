@@ -63,6 +63,22 @@ export default function Presentating(params) {
     const [pdfBytes, setPdfBytes] = useState(null);
     const defaultLayoutPluginInstance = defaultLayoutPlugin({
         sidebarTabs: (defaultTabs) => [],
+        toolbarPlugin: {
+            fullScreenPlugin: {
+                onEnterFullScreen: (zoom) => {
+                    zoom(2.66);
+                    defaultLayoutPluginInstance.toolbarPluginInstance.scrollModePluginInstance.switchScrollMode(
+                        ScrollMode.Page
+                    );
+                },
+                onExitFullScreen: (zoom) => {
+                    zoom(2.4);
+                    defaultLayoutPluginInstance.toolbarPluginInstance.scrollModePluginInstance.switchScrollMode(
+                        ScrollMode.Vertical
+                    );
+                },
+            },
+        },
     });
 
     const scrollModePluginInstance = scrollModePlugin();
@@ -75,15 +91,15 @@ export default function Presentating(params) {
             // fetch existing PDF
             const existingPdfBytes = await fetch(params.pdfFile).then(res => res.arrayBuffer())
             const pdfDoc = await PDFDocument.load(existingPdfBytes)
-            
+
             let presentationName = pdfDoc.getTitle()
-            if(!presentationName) {
+            if (!presentationName) {
                 presentationName = "Join now using the link!"
             }
 
             // embed font
             const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
-            
+
             // get first page size
             const firstPage = pdfDoc.getPages()[0]
             const { width, height } = firstPage.getSize()

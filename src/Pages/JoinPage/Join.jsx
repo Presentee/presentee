@@ -10,53 +10,61 @@ import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import { scrollModePlugin } from '@react-pdf-viewer/scroll-mode';
 import Button from 'CustomComponents/Button';
 import BlobToByte64 from 'CustomComponents/BlobToByte64';
+import ViewPDF from 'CustomComponents/PDFViewer';
 
 
 export default function Join() {
 
-  const pdfjsVersion = require('pdfjs-dist/package.json').version;
-  const workerUrl = `https://unpkg.com/pdfjs-dist@${pdfjsVersion}/build/pdf.worker.min.js`;
-
   let { roomNum: roomID } = useParams();
-  const [validRoomID, setValidRoomID] = useState(null);
 
+  if (roomID != undefined) { roomID = roomID.toUpperCase(); }
+  const [validRoomID, setValidRoomID] = useState(false);
   const [text, setText] = useState("");
-  const [pdfBytes, setPdfBytes] = useState(null);
+  const [activePDFFile, setActivePDFFile] = useState(null);
   const navigate = useNavigate();
-
-  const scrollModePluginInstance = scrollModePlugin();
-  scrollModePluginInstance.switchScrollMode(ScrollMode.Page)
-
+ 
   useEffect(() => {
 
     // get valid roomIDs from the database
     async function validateRoomID() {
-      try {
-        const presentations = await DataStore.query(Presentation, (c) => c.ShortCode.eq(roomID));
-        if (presentations.length === 1) {
-          setValidRoomID(roomID);
 
-          // get the file from S3
-          const fileKey = presentations[0].PresentationKey;
-          const result = await Storage.get(fileKey, {
-            download: true,
-            level: 'public',
-          });
+      // check if the room ID is defined
+      if (roomID != undefined) {
+        try {
+          // check if the room ID exists in the database
+          const presentations = await DataStore.query(Presentation, (c) => c.ShortCode.eq(roomID));
 
-          // convert the file to a base64 string
-          const pdfFile = await BlobToByte64(result.Body);
-          setPdfBytes(pdfFile);
+          // if the room ID exists, then set the state of the PDF file
+          if (presentations.length == 1) {
+            setValidRoomID(roomID);
 
+            // get the file from S3
+            const fileKey = presentations[0].PresentationKey;
+            const result = await Storage.get(fileKey, {
+              download: true,
+              level: 'public',
+            });
+
+            // convert the file to a base64 string
+            const pdfFile = await BlobToByte64(result.Body);
+            setActivePDFFile(pdfFile);
+
+          }
+          else {
+            console.error(); ("Invalid room ID: " + roomID);
+            setActivePDFFile(null);
+            setValidRoomID(false);
+          }
+        }
+        catch (error) {
+          console.error("An error occurred while checking the code: ", error);
         }
       }
-      catch (error) {
-        console.error("An error occurred while checking the code: ", error);
-      }
     }
-    // get the valid room IDs
-    validateRoomID();
 
-  }, []);
+    // call the function to validate the room ID
+    validateRoomID();
+  }, [roomID]);
 
 
   function handleChange(e) {
@@ -65,34 +73,17 @@ export default function Join() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    // clear the input field
     navigate(`/join/${text}`);
   }
 
-  // This is the function that will retreive the file from the S3 storage
-  async function retreiveFile(fileKey) {
-    try {
-
-      // get the file from S3
-      const result = await Storage.get(fileKey, {
-        download: true,
-        level: 'public',
-      });
-
-      // convert the file to a base64 string
-      return BlobToByte64(result.Body);
-
-    } catch (error) {
-      console.log('Error listing files: ', error);
-    }
-  }
-
-
-  // if the room number is undefined (i.e. the user has not entered a room number) then display the join page
-  if (roomID === undefined) {
-
-    return (
-      <>
+  return (
+    <>
+      {!validRoomID &&
         <div style={{ marginTop: '30vh' }}>
+          {(roomID != undefined) &&
+            <h1>We're Sorry, but that room is not open. Please try again</h1>
+          }
           <header className="App-header">
             <div>
               Enter Room Code
@@ -105,46 +96,10 @@ export default function Join() {
             </div>
           </header>
         </div>
-      </>
-    );
-
-  }
-  // else if the room number lower cased is equal to "f723s"
-  else if (validRoomID) {
-
-    return (
-      <>
-        <div className='pdf-container'>
-          <Worker workerUrl={workerUrl}>
-            {pdfBytes && <>
-              <Viewer fileUrl={pdfBytes} plugins={[scrollModePluginInstance]} />
-            </>}
-            {!pdfBytes && <>No PDF</>}
-          </Worker>
-        </div>
-      </>
-    )
-
-  }
-
-  //if the room number is invalid then display the error page
-  else {
-    return (
-      <>
-        <div>
-          <h1>We're Sorry, but that room is not open. Please try again</h1>
-          <header className="App-header">
-            Enter Room Code
-            <form onSubmit={handleSubmit}>
-              <input type="text" onChange={handleChange} />
-              <div>
-                <Button type="submit">Join Presentation</Button>
-              </div>
-            </form>
-          </header>
-        </div>
-      </>
-    );
-
-  }
+      }
+      {validRoomID &&
+        <ViewPDF pdfFile={activePDFFile} />
+      }
+    </>
+  );
 }
