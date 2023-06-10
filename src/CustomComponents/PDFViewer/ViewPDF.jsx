@@ -21,7 +21,7 @@ export default function ViewPDF(params) {
 
     return (
         <>
-            <div className='pdf-container' style={{height: 'calc(100vh - 242px)'}} >
+            <div className='pdf-container' style={{height: 'calc(100vh - 244px)'}} >
                 <Worker workerUrl={workerUrl}>
                     {params.pdfFile && <>
                         <Viewer fileUrl={params.pdfFile} theme={theme} ScrollMode="Page" plugins={[defaultLayoutPluginInstance]} />

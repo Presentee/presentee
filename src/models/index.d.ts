@@ -15,6 +15,7 @@ type EagerPresentation = {
   readonly PresentationKey: string;
   readonly Name?: string | null;
   readonly PageNum?: number | null;
+  readonly ShortCode?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -28,6 +29,7 @@ type LazyPresentation = {
   readonly PresentationKey: string;
   readonly Name?: string | null;
   readonly PageNum?: number | null;
+  readonly ShortCode?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

@@ -27,12 +27,14 @@ export default function PresentationUpdateForm(props) {
     PresentationKey: "",
     Name: "",
     PageNum: "",
+    ShortCode: "",
   };
   const [PresentationKey, setPresentationKey] = React.useState(
     initialValues.PresentationKey
   );
   const [Name, setName] = React.useState(initialValues.Name);
   const [PageNum, setPageNum] = React.useState(initialValues.PageNum);
+  const [ShortCode, setShortCode] = React.useState(initialValues.ShortCode);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = presentationRecord
@@ -41,6 +43,7 @@ export default function PresentationUpdateForm(props) {
     setPresentationKey(cleanValues.PresentationKey);
     setName(cleanValues.Name);
     setPageNum(cleanValues.PageNum);
+    setShortCode(cleanValues.ShortCode);
     setErrors({});
   };
   const [presentationRecord, setPresentationRecord] = React.useState(
@@ -60,6 +63,7 @@ export default function PresentationUpdateForm(props) {
     PresentationKey: [{ type: "Required" }],
     Name: [],
     PageNum: [],
+    ShortCode: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -90,6 +94,7 @@ export default function PresentationUpdateForm(props) {
           PresentationKey,
           Name,
           PageNum,
+          ShortCode,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -148,6 +153,7 @@ export default function PresentationUpdateForm(props) {
               PresentationKey: value,
               Name,
               PageNum,
+              ShortCode,
             };
             const result = onChange(modelFields);
             value = result?.PresentationKey ?? value;
@@ -174,6 +180,7 @@ export default function PresentationUpdateForm(props) {
               PresentationKey,
               Name: value,
               PageNum,
+              ShortCode,
             };
             const result = onChange(modelFields);
             value = result?.Name ?? value;
@@ -204,6 +211,7 @@ export default function PresentationUpdateForm(props) {
               PresentationKey,
               Name,
               PageNum: value,
+              ShortCode,
             };
             const result = onChange(modelFields);
             value = result?.PageNum ?? value;
@@ -217,6 +225,33 @@ export default function PresentationUpdateForm(props) {
         errorMessage={errors.PageNum?.errorMessage}
         hasError={errors.PageNum?.hasError}
         {...getOverrideProps(overrides, "PageNum")}
+      ></TextField>
+      <TextField
+        label="Short code"
+        isRequired={false}
+        isReadOnly={false}
+        value={ShortCode}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              PresentationKey,
+              Name,
+              PageNum,
+              ShortCode: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.ShortCode ?? value;
+          }
+          if (errors.ShortCode?.hasError) {
+            runValidationTasks("ShortCode", value);
+          }
+          setShortCode(value);
+        }}
+        onBlur={() => runValidationTasks("ShortCode", ShortCode)}
+        errorMessage={errors.ShortCode?.errorMessage}
+        hasError={errors.ShortCode?.hasError}
+        {...getOverrideProps(overrides, "ShortCode")}
       ></TextField>
       <Flex
         justifyContent="space-between"

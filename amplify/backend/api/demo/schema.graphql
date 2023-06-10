@@ -3,6 +3,7 @@ type Presentation @model @auth(rules: [{allow: public}]) {
   PresentationKey: String!
   Name: String
   PageNum: Int
+  ShortCode: String
 }
 
 type PollAnswers @model @auth(rules: [{allow: public}]) {
