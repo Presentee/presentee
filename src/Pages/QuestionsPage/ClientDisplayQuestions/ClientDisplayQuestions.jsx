@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { listQuestions, listQuestionsAnswers } from '../../../graphql/queries';
+import "./ClientDisplayPolls.css"
 
 function ClientDisplayQuestions() {
   const [questions, setQuestions] = useState([]);

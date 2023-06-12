@@ -1,0 +1,24 @@
+/* ClientDisplayPolls.css */
+
+.client-display-polls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  padding: 10px;
+}
+
+.poll-voting {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 10px;
+  width: 80%;
+  text-align: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.poll-voting:hover {
+  border-color: #aaa;
+}

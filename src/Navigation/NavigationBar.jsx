@@ -23,8 +23,6 @@ export default function NavigationBar() {
 
             <div style={{ marginRight: 'auto', marginLeft: 'auto' }}>
                 <Button onClick={() => navigate("/questions")}>Questions</Button>
-                <Button onClick={() => navigate("/polls")}>Polls</Button>
-                <Button onClick={() => navigate('/join')}>Join</Button>
 
 
                 {route === 'authenticated' && (
@@ -35,6 +33,8 @@ export default function NavigationBar() {
                 )}
 
                 <Button onClick={() => navigate('/about')}>About</Button>
+                <Button onClick={() => navigate("/polls")}>Polls</Button>
+                <Button onClick={() => navigate('/join')}>Join</Button>
             </div>
 
             <div className='right-div'>
