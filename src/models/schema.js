@@ -31,6 +31,45 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "ShortCode": {
+                    "name": "ShortCode",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "Questions": {
+                    "name": "Questions",
+                    "isArray": true,
+                    "type": {
+                        "model": "Question"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "presentationID"
+                        ]
+                    }
+                },
+                "Polls": {
+                    "name": "Polls",
+                    "isArray": true,
+                    "type": {
+                        "model": "Poll"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "presentationID"
+                        ]
+                    }
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -73,81 +112,6 @@ export const schema = {
                 }
             ]
         },
-        "PollAnswers": {
-            "name": "PollAnswers",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "Answer": {
-                    "name": "Answer",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "pollID": {
-                    "name": "pollID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "createdAt": {
-                    "name": "createdAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                },
-                "updatedAt": {
-                    "name": "updatedAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                }
-            },
-            "syncable": true,
-            "pluralName": "PollAnswers",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "key",
-                    "properties": {
-                        "name": "byPoll",
-                        "fields": [
-                            "pollID"
-                        ]
-                    }
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "public",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
         "Poll": {
             "name": "Poll",
             "fields": {
@@ -158,25 +122,18 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "PollJSON": {
-                    "name": "PollJSON",
+                "presentationID": {
+                    "name": "presentationID",
                     "isArray": false,
-                    "type": "AWSJSON",
-                    "isRequired": false,
+                    "type": "ID",
+                    "isRequired": true,
                     "attributes": []
                 },
-                "Question": {
-                    "name": "Question",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
-                "PollAnswers": {
-                    "name": "PollAnswers",
+                "PollQuestions": {
+                    "name": "PollQuestions",
                     "isArray": true,
                     "type": {
-                        "model": "PollAnswers"
+                        "model": "PollQuestion"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -213,6 +170,15 @@ export const schema = {
                     "properties": {}
                 },
                 {
+                    "type": "key",
+                    "properties": {
+                        "name": "byPresentation",
+                        "fields": [
+                            "presentationID"
+                        ]
+                    }
+                },
+                {
                     "type": "auth",
                     "properties": {
                         "rules": [
@@ -230,8 +196,8 @@ export const schema = {
                 }
             ]
         },
-        "QuestionsAnswer": {
-            "name": "QuestionsAnswer",
+        "PollAnswer": {
+            "name": "PollAnswer",
             "fields": {
                 "id": {
                     "name": "id",
@@ -247,8 +213,8 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "newquestionsID": {
-                    "name": "newquestionsID",
+                "pollquestionID": {
+                    "name": "pollquestionID",
                     "isArray": false,
                     "type": "ID",
                     "isRequired": true,
@@ -272,7 +238,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "QuestionsAnswers",
+            "pluralName": "PollAnswers",
             "attributes": [
                 {
                     "type": "model",
@@ -281,9 +247,9 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byQuestions",
+                        "name": "byPollQuestion",
                         "fields": [
-                            "newquestionsID"
+                            "pollquestionID"
                         ]
                     }
                 },
@@ -305,8 +271,8 @@ export const schema = {
                 }
             ]
         },
-        "Questions": {
-            "name": "Questions",
+        "Question": {
+            "name": "Question",
             "fields": {
                 "id": {
                     "name": "id",
@@ -322,21 +288,12 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "QuestionsAnswers": {
-                    "name": "QuestionsAnswers",
-                    "isArray": true,
-                    "type": {
-                        "model": "QuestionsAnswer"
-                    },
-                    "isRequired": false,
-                    "attributes": [],
-                    "isArrayNullable": true,
-                    "association": {
-                        "connectionType": "HAS_MANY",
-                        "associatedWith": [
-                            "newquestionsID"
-                        ]
-                    }
+                "presentationID": {
+                    "name": "presentationID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -363,6 +320,106 @@ export const schema = {
                     "properties": {}
                 },
                 {
+                    "type": "key",
+                    "properties": {
+                        "name": "byPresentation",
+                        "fields": [
+                            "presentationID"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "PollQuestion": {
+            "name": "PollQuestion",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "Question": {
+                    "name": "Question",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "pollID": {
+                    "name": "pollID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "PollAnswers": {
+                    "name": "PollAnswers",
+                    "isArray": true,
+                    "type": {
+                        "model": "PollAnswer"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": [
+                            "pollquestionID"
+                        ]
+                    }
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "PollQuestions",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byPoll",
+                        "fields": [
+                            "pollID"
+                        ]
+                    }
+                },
+                {
                     "type": "auth",
                     "properties": {
                         "rules": [
@@ -384,5 +441,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.3",
-    "version": "1609f6e41bdb7c530f1aafa4dbfd3f78"
+    "version": "0d64c51b92ae242f89f6bfca0a78c06a"
 };

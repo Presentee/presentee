@@ -3,30 +3,33 @@ type Presentation @model @auth(rules: [{allow: public}]) {
   PresentationKey: String!
   Name: String
   PageNum: Int
-}
-
-type PollAnswers @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  Answer: String
-  pollID: ID! @index(name: "byPoll")
+  ShortCode: String
+  Questions: [Question] @hasMany(indexName: "byPresentation", fields: ["id"])
+  Polls: [Poll] @hasMany(indexName: "byPresentation", fields: ["id"])
 }
 
 type Poll @model @auth(rules: [{allow: public}]) {
   id: ID!
-  PollJSON: AWSJSON
-  Question: String
-  PollAnswers: [PollAnswers] @hasMany(indexName: "byPoll", fields: ["id"])
+  presentationID: ID! @index(name: "byPresentation")
+  PollQuestions: [PollQuestion] @hasMany(indexName: "byPoll", fields: ["id"])
 }
 
-type QuestionsAnswer @model @auth(rules: [{allow: public}]) {
+type PollAnswer @model @auth(rules: [{allow: public}]) {
   id: ID!
   Answer: String
-  newquestionsID: ID! @index(name: "byQuestions")
+  pollquestionID: ID! @index(name: "byPollQuestion")
 }
 
-type Questions @model @auth(rules: [{allow: public}]) {
+type Question @model @auth(rules: [{allow: public}]) {
   id: ID!
   Question: String
-  QuestionsAnswers: [QuestionsAnswer] @hasMany(indexName: "byQuestions", fields: ["id"])
+  presentationID: ID! @index(name: "byPresentation")
+}
+
+type PollQuestion @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Question: String
+  pollID: ID! @index(name: "byPoll")
+  PollAnswers: [PollAnswer] @hasMany(indexName: "byPollQuestion", fields: ["id"])
 }
  

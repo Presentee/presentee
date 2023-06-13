@@ -10,6 +10,34 @@ export const onCreatePresentation = /* GraphQL */ `
       PresentationKey
       Name
       PageNum
+      ShortCode
+      Questions {
+        items {
+          id
+          Question
+          presentationID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      Polls {
+        items {
+          id
+          presentationID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -27,6 +55,34 @@ export const onUpdatePresentation = /* GraphQL */ `
       PresentationKey
       Name
       PageNum
+      ShortCode
+      Questions {
+        items {
+          id
+          Question
+          presentationID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      Polls {
+        items {
+          id
+          presentationID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -44,54 +100,34 @@ export const onDeletePresentation = /* GraphQL */ `
       PresentationKey
       Name
       PageNum
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onCreatePollAnswers = /* GraphQL */ `
-  subscription OnCreatePollAnswers(
-    $filter: ModelSubscriptionPollAnswersFilterInput
-  ) {
-    onCreatePollAnswers(filter: $filter) {
-      id
-      Answer
-      pollID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onUpdatePollAnswers = /* GraphQL */ `
-  subscription OnUpdatePollAnswers(
-    $filter: ModelSubscriptionPollAnswersFilterInput
-  ) {
-    onUpdatePollAnswers(filter: $filter) {
-      id
-      Answer
-      pollID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onDeletePollAnswers = /* GraphQL */ `
-  subscription OnDeletePollAnswers(
-    $filter: ModelSubscriptionPollAnswersFilterInput
-  ) {
-    onDeletePollAnswers(filter: $filter) {
-      id
-      Answer
-      pollID
+      ShortCode
+      Questions {
+        items {
+          id
+          Question
+          presentationID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      Polls {
+        items {
+          id
+          presentationID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -104,12 +140,11 @@ export const onCreatePoll = /* GraphQL */ `
   subscription OnCreatePoll($filter: ModelSubscriptionPollFilterInput) {
     onCreatePoll(filter: $filter) {
       id
-      PollJSON
-      Question
-      PollAnswers {
+      presentationID
+      PollQuestions {
         items {
           id
-          Answer
+          Question
           pollID
           createdAt
           updatedAt
@@ -132,12 +167,11 @@ export const onUpdatePoll = /* GraphQL */ `
   subscription OnUpdatePoll($filter: ModelSubscriptionPollFilterInput) {
     onUpdatePoll(filter: $filter) {
       id
-      PollJSON
-      Question
-      PollAnswers {
+      presentationID
+      PollQuestions {
         items {
           id
-          Answer
+          Question
           pollID
           createdAt
           updatedAt
@@ -160,12 +194,11 @@ export const onDeletePoll = /* GraphQL */ `
   subscription OnDeletePoll($filter: ModelSubscriptionPollFilterInput) {
     onDeletePoll(filter: $filter) {
       id
-      PollJSON
-      Question
-      PollAnswers {
+      presentationID
+      PollQuestions {
         items {
           id
-          Answer
+          Question
           pollID
           createdAt
           updatedAt
@@ -184,14 +217,14 @@ export const onDeletePoll = /* GraphQL */ `
     }
   }
 `;
-export const onCreateQuestionsAnswer = /* GraphQL */ `
-  subscription OnCreateQuestionsAnswer(
-    $filter: ModelSubscriptionQuestionsAnswerFilterInput
+export const onCreatePollAnswer = /* GraphQL */ `
+  subscription OnCreatePollAnswer(
+    $filter: ModelSubscriptionPollAnswerFilterInput
   ) {
-    onCreateQuestionsAnswer(filter: $filter) {
+    onCreatePollAnswer(filter: $filter) {
       id
       Answer
-      newquestionsID
+      pollquestionID
       createdAt
       updatedAt
       _version
@@ -200,14 +233,14 @@ export const onCreateQuestionsAnswer = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateQuestionsAnswer = /* GraphQL */ `
-  subscription OnUpdateQuestionsAnswer(
-    $filter: ModelSubscriptionQuestionsAnswerFilterInput
+export const onUpdatePollAnswer = /* GraphQL */ `
+  subscription OnUpdatePollAnswer(
+    $filter: ModelSubscriptionPollAnswerFilterInput
   ) {
-    onUpdateQuestionsAnswer(filter: $filter) {
+    onUpdatePollAnswer(filter: $filter) {
       id
       Answer
-      newquestionsID
+      pollquestionID
       createdAt
       updatedAt
       _version
@@ -216,14 +249,14 @@ export const onUpdateQuestionsAnswer = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteQuestionsAnswer = /* GraphQL */ `
-  subscription OnDeleteQuestionsAnswer(
-    $filter: ModelSubscriptionQuestionsAnswerFilterInput
+export const onDeletePollAnswer = /* GraphQL */ `
+  subscription OnDeletePollAnswer(
+    $filter: ModelSubscriptionPollAnswerFilterInput
   ) {
-    onDeleteQuestionsAnswer(filter: $filter) {
+    onDeletePollAnswer(filter: $filter) {
       id
       Answer
-      newquestionsID
+      pollquestionID
       createdAt
       updatedAt
       _version
@@ -232,18 +265,61 @@ export const onDeleteQuestionsAnswer = /* GraphQL */ `
     }
   }
 `;
-export const onCreateQuestions = /* GraphQL */ `
-  subscription OnCreateQuestions(
-    $filter: ModelSubscriptionQuestionsFilterInput
-  ) {
-    onCreateQuestions(filter: $filter) {
+export const onCreateQuestion = /* GraphQL */ `
+  subscription OnCreateQuestion($filter: ModelSubscriptionQuestionFilterInput) {
+    onCreateQuestion(filter: $filter) {
       id
       Question
-      QuestionsAnswers {
+      presentationID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateQuestion = /* GraphQL */ `
+  subscription OnUpdateQuestion($filter: ModelSubscriptionQuestionFilterInput) {
+    onUpdateQuestion(filter: $filter) {
+      id
+      Question
+      presentationID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteQuestion = /* GraphQL */ `
+  subscription OnDeleteQuestion($filter: ModelSubscriptionQuestionFilterInput) {
+    onDeleteQuestion(filter: $filter) {
+      id
+      Question
+      presentationID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreatePollQuestion = /* GraphQL */ `
+  subscription OnCreatePollQuestion(
+    $filter: ModelSubscriptionPollQuestionFilterInput
+  ) {
+    onCreatePollQuestion(filter: $filter) {
+      id
+      Question
+      pollID
+      PollAnswers {
         items {
           id
           Answer
-          newquestionsID
+          pollquestionID
           createdAt
           updatedAt
           _version
@@ -261,18 +337,19 @@ export const onCreateQuestions = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateQuestions = /* GraphQL */ `
-  subscription OnUpdateQuestions(
-    $filter: ModelSubscriptionQuestionsFilterInput
+export const onUpdatePollQuestion = /* GraphQL */ `
+  subscription OnUpdatePollQuestion(
+    $filter: ModelSubscriptionPollQuestionFilterInput
   ) {
-    onUpdateQuestions(filter: $filter) {
+    onUpdatePollQuestion(filter: $filter) {
       id
       Question
-      QuestionsAnswers {
+      pollID
+      PollAnswers {
         items {
           id
           Answer
-          newquestionsID
+          pollquestionID
           createdAt
           updatedAt
           _version
@@ -290,18 +367,19 @@ export const onUpdateQuestions = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteQuestions = /* GraphQL */ `
-  subscription OnDeleteQuestions(
-    $filter: ModelSubscriptionQuestionsFilterInput
+export const onDeletePollQuestion = /* GraphQL */ `
+  subscription OnDeletePollQuestion(
+    $filter: ModelSubscriptionPollQuestionFilterInput
   ) {
-    onDeleteQuestions(filter: $filter) {
+    onDeletePollQuestion(filter: $filter) {
       id
       Question
-      QuestionsAnswers {
+      pollID
+      PollAnswers {
         items {
           id
           Answer
-          newquestionsID
+          pollquestionID
           createdAt
           updatedAt
           _version

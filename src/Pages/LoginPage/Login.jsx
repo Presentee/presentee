@@ -9,6 +9,7 @@ import {
 import { Auth } from 'aws-amplify';
 import CustomLogin from './CustomLogin';
 import { ThemeContext } from '@react-pdf-viewer/core';
+import CustomSignUp from './CustomSignup';
 
 
 export default function Login() {
@@ -29,15 +30,16 @@ export default function Login() {
   useEffect(() => {
     if (user) {
       navigate('/Home', { replace: true });
-      //location.reload();
+      window.location.reload();
     }
-  }, [user, navigate]);
+  }, [user]);
 
-  // useEffect(() => {
-  //   if (route === 'authenticated') {
-  //     navigate('/Home', { replace: true });
-  //   }
-  // });
+  useEffect(() => {
+    if (route === 'authenticated') {
+      navigate('/Home', { replace: true });
+      
+    }
+  });
 
   const handleSignOut = async () => {
     try {
@@ -55,15 +57,18 @@ export default function Login() {
       </Authenticator> */}
 
       <div className={`custom-login ${theme}`}>
-        {user ? (
-          <Button onClick={handleSignOut}>Sign Out</Button>
-        ) : (
+        {!showSignUp ? (
           <CustomLogin
             toggleSignUp={toggleSignUp}
             onSignIn={setUser}
           // onForgotPassword={handleForgotPassword}
           />
-        )}
+          ) : (
+          <CustomSignUp
+            toggleSignUp={toggleSignUp}
+          
+          />
+          )}
       </div>
     </>
   );

@@ -11,6 +11,34 @@ export const createPresentation = /* GraphQL */ `
       PresentationKey
       Name
       PageNum
+      ShortCode
+      Questions {
+        items {
+          id
+          Question
+          presentationID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      Polls {
+        items {
+          id
+          presentationID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -29,6 +57,34 @@ export const updatePresentation = /* GraphQL */ `
       PresentationKey
       Name
       PageNum
+      ShortCode
+      Questions {
+        items {
+          id
+          Question
+          presentationID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      Polls {
+        items {
+          id
+          presentationID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -47,57 +103,34 @@ export const deletePresentation = /* GraphQL */ `
       PresentationKey
       Name
       PageNum
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const createPollAnswers = /* GraphQL */ `
-  mutation CreatePollAnswers(
-    $input: CreatePollAnswersInput!
-    $condition: ModelPollAnswersConditionInput
-  ) {
-    createPollAnswers(input: $input, condition: $condition) {
-      id
-      Answer
-      pollID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const updatePollAnswers = /* GraphQL */ `
-  mutation UpdatePollAnswers(
-    $input: UpdatePollAnswersInput!
-    $condition: ModelPollAnswersConditionInput
-  ) {
-    updatePollAnswers(input: $input, condition: $condition) {
-      id
-      Answer
-      pollID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const deletePollAnswers = /* GraphQL */ `
-  mutation DeletePollAnswers(
-    $input: DeletePollAnswersInput!
-    $condition: ModelPollAnswersConditionInput
-  ) {
-    deletePollAnswers(input: $input, condition: $condition) {
-      id
-      Answer
-      pollID
+      ShortCode
+      Questions {
+        items {
+          id
+          Question
+          presentationID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      Polls {
+        items {
+          id
+          presentationID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -113,12 +146,11 @@ export const createPoll = /* GraphQL */ `
   ) {
     createPoll(input: $input, condition: $condition) {
       id
-      PollJSON
-      Question
-      PollAnswers {
+      presentationID
+      PollQuestions {
         items {
           id
-          Answer
+          Question
           pollID
           createdAt
           updatedAt
@@ -144,12 +176,11 @@ export const updatePoll = /* GraphQL */ `
   ) {
     updatePoll(input: $input, condition: $condition) {
       id
-      PollJSON
-      Question
-      PollAnswers {
+      presentationID
+      PollQuestions {
         items {
           id
-          Answer
+          Question
           pollID
           createdAt
           updatedAt
@@ -175,12 +206,11 @@ export const deletePoll = /* GraphQL */ `
   ) {
     deletePoll(input: $input, condition: $condition) {
       id
-      PollJSON
-      Question
-      PollAnswers {
+      presentationID
+      PollQuestions {
         items {
           id
-          Answer
+          Question
           pollID
           createdAt
           updatedAt
@@ -199,15 +229,15 @@ export const deletePoll = /* GraphQL */ `
     }
   }
 `;
-export const createQuestionsAnswer = /* GraphQL */ `
-  mutation CreateQuestionsAnswer(
-    $input: CreateQuestionsAnswerInput!
-    $condition: ModelQuestionsAnswerConditionInput
+export const createPollAnswer = /* GraphQL */ `
+  mutation CreatePollAnswer(
+    $input: CreatePollAnswerInput!
+    $condition: ModelPollAnswerConditionInput
   ) {
-    createQuestionsAnswer(input: $input, condition: $condition) {
+    createPollAnswer(input: $input, condition: $condition) {
       id
       Answer
-      newquestionsID
+      pollquestionID
       createdAt
       updatedAt
       _version
@@ -216,15 +246,15 @@ export const createQuestionsAnswer = /* GraphQL */ `
     }
   }
 `;
-export const updateQuestionsAnswer = /* GraphQL */ `
-  mutation UpdateQuestionsAnswer(
-    $input: UpdateQuestionsAnswerInput!
-    $condition: ModelQuestionsAnswerConditionInput
+export const updatePollAnswer = /* GraphQL */ `
+  mutation UpdatePollAnswer(
+    $input: UpdatePollAnswerInput!
+    $condition: ModelPollAnswerConditionInput
   ) {
-    updateQuestionsAnswer(input: $input, condition: $condition) {
+    updatePollAnswer(input: $input, condition: $condition) {
       id
       Answer
-      newquestionsID
+      pollquestionID
       createdAt
       updatedAt
       _version
@@ -233,15 +263,15 @@ export const updateQuestionsAnswer = /* GraphQL */ `
     }
   }
 `;
-export const deleteQuestionsAnswer = /* GraphQL */ `
-  mutation DeleteQuestionsAnswer(
-    $input: DeleteQuestionsAnswerInput!
-    $condition: ModelQuestionsAnswerConditionInput
+export const deletePollAnswer = /* GraphQL */ `
+  mutation DeletePollAnswer(
+    $input: DeletePollAnswerInput!
+    $condition: ModelPollAnswerConditionInput
   ) {
-    deleteQuestionsAnswer(input: $input, condition: $condition) {
+    deletePollAnswer(input: $input, condition: $condition) {
       id
       Answer
-      newquestionsID
+      pollquestionID
       createdAt
       updatedAt
       _version
@@ -250,19 +280,71 @@ export const deleteQuestionsAnswer = /* GraphQL */ `
     }
   }
 `;
-export const createQuestions = /* GraphQL */ `
-  mutation CreateQuestions(
-    $input: CreateQuestionsInput!
-    $condition: ModelQuestionsConditionInput
+export const createQuestion = /* GraphQL */ `
+  mutation CreateQuestion(
+    $input: CreateQuestionInput!
+    $condition: ModelQuestionConditionInput
   ) {
-    createQuestions(input: $input, condition: $condition) {
+    createQuestion(input: $input, condition: $condition) {
       id
       Question
-      QuestionsAnswers {
+      presentationID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateQuestion = /* GraphQL */ `
+  mutation UpdateQuestion(
+    $input: UpdateQuestionInput!
+    $condition: ModelQuestionConditionInput
+  ) {
+    updateQuestion(input: $input, condition: $condition) {
+      id
+      Question
+      presentationID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteQuestion = /* GraphQL */ `
+  mutation DeleteQuestion(
+    $input: DeleteQuestionInput!
+    $condition: ModelQuestionConditionInput
+  ) {
+    deleteQuestion(input: $input, condition: $condition) {
+      id
+      Question
+      presentationID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const createPollQuestion = /* GraphQL */ `
+  mutation CreatePollQuestion(
+    $input: CreatePollQuestionInput!
+    $condition: ModelPollQuestionConditionInput
+  ) {
+    createPollQuestion(input: $input, condition: $condition) {
+      id
+      Question
+      pollID
+      PollAnswers {
         items {
           id
           Answer
-          newquestionsID
+          pollquestionID
           createdAt
           updatedAt
           _version
@@ -280,19 +362,20 @@ export const createQuestions = /* GraphQL */ `
     }
   }
 `;
-export const updateQuestions = /* GraphQL */ `
-  mutation UpdateQuestions(
-    $input: UpdateQuestionsInput!
-    $condition: ModelQuestionsConditionInput
+export const updatePollQuestion = /* GraphQL */ `
+  mutation UpdatePollQuestion(
+    $input: UpdatePollQuestionInput!
+    $condition: ModelPollQuestionConditionInput
   ) {
-    updateQuestions(input: $input, condition: $condition) {
+    updatePollQuestion(input: $input, condition: $condition) {
       id
       Question
-      QuestionsAnswers {
+      pollID
+      PollAnswers {
         items {
           id
           Answer
-          newquestionsID
+          pollquestionID
           createdAt
           updatedAt
           _version
@@ -310,19 +393,20 @@ export const updateQuestions = /* GraphQL */ `
     }
   }
 `;
-export const deleteQuestions = /* GraphQL */ `
-  mutation DeleteQuestions(
-    $input: DeleteQuestionsInput!
-    $condition: ModelQuestionsConditionInput
+export const deletePollQuestion = /* GraphQL */ `
+  mutation DeletePollQuestion(
+    $input: DeletePollQuestionInput!
+    $condition: ModelPollQuestionConditionInput
   ) {
-    deleteQuestions(input: $input, condition: $condition) {
+    deletePollQuestion(input: $input, condition: $condition) {
       id
       Question
-      QuestionsAnswers {
+      pollID
+      PollAnswers {
         items {
           id
           Answer
-          newquestionsID
+          pollquestionID
           createdAt
           updatedAt
           _version

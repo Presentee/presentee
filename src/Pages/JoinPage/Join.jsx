@@ -1,7 +1,5 @@
 // components/Protected.js
-import NavigationBar from 'Navigation';
 import React, { useState, useEffect } from 'react';
-import { ScrollView } from '@aws-amplify/ui-react';
 import "./Join.css";
 import { useParams, useNavigate } from 'react-router-dom';
 import { Storage, DataStore } from 'aws-amplify';
@@ -11,38 +9,73 @@ import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import { scrollModePlugin } from '@react-pdf-viewer/scroll-mode';
 import Button from 'CustomComponents/Button';
+import BlobToByte64 from 'CustomComponents/BlobToByte64';
+import ViewPDF from 'CustomComponents/PDFViewer';
+import QuestionModal from './QuestionModal';
 
 
 export default function Join() {
 
   let { roomNum: roomID } = useParams();
-  let hardcodedRoomID = "34b88d2a-c0e4-4145-9156-ecd9101a39a6";
 
+  if (roomID != undefined) { roomID = roomID.toUpperCase(); }
+  const [validRoomID, setValidRoomID] = useState(false);
   const [text, setText] = useState("");
-  const [pdfBytes, setPdfBytes] = useState(null);
+  const [activePDFFile, setActivePDFFile] = useState(null);
   const navigate = useNavigate();
+  const [presentationID, setPresentationID] = useState(null);
 
-  const scrollModePluginInstance = scrollModePlugin();
-  scrollModePluginInstance.switchScrollMode(ScrollMode.Page)
+  const [modalOpen, setModalOpen] = useState(false);
+
+  //toggle the modal
+  const toggleModal = () => {
+    setModalOpen(!modalOpen);
+  }
 
   useEffect(() => {
-    async function getPresentation(roomID) {
-      if (roomID && roomID.toLowerCase() === "f723s") {
+
+    // get valid roomIDs from the database
+    async function validateRoomID() {
+
+      // check if the room ID is defined
+      if (roomID != undefined) {
         try {
-          const presentationData = await DataStore.query(Presentation, hardcodedRoomID);
-          console.log('presentationData: ', presentationData)
-          const initialPdfBytes = await retreiveFile(presentationData.fileKey);
-          setPdfBytes(initialPdfBytes);
-        } catch (error) {
-          console.error('error getting presentation: ', error);
+          // check if the room ID exists in the database
+          const presentations = await DataStore.query(Presentation, (c) => c.ShortCode.eq(roomID));
+
+          //set the presentation id
+          setPresentationID(presentations[0].id);
+
+          // if the room ID exists, then set the state of the PDF file
+          if (presentations.length == 1) {
+            setValidRoomID(roomID);
+
+            // get the file from S3
+            const fileKey = presentations[0].PresentationKey;
+            const result = await Storage.get(fileKey, {
+              download: true,
+              level: 'public',
+            });
+
+            // convert the file to a base64 string
+            const pdfFile = await BlobToByte64(result.Body);
+            setActivePDFFile(pdfFile);
+
+          }
+          else {
+            console.error("Invalid room ID: " + roomID);
+            setActivePDFFile(null);
+            setValidRoomID(false);
+          }
+        }
+        catch (error) {
+          console.error("An error occurred while checking the code: ", error);
         }
       }
     }
 
-    // Call the function here
-    getPresentation(roomID);
-
-    // You're depending on `roomID` to trigger the effect
+    // call the function to validate the room ID
+    validateRoomID();
   }, [roomID]);
 
 
@@ -52,56 +85,17 @@ export default function Join() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    // clear the input field
     navigate(`/join/${text}`);
   }
 
-  // This is the function that will retreive the file from the S3 storage
-  async function retreiveFile(fileKey) {
-    try {
-
-      const result = await Storage.get(fileKey, {
-        download: true,
-        level: 'public',
-      });
-
-      // convert the pdf data to a base64 string
-      const pdfData = result.Body;
-      const reader = new FileReader();
-      const base64PDFData = await new Promise((resolve, reject) => {
-
-        // setup event listeners to handle the file reading
-        reader.onloadend = () => {
-          const base64String = reader.result.split(',')[1];
-          resolve(base64String);
-        };
-
-        // handle errors
-        reader.onerror = () => {
-          reject(reader.error);
-        };
-
-        // read the file as a data url
-        reader.readAsDataURL(pdfData);
-      });
-
-      //add the pdf header to the base64 string
-      const base64PDF = 'data:application/pdf;base64,' + base64PDFData;
-
-      // return the base64 string
-      return base64PDF;
-
-    } catch (error) {
-      console.log('Error listing files: ', error);
-    }
-  }
-
-
-  // if the room number is undefined (i.e. the user has not entered a room number) then display the join page
-  if (roomID === undefined) {
-
-    return (
-      <>
+  return (
+    <>
+      {!validRoomID &&
         <div style={{ marginTop: '30vh' }}>
+          {(roomID != undefined) &&
+            <h1>We're Sorry, but that room is not open. Please try again</h1>
+          }
           <header className="App-header">
             <div>
               Enter Room Code
@@ -114,47 +108,14 @@ export default function Join() {
             </div>
           </header>
         </div>
-      </>
-    );
-
-  }
-  // else if the room number lower cased is equal to "f723s"
-  else if (roomID.toLowerCase() === "f723s") {
-
-    return (
-      <>
-        {/* <div>ID: {params.roomID}</div> */}
-        <div className='pdf-container'>
-          <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.15.349/build/pdf.worker.min.js">
-            {pdfBytes && <>
-              <Viewer fileUrl={pdfBytes} plugins={[scrollModePluginInstance]} />
-            </>}
-            {!pdfBytes && <>No PDF</>}
-          </Worker>
-        </div>
-      </>
-    )
-
-  }
-
-  //if the room number is invalid then display the error page
-  else {
-    return (
-      <>
-        <div>
-          <h1>We're Sorry, but that room is not open. Please try again</h1>
-          <header className="App-header">
-            Enter Room Code
-            <form onSubmit={handleSubmit}>
-              <input type="text" onChange={handleChange} />
-              <div>
-                <Button type="submit">Join Presentation</Button>
-              </div>
-            </form>
-          </header>
-        </div>
-      </>
-    );
-
-  }
+      }
+      {validRoomID &&
+        <>
+          <ViewPDF pdfFile={activePDFFile} style={{maxHeight: '90vh'}} />
+          <QuestionModal modalOpen={modalOpen} toggleModal={toggleModal} presentationID={presentationID}/>
+          <Button onClick={() => setModalOpen(true)} style={{marginTop: '15px'}}>Ask a Question</Button>
+        </>
+      }
+    </>
+  );
 }

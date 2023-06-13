@@ -17,11 +17,13 @@ export declare type PresentationUpdateFormInputValues = {
     PresentationKey?: string;
     Name?: string;
     PageNum?: number;
+    ShortCode?: string;
 };
 export declare type PresentationUpdateFormValidationValues = {
     PresentationKey?: ValidationFunction<string>;
     Name?: ValidationFunction<string>;
     PageNum?: ValidationFunction<number>;
+    ShortCode?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type PresentationUpdateFormOverridesProps = {
@@ -29,6 +31,7 @@ export declare type PresentationUpdateFormOverridesProps = {
     PresentationKey?: PrimitiveOverrideProps<TextFieldProps>;
     Name?: PrimitiveOverrideProps<TextFieldProps>;
     PageNum?: PrimitiveOverrideProps<TextFieldProps>;
+    ShortCode?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type PresentationUpdateFormProps = React.PropsWithChildren<{
     overrides?: PresentationUpdateFormOverridesProps | undefined | null;

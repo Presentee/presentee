@@ -38,15 +38,16 @@ export default function NavigationBar() {
             </div>
 
             <div className='right-div'>
-                
+
                 {route === 'authenticated' ? (
                     <Button onClick={() => navigate('/settings')} size="small">
                         Settings
                     </Button>
                 ) : (
-                    ""
+                    <Button onClick={() => navigate('/guestsettings')} size="small">
+                        Settings
+                    </Button>
                 )}
-
 
                 {route === 'authenticated' ? (
                     <Button onClick={logOut} size="small">Sign Out</Button>
