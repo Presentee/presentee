@@ -9,17 +9,52 @@ export default function CustomLogin(params) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const { theme } = React.useContext(ThemeContext);
+  const [accountUnconfirmed, setAccountUnconfirmed] = useState(false);
 
   const handleSubmit = async (e) => {
+
+    console.log(accountUnconfirmed)
     e.preventDefault();
-    try {
-      const user = await Auth.signIn(username, password);
-      params.onSignIn(user);
-    } catch (err) {
-      setError(err.message);
-      console.log(err);
+    if (accountUnconfirmed) {
+      try {
+        await Auth.confirmSignUp(username, password);
+        setError('SignUp Successfull!, Please log in');
+        setAccountUnconfirmed(false);
+      } catch (error) {
+        // setError(error.message);
+        console.log(error);
+      }
+
+    }
+    else {
+      try {
+        const user = await Auth.signIn(username, password);
+        params.onSignIn(user);
+      } catch (error) {
+
+        if (error.message.includes('User is not confirmed')) {
+          setError('User is not confirmed, please check your email. Use code as password to confirm account.');
+
+          //resend confirmation code
+          resendConfirmationCode();
+          setAccountUnconfirmed(true);
+        }
+        else {
+          // setError(error.message);
+          console.log(error);
+        }
+      }
     }
   };
+
+  async function resendConfirmationCode() {
+    try {
+      await Auth.resendSignUp(username);
+
+    } catch (error) {
+      setError(error.message);
+    }
+  }
 
   const handleForgotPassword = (event) => {
     event.preventDefault();
@@ -34,7 +69,7 @@ export default function CustomLogin(params) {
       return 'User does not exist';
     }
     else {
-      return 'An error occurred';
+      return error;
     }
   }
 

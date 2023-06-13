@@ -11,6 +11,7 @@ export default function CustomSignUp(params) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const { theme } = React.useContext(ThemeContext);
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,29 +21,24 @@ export default function CustomSignUp(params) {
     }
 
     try {
-      const user = await Auth.signUp({
-        username: email,
-        password: password,
-        attributes: {
-          name: name,
-          email: email,
-        },
-      });
-      params.onSignUp(user);
+      const username = email;
+      const { user } = await Auth.signUp({ username, password });
     } catch (err) {
       setError(err.message);
     }
   };
 
   const handleError = (error) => {
+    console.log("Handling error:" + error);
+
     if (error.includes('incorrect')) {
       return 'Incorrect username or password';
     }
-    else if (error.includes('Username')) {
+    else if (error.includes('Username cannot be empty')) {
       return 'Email address cannot be empty';
     }
     else {
-      return "An error occurred";
+      return error;
     }
   }
 

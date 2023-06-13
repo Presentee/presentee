@@ -37,24 +37,12 @@ export default function Login() {
   useEffect(() => {
     if (route === 'authenticated') {
       navigate('/Home', { replace: true });
-      
+
     }
   });
 
-  const handleSignOut = async () => {
-    try {
-      await Auth.signOut();
-      setUser(null);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   return (
     <>
-      {/* <Authenticator>
-        {({ signOut }) => <Button onClick={signOut}>Sign Out</Button>}
-      </Authenticator> */}
 
       <div className={`custom-login ${theme}`}>
         {!showSignUp ? (
@@ -63,12 +51,11 @@ export default function Login() {
             onSignIn={setUser}
           // onForgotPassword={handleForgotPassword}
           />
-          ) : (
+        ) : (
           <CustomSignUp
             toggleSignUp={toggleSignUp}
-          
           />
-          )}
+        )}
       </div>
     </>
   );
