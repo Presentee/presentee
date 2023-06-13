@@ -37,6 +37,11 @@ export default function Join() {
     // get valid roomIDs from the database
     async function validateRoomID() {
 
+      if(roomID == undefined){
+        setLoading(false);
+        return;
+      }
+
       // check if the room ID is defined
       // check if the room ID exists in the database
       for (let index = 0; index < 5; index++) {
@@ -110,10 +115,10 @@ export default function Join() {
       }
       {validRoomID && !loading &&
         <>
-          <ViewPDF pdfFile={activePDFFile} style={{ maxHeight: '90vh' }} />
+          <ViewPDF pdfFile={activePDFFile} style={{ maxHeight: '85vh' }} />
           <QuestionModal modalOpen={modalOpen} toggleModal={toggleModal} presentationID={presentationID} />
           <Button onClick={() => setModalOpen(true)} style={{ marginTop: '15px' }}>Ask a Question</Button>
-          <div style={{ position: 'absolute', bottom: '10px', left: '10px' }}> Use alt + arrow keys or pageup and pagedown to navigate pages in fullscreen</div>
+          <div> Use alt + arrow keys or pageup and pagedown to navigate pages in fullscreen</div>
         </>
       }
       {loading &&
