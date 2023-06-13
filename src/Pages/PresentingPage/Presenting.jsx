@@ -160,7 +160,7 @@ export default function Presentating(params) {
 
             <QuestionsModal modalOpen={questionsModalOpen} toggleModal={toggleQuestionsModal} presentationID={presentationID}/>
             <Button onClick={toggleQuestionsModal} style={{ marginTop: '15px' }}>Questions</Button>
-
+            <div style={{position: 'absolute', bottom: '10px', left: '10px'}}> Use alt + arrow keys or pageup and pagedown to navigate pages in fullscreen</div>
             <div ref={qrRef} style={{ display: 'none' }}>
                 <QRCodeCanvas
                     value={"Presentee.net/join/" + params.roomID}

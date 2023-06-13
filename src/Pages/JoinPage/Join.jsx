@@ -18,14 +18,14 @@ export default function Join() {
 
   let { roomNum: roomID } = useParams();
 
-  if (roomID != undefined) { roomID = roomID.toUpperCase(); }
   const [validRoomID, setValidRoomID] = useState(false);
   const [text, setText] = useState("");
   const [activePDFFile, setActivePDFFile] = useState(null);
   const navigate = useNavigate();
   const [presentationID, setPresentationID] = useState(null);
-
+  const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
+  const [roomIDReady, setRoomIDReady] = useState(false);
 
   //toggle the modal
   const toggleModal = () => {
@@ -38,40 +38,40 @@ export default function Join() {
     async function validateRoomID() {
 
       // check if the room ID is defined
-      if (roomID != undefined) {
-        try {
-          // check if the room ID exists in the database
-          const presentations = await DataStore.query(Presentation, (c) => c.ShortCode.eq(roomID));
+      // check if the room ID exists in the database
+      for (let index = 0; index < 5; index++) {
+        const presentations = await DataStore.query(Presentation, (c) => c.ShortCode.eq(roomID.toUpperCase()));
 
-          //set the presentation id
+        // if the room ID exists, then set the state of the PDF file
+        if (presentations.length == 1) {
+
           setPresentationID(presentations[0].id);
+          setLoading(false);
+          setValidRoomID(roomID.toUpperCase());
 
-          // if the room ID exists, then set the state of the PDF file
-          if (presentations.length == 1) {
-            setValidRoomID(roomID);
+          // get the file from S3
+          const fileKey = presentations[0].PresentationKey;
+          const result = await Storage.get(fileKey, {
+            download: true,
+            level: 'public',
+          });
 
-            // get the file from S3
-            const fileKey = presentations[0].PresentationKey;
-            const result = await Storage.get(fileKey, {
-              download: true,
-              level: 'public',
-            });
+          // convert the file to a base64 string
+          const pdfFile = await BlobToByte64(result.Body);
+          setActivePDFFile(pdfFile);
 
-            // convert the file to a base64 string
-            const pdfFile = await BlobToByte64(result.Body);
-            setActivePDFFile(pdfFile);
-
-          }
-          else {
-            console.error("Invalid room ID: " + roomID);
-            setActivePDFFile(null);
-            setValidRoomID(false);
-          }
+          break;
         }
-        catch (error) {
-          console.error("An error occurred while checking the code: ", error);
+        else {
+          console.error("Invalid room ID: " + roomID);
+          setActivePDFFile(null);
+          setValidRoomID(false);
         }
+
+        // pause for 1 second
+        await new Promise((resolve) => setTimeout(resolve, 1000));
       }
+      setLoading(false);
     }
 
     // call the function to validate the room ID
@@ -85,13 +85,12 @@ export default function Join() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // clear the input field
     navigate(`/join/${text}`);
   }
 
   return (
     <>
-      {!validRoomID &&
+      {!validRoomID && !loading &&
         <div style={{ marginTop: '30vh' }}>
           {(roomID != undefined) &&
             <h1>We're Sorry, but that room is not open. Please try again</h1>
@@ -109,12 +108,18 @@ export default function Join() {
           </header>
         </div>
       }
-      {validRoomID &&
+      {validRoomID && !loading &&
         <>
-          <ViewPDF pdfFile={activePDFFile} style={{maxHeight: '90vh'}} />
-          <QuestionModal modalOpen={modalOpen} toggleModal={toggleModal} presentationID={presentationID}/>
-          <Button onClick={() => setModalOpen(true)} style={{marginTop: '15px'}}>Ask a Question</Button>
+          <ViewPDF pdfFile={activePDFFile} style={{ maxHeight: '90vh' }} />
+          <QuestionModal modalOpen={modalOpen} toggleModal={toggleModal} presentationID={presentationID} />
+          <Button onClick={() => setModalOpen(true)} style={{ marginTop: '15px' }}>Ask a Question</Button>
+          <div style={{ position: 'absolute', bottom: '10px', left: '10px' }}> Use alt + arrow keys or pageup and pagedown to navigate pages in fullscreen</div>
         </>
+      }
+      {loading &&
+        <div style={{ marginTop: '30vh' }}>
+          <h1>Loading...</h1>
+        </div>
       }
     </>
   );
