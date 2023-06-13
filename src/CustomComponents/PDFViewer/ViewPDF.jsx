@@ -37,7 +37,7 @@ export default function ViewPDF(params) {
     });
 
     const scrollModePluginInstance = scrollModePlugin();
-    scrollModePluginInstance.switchScrollMode(ScrollMode.Page)
+    scrollModePluginInstance.switchScrollMode(ScrollMode.Vertical)
 
     return (
         <>
