@@ -14,8 +14,8 @@ import Settings from 'Pages/SettingsPage/Settings';
 import GuestSettings from 'Pages/SettingsPage/GuestSettings';
 import ChangePassword from 'Pages/ChangePasswordPage';
 import ChangeEmail from 'Pages/ChangeEmailPage';
-import QuestionsPage from 'Pages/QuestionsPage/QuestionsPage';
-import PollsPage from 'Pages/PollsPage/PollsPage';
+// import QuestionsPage from 'Pages/QuestionsPage/QuestionsPage';
+// import PollsPage from 'Pages/PollsPage/PollsPage';
 import NavigationBar from 'Navigation';
 import 'styles.css';
 

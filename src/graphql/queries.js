@@ -8,6 +8,34 @@ export const getPresentation = /* GraphQL */ `
       PresentationKey
       Name
       PageNum
+      ShortCode
+      Questions {
+        items {
+          id
+          Question
+          presentationID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
+      Polls {
+        items {
+          id
+          presentationID
+          createdAt
+          updatedAt
+          _version
+          _deleted
+          _lastChangedAt
+        }
+        nextToken
+        startedAt
+      }
       createdAt
       updatedAt
       _version
@@ -28,6 +56,15 @@ export const listPresentations = /* GraphQL */ `
         PresentationKey
         Name
         PageNum
+        ShortCode
+        Questions {
+          nextToken
+          startedAt
+        }
+        Polls {
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -57,100 +94,15 @@ export const syncPresentations = /* GraphQL */ `
         PresentationKey
         Name
         PageNum
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const getPollAnswers = /* GraphQL */ `
-  query GetPollAnswers($id: ID!) {
-    getPollAnswers(id: $id) {
-      id
-      Answer
-      pollID
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const listPollAnswers = /* GraphQL */ `
-  query ListPollAnswers(
-    $filter: ModelPollAnswersFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listPollAnswers(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        Answer
-        pollID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncPollAnswers = /* GraphQL */ `
-  query SyncPollAnswers(
-    $filter: ModelPollAnswersFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncPollAnswers(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        Answer
-        pollID
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const pollAnswersByPollID = /* GraphQL */ `
-  query PollAnswersByPollID(
-    $pollID: ID!
-    $sortDirection: ModelSortDirection
-    $filter: ModelPollAnswersFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    pollAnswersByPollID(
-      pollID: $pollID
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        Answer
-        pollID
+        ShortCode
+        Questions {
+          nextToken
+          startedAt
+        }
+        Polls {
+          nextToken
+          startedAt
+        }
         createdAt
         updatedAt
         _version
@@ -166,12 +118,11 @@ export const getPoll = /* GraphQL */ `
   query GetPoll($id: ID!) {
     getPoll(id: $id) {
       id
-      PollJSON
-      Question
-      PollAnswers {
+      presentationID
+      PollQuestions {
         items {
           id
-          Answer
+          Question
           pollID
           createdAt
           updatedAt
@@ -199,9 +150,8 @@ export const listPolls = /* GraphQL */ `
     listPolls(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        PollJSON
-        Question
-        PollAnswers {
+        presentationID
+        PollQuestions {
           nextToken
           startedAt
         }
@@ -231,9 +181,8 @@ export const syncPolls = /* GraphQL */ `
     ) {
       items {
         id
-        PollJSON
-        Question
-        PollAnswers {
+        presentationID
+        PollQuestions {
           nextToken
           startedAt
         }
@@ -248,12 +197,45 @@ export const syncPolls = /* GraphQL */ `
     }
   }
 `;
-export const getQuestionsAnswer = /* GraphQL */ `
-  query GetQuestionsAnswer($id: ID!) {
-    getQuestionsAnswer(id: $id) {
+export const pollsByPresentationID = /* GraphQL */ `
+  query PollsByPresentationID(
+    $presentationID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelPollFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    pollsByPresentationID(
+      presentationID: $presentationID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        presentationID
+        PollQuestions {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getPollAnswer = /* GraphQL */ `
+  query GetPollAnswer($id: ID!) {
+    getPollAnswer(id: $id) {
       id
       Answer
-      newquestionsID
+      pollquestionID
       createdAt
       updatedAt
       _version
@@ -262,21 +244,17 @@ export const getQuestionsAnswer = /* GraphQL */ `
     }
   }
 `;
-export const listQuestionsAnswers = /* GraphQL */ `
-  query ListQuestionsAnswers(
-    $filter: ModelQuestionsAnswerFilterInput
+export const listPollAnswers = /* GraphQL */ `
+  query ListPollAnswers(
+    $filter: ModelPollAnswerFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listQuestionsAnswers(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
+    listPollAnswers(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         Answer
-        newquestionsID
+        pollquestionID
         createdAt
         updatedAt
         _version
@@ -288,14 +266,14 @@ export const listQuestionsAnswers = /* GraphQL */ `
     }
   }
 `;
-export const syncQuestionsAnswers = /* GraphQL */ `
-  query SyncQuestionsAnswers(
-    $filter: ModelQuestionsAnswerFilterInput
+export const syncPollAnswers = /* GraphQL */ `
+  query SyncPollAnswers(
+    $filter: ModelPollAnswerFilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncQuestionsAnswers(
+    syncPollAnswers(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -304,7 +282,7 @@ export const syncQuestionsAnswers = /* GraphQL */ `
       items {
         id
         Answer
-        newquestionsID
+        pollquestionID
         createdAt
         updatedAt
         _version
@@ -316,16 +294,16 @@ export const syncQuestionsAnswers = /* GraphQL */ `
     }
   }
 `;
-export const questionsAnswersByNewquestionsID = /* GraphQL */ `
-  query QuestionsAnswersByNewquestionsID(
-    $newquestionsID: ID!
+export const pollAnswersByPollquestionID = /* GraphQL */ `
+  query PollAnswersByPollquestionID(
+    $pollquestionID: ID!
     $sortDirection: ModelSortDirection
-    $filter: ModelQuestionsAnswerFilterInput
+    $filter: ModelPollAnswerFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    questionsAnswersByNewquestionsID(
-      newquestionsID: $newquestionsID
+    pollAnswersByPollquestionID(
+      pollquestionID: $pollquestionID
       sortDirection: $sortDirection
       filter: $filter
       limit: $limit
@@ -334,7 +312,7 @@ export const questionsAnswersByNewquestionsID = /* GraphQL */ `
       items {
         id
         Answer
-        newquestionsID
+        pollquestionID
         createdAt
         updatedAt
         _version
@@ -346,16 +324,111 @@ export const questionsAnswersByNewquestionsID = /* GraphQL */ `
     }
   }
 `;
-export const getQuestions = /* GraphQL */ `
-  query GetQuestions($id: ID!) {
-    getQuestions(id: $id) {
+export const getQuestion = /* GraphQL */ `
+  query GetQuestion($id: ID!) {
+    getQuestion(id: $id) {
       id
       Question
-      QuestionsAnswers {
+      presentationID
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listQuestions = /* GraphQL */ `
+  query ListQuestions(
+    $filter: ModelQuestionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listQuestions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        Question
+        presentationID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncQuestions = /* GraphQL */ `
+  query SyncQuestions(
+    $filter: ModelQuestionFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncQuestions(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        Question
+        presentationID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const questionsByPresentationID = /* GraphQL */ `
+  query QuestionsByPresentationID(
+    $presentationID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelQuestionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    questionsByPresentationID(
+      presentationID: $presentationID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        Question
+        presentationID
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getPollQuestion = /* GraphQL */ `
+  query GetPollQuestion($id: ID!) {
+    getPollQuestion(id: $id) {
+      id
+      Question
+      pollID
+      PollAnswers {
         items {
           id
           Answer
-          newquestionsID
+          pollquestionID
           createdAt
           updatedAt
           _version
@@ -373,17 +446,18 @@ export const getQuestions = /* GraphQL */ `
     }
   }
 `;
-export const listQuestions = /* GraphQL */ `
-  query ListQuestions(
-    $filter: ModelQuestionsFilterInput
+export const listPollQuestions = /* GraphQL */ `
+  query ListPollQuestions(
+    $filter: ModelPollQuestionFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listQuestions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listPollQuestions(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         Question
-        QuestionsAnswers {
+        pollID
+        PollAnswers {
           nextToken
           startedAt
         }
@@ -398,14 +472,14 @@ export const listQuestions = /* GraphQL */ `
     }
   }
 `;
-export const syncQuestions = /* GraphQL */ `
-  query SyncQuestions(
-    $filter: ModelQuestionsFilterInput
+export const syncPollQuestions = /* GraphQL */ `
+  query SyncPollQuestions(
+    $filter: ModelPollQuestionFilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncQuestions(
+    syncPollQuestions(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -414,7 +488,42 @@ export const syncQuestions = /* GraphQL */ `
       items {
         id
         Question
-        QuestionsAnswers {
+        pollID
+        PollAnswers {
+          nextToken
+          startedAt
+        }
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const pollQuestionsByPollID = /* GraphQL */ `
+  query PollQuestionsByPollID(
+    $pollID: ID!
+    $sortDirection: ModelSortDirection
+    $filter: ModelPollQuestionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    pollQuestionsByPollID(
+      pollID: $pollID
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        Question
+        pollID
+        PollAnswers {
           nextToken
           startedAt
         }

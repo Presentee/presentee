@@ -3,7 +3,8 @@ import './Home.css';
 import { HomeContainer } from 'CustomComponents/Containers';
 import Button from 'CustomComponents/Button';
 import { DataStore } from 'aws-amplify';
-import { Presentation } from 'models';
+import { Question } from 'models';
+
 
 
 export default function Home() {

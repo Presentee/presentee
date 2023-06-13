@@ -11,6 +11,7 @@ import { scrollModePlugin } from '@react-pdf-viewer/scroll-mode';
 import Button from 'CustomComponents/Button';
 import BlobToByte64 from 'CustomComponents/BlobToByte64';
 import ViewPDF from 'CustomComponents/PDFViewer';
+import QuestionModal from './QuestionModal';
 
 
 export default function Join() {
@@ -22,7 +23,15 @@ export default function Join() {
   const [text, setText] = useState("");
   const [activePDFFile, setActivePDFFile] = useState(null);
   const navigate = useNavigate();
- 
+  const [presentationID, setPresentationID] = useState(null);
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  //toggle the modal
+  const toggleModal = () => {
+    setModalOpen(!modalOpen);
+  }
+
   useEffect(() => {
 
     // get valid roomIDs from the database
@@ -33,6 +42,9 @@ export default function Join() {
         try {
           // check if the room ID exists in the database
           const presentations = await DataStore.query(Presentation, (c) => c.ShortCode.eq(roomID));
+
+          //set the presentation id
+          setPresentationID(presentations[0].id);
 
           // if the room ID exists, then set the state of the PDF file
           if (presentations.length == 1) {
@@ -51,7 +63,7 @@ export default function Join() {
 
           }
           else {
-            console.error(); ("Invalid room ID: " + roomID);
+            console.error("Invalid room ID: " + roomID);
             setActivePDFFile(null);
             setValidRoomID(false);
           }
@@ -98,7 +110,11 @@ export default function Join() {
         </div>
       }
       {validRoomID &&
-        <ViewPDF pdfFile={activePDFFile} />
+        <>
+          <ViewPDF pdfFile={activePDFFile} style={{maxHeight: '90vh'}} />
+          <QuestionModal modalOpen={modalOpen} toggleModal={toggleModal} presentationID={presentationID}/>
+          <Button onClick={() => setModalOpen(true)} style={{marginTop: '15px'}}>Ask a Question</Button>
+        </>
       }
     </>
   );

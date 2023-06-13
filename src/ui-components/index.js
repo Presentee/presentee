@@ -7,7 +7,3 @@
 export { default as studioTheme } from "./studioTheme";
 export { default as PresentationCreateForm } from "./PresentationCreateForm";
 export { default as PresentationUpdateForm } from "./PresentationUpdateForm";
-export { default as PollCreateForm } from "./PollCreateForm";
-export { default as PollUpdateForm } from "./PollUpdateForm";
-export { default as QuestionsCreateForm } from "./QuestionsCreateForm";
-export { default as QuestionsUpdateForm } from "./QuestionsUpdateForm";
