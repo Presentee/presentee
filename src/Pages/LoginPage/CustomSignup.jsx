@@ -11,7 +11,7 @@ export default function CustomSignUp(params) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const { theme } = React.useContext(ThemeContext);
- 
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,10 +21,20 @@ export default function CustomSignUp(params) {
     }
 
     try {
-      const username = email;
-      const { user } = await Auth.signUp({ username, password });
-    } catch (err) {
-      setError(err.message);
+      const user = await Auth.signUp({
+        username: email,
+        password: password,
+        attributes: {
+          name: name,
+          email: email,
+        },
+      });
+
+      params.setUserConfirmation(email);
+      params.toggleSignUp();
+
+    } catch (error) {
+      setError(error.message);
     }
   };
 
@@ -36,6 +46,9 @@ export default function CustomSignUp(params) {
     }
     else if (error.includes('Username cannot be empty')) {
       return 'Email address cannot be empty';
+    }
+    else if (error.includes('Attributes')) {
+      return 'Unknown error';
     }
     else {
       return error;
@@ -49,12 +62,6 @@ export default function CustomSignUp(params) {
           <form onSubmit={handleSubmit}>
 
             <h3 style={{ marginBottom: '5px', marginTop: '0px' }}>Sign Up</h3>
-            <input
-              type="text"
-              placeholder="Name (Optional)"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
             <input
               type="email"
               placeholder="Email"

@@ -18,6 +18,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [showSignUp, setShowSignUp] = useState(false);
+  const [userConfirmation, setUserConfirmation] = useState(null);
 
   // toggle showSignUp state
   const toggleSignUp = () => {
@@ -49,11 +50,15 @@ export default function Login() {
           <CustomLogin
             toggleSignUp={toggleSignUp}
             onSignIn={setUser}
+            userConfirmation={userConfirmation}
+            setUserConfirmation={setUserConfirmation}
           // onForgotPassword={handleForgotPassword}
           />
         ) : (
           <CustomSignUp
             toggleSignUp={toggleSignUp}
+            userConfirmation={userConfirmation}
+            setUserConfirmation={setUserConfirmation}
           />
         )}
       </div>
