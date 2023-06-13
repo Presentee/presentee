@@ -18,6 +18,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [showSignUp, setShowSignUp] = useState(false);
+  const [userConfirmation, setUserConfirmation] = useState(null);
 
   // toggle showSignUp state
   const toggleSignUp = () => {
@@ -37,38 +38,29 @@ export default function Login() {
   useEffect(() => {
     if (route === 'authenticated') {
       navigate('/Home', { replace: true });
-      
+
     }
   });
 
-  const handleSignOut = async () => {
-    try {
-      await Auth.signOut();
-      setUser(null);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   return (
     <>
-      {/* <Authenticator>
-        {({ signOut }) => <Button onClick={signOut}>Sign Out</Button>}
-      </Authenticator> */}
 
       <div className={`custom-login ${theme}`}>
         {!showSignUp ? (
           <CustomLogin
             toggleSignUp={toggleSignUp}
             onSignIn={setUser}
+            userConfirmation={userConfirmation}
+            setUserConfirmation={setUserConfirmation}
           // onForgotPassword={handleForgotPassword}
           />
-          ) : (
+        ) : (
           <CustomSignUp
             toggleSignUp={toggleSignUp}
-          
+            userConfirmation={userConfirmation}
+            setUserConfirmation={setUserConfirmation}
           />
-          )}
+        )}
       </div>
     </>
   );

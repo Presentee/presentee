@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Auth } from 'aws-amplify';
 import './login.css';
 import ThemeContext from 'context';
@@ -9,17 +9,57 @@ export default function CustomLogin(params) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const { theme } = React.useContext(ThemeContext);
+  const [accountUnconfirmed, setAccountUnconfirmed] = useState(false);
+
+  useEffect(() => {
+    if (params.userConfirmation != null) {
+      setAccountUnconfirmed(true);
+      setUsername(params.userConfirmation);
+    }
+  }, [params.userConfirmation]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const user = await Auth.signIn(username, password);
-      params.onSignIn(user);
-    } catch (err) {
-      setError(err.message);
-      console.log(err);
+    if (accountUnconfirmed) {
+      try {
+        await Auth.confirmSignUp(username, password);
+        setError('SignUp Successfull, Please log in.');
+        setPassword('');
+        setAccountUnconfirmed(false);
+        params.setUserConfirmation(null);
+      } catch (error) {
+        setError(error.message);
+      }
+
+    }
+    else {
+      try {
+        const user = await Auth.signIn(username, password);
+        params.onSignIn(user);
+      } catch (error) {
+
+        if (error.message.includes('User is not confirmed')) {
+          setError('User is not confirmed, please check your email. Use code as password to confirm account.');
+
+          //resend confirmation code
+          resendConfirmationCode();
+          setAccountUnconfirmed(true);
+        }
+        else {
+          setError(error.message);
+        }
+      }
     }
   };
+
+  async function resendConfirmationCode() {
+    try {
+      await Auth.resendSignUp(username);
+
+    } catch (error) {
+      setError(error.message);
+    }
+  }
 
   const handleForgotPassword = (event) => {
     event.preventDefault();
@@ -34,7 +74,7 @@ export default function CustomLogin(params) {
       return 'User does not exist';
     }
     else {
-      return 'An error occurred';
+      return error;
     }
   }
 
@@ -42,9 +82,9 @@ export default function CustomLogin(params) {
     <>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <div className={`custom-login ${theme}`}>
-          <form className={`custom-login form ${theme}`} onSubmit={handleSubmit}>
+          <form className={`custom-login form ${theme}`} onSubmit={handleSubmit}> 
             <input
-              style={{ marginTop: '20px' }}
+              style={accountUnconfirmed ? {display: 'none', marginTop: '20px'} : {marginTop: '20px'}}
               type="text"
               placeholder="Email Address"
               value={username}
@@ -53,16 +93,16 @@ export default function CustomLogin(params) {
             <input
               style={{ marginTop: '20px' }}
               type="password"
-              placeholder="Password"
+              placeholder={accountUnconfirmed ? 'Confirmation Code' : 'Password'}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <Button type="submit" style={{ marginTop: '20px', paddingLeft: '60px', paddingRight: '60px' }}>Sign In</Button>
+            <Button type="submit" style={{ marginTop: '20px', paddingLeft: '60px', paddingRight: '60px' }}>{accountUnconfirmed ? "Confirm Account" : 'Sign In'}</Button>
 
-            <a href="/" onClick={handleForgotPassword} style={{ pointerEvents: 'visible', marginTop: '10px', marginBottom: '10px', color: 'inherit' }}> Forgot Password </a>
+            <a href="/" onClick={handleForgotPassword} style={{ pointerEvents: 'visible', marginTop: '10px', marginBottom: '10px', color: 'inherit' } + accountUnconfirmed ? {display: 'none'} : {}}> Forgot Password </a>
           </form>
         </div>
-        <Button onClick={params.toggleSignUp} style={{ marginTop: '20px' }}>Create A New Account</Button>
+        <Button onClick={params.toggleSignUp} style={accountUnconfirmed ? {display: 'none', marginTop: '20px'} : {marginTop: '20px'}}>Create A New Account</Button>
         <div>
           {error && <p style={{ boxShadow: '0px 0px 5px 0px rgba(0,0,0,0.75)', border: '1px solid red', backgroundColor: 'rgba(255,0,0,0.1)', borderRadius: '5px', padding: '10px', marginTop: '20px' }}>{handleError(error)}</p>}
         </div>

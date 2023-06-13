@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useContext } from 'react'
 import './PDF_viewer.css'
 import { Viewer, Worker, ScrollMode } from '@react-pdf-viewer/core'
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout'
@@ -13,10 +13,13 @@ import { Presentation } from 'models';
 import { DataStore } from 'aws-amplify';
 import QuestionsModal from './QuestionsModal';
 import Button from 'CustomComponents/Button'
+import ThemeContext from 'context/ThemeContext';
 
 
 export default function Presentating(params) {
     const [username, setUsername] = useState('');
+
+    const { theme, toggle } = useContext(ThemeContext);
 
     const qrRef = useRef(null);
 
@@ -149,7 +152,7 @@ export default function Presentating(params) {
             <div className='pdf-container' style={{ maxHeight: '85vh', height: '85vh' }}>
                 <Worker workerUrl={workerUrl}>
                     {pdfBytes && <>
-                        <Viewer enableSmoothScroll={false} fileUrl={pdfBytes} theme="dark" plugins={[defaultLayoutPluginInstance]} />
+                        <Viewer enableSmoothScroll={false} fileUrl={pdfBytes} theme={theme} plugins={[defaultLayoutPluginInstance]} />
                     </>}
                     {!pdfBytes && <>No PDF</>}
                 </Worker>
