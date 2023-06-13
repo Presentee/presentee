@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import './PDF_viewer.css'
-import { Viewer, Worker, ScrollMode } from '@react-pdf-viewer/core'
+import { Viewer, Worker, ScrollMode} from '@react-pdf-viewer/core'
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout'
 import { scrollModePlugin } from '@react-pdf-viewer/scroll-mode'
 import '@react-pdf-viewer/core/lib/styles/index.css'
@@ -9,6 +9,7 @@ import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
 import { useEffect, useState } from 'react'
 import { Auth } from 'aws-amplify';
 import QRCode, { QRCodeCanvas } from 'qrcode.react'
+
 
 export default function Presentating(params) {
     const [username, setUsername] = useState('');
@@ -48,7 +49,7 @@ export default function Presentating(params) {
             await modifyPdf();
         };
         runAsync();
-    }, []);
+    }, []);    
 
     const getQrUrl = () => {
         if (qrRef.current) {

@@ -4,7 +4,7 @@ import './login.css';
 import ThemeContext from 'context';
 import Button from 'CustomComponents/Button';
 
-export default function CustomLogin({ onSignIn }) {
+export default function CustomLogin(params) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -14,7 +14,7 @@ export default function CustomLogin({ onSignIn }) {
     e.preventDefault();
     try {
       const user = await Auth.signIn(username, password);
-      onSignIn(user);
+      params.onSignIn(user);
     } catch (err) {
       setError(err.message);
       console.log(err);
@@ -57,16 +57,14 @@ export default function CustomLogin({ onSignIn }) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <Button type="submit" style={{ marginTop: '20px' }}>Sign In</Button>
+            <Button type="submit" style={{ marginTop: '20px', paddingLeft: '60px', paddingRight: '60px' }}>Sign In</Button>
 
-            <a href="/" onClick={handleForgotPassword} style={{ pointerEvents: 'visible', marginTop: '20px', marginBottom: '10px', color: 'inherit' }}> Forgot Password </a>
-
-            {/* <Button type="submit" style={{ marginTop: '20px' }}>Sign Up</Button> */}
+            <a href="/" onClick={handleForgotPassword} style={{ pointerEvents: 'visible', marginTop: '10px', marginBottom: '10px', color: 'inherit' }}> Forgot Password </a>
           </form>
         </div>
-        {/* Div with a drop shadow and a red outline and light red background to indicate and error */}
+        <Button onClick={params.toggleSignUp} style={{ marginTop: '20px' }}>Create A New Account</Button>
         <div>
-        {error && <p style={{ boxShadow: '0px 0px 5px 0px rgba(0,0,0,0.75)', border: '1px solid red', backgroundColor: 'rgba(255,0,0,0.1)', borderRadius: '5px', padding: '10px', marginTop: '10px' }}>{handleError(error)}</p>}
+          {error && <p style={{ boxShadow: '0px 0px 5px 0px rgba(0,0,0,0.75)', border: '1px solid red', backgroundColor: 'rgba(255,0,0,0.1)', borderRadius: '5px', padding: '10px', marginTop: '20px' }}>{handleError(error)}</p>}
         </div>
       </div>
     </>

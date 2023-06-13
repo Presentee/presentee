@@ -10,7 +10,8 @@ import JoinPage from 'Pages/JoinPage';
 import LoginPage from 'Pages/LoginPage';
 import Presenting from 'Pages/PresentingPage';
 import PageNotFound from 'Pages/404Page/404';
-import Settings from 'Pages/SettingsPage';
+import Settings from 'Pages/SettingsPage/Settings';
+import GuestSettings from 'Pages/SettingsPage/GuestSettings';
 import ChangePassword from 'Pages/ChangePasswordPage';
 import ChangeEmail from 'Pages/ChangeEmailPage';
 import QuestionsPage from 'Pages/QuestionsPage/QuestionsPage';
@@ -43,6 +44,7 @@ const App = () => {
         "about" : <AboutPage />,
         // "questions" : <QuestionsPage />,
         // "polls" : <PollsPage />
+        "guestsettings" : <GuestSettings />,
     };
 
 
@@ -97,6 +99,7 @@ const App = () => {
                         <Route path="/about" element={publicRoutes["about"]} />
                         {/* <Route path="/questions" element={publicRoutes["questions"]} /> */}
                         {/* <Route path="/polls" element={publicRoutes["polls"]} /> */}
+                        <Route path="/guestsettings" element={publicRoutes["guestsettings"]} />
 
                         {/* These are the private routes that will be offered once a user has created an account
                             and been authenicated. */}
